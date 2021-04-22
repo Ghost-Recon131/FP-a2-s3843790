@@ -1,4 +1,4 @@
-package main;
+package rmit.fp.assignment2;
 
 import org.sqlite.SQLiteConnection;
 
