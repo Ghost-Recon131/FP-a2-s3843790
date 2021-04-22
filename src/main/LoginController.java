@@ -1,4 +1,4 @@
-package rmit.fp.assignment2;
+package main;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
