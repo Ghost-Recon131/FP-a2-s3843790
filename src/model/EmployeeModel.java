@@ -25,18 +25,20 @@ public class EmployeeModel {
         this.SQ_Answer = SQ_Answer;
     }
 
-    public String getHash(String toHash) throws NoSuchAlgorithmException {
-        //Referenced code from [1]
-        MessageDigest MD = MessageDigest.getInstance("SHA-256");
-        MD.update(toHash.getBytes());
+//    public String getHash(String toHash) throws NoSuchAlgorithmException {
+//        //Referenced code from [1]
+//        MessageDigest MD = MessageDigest.getInstance("SHA-256");
+//        MD.update(toHash.getBytes());
+//
+//        byte[] digest = MD.digest();
+//        StringBuffer StringBuffer = new StringBuffer();
+//        for (byte b : digest){
+//            StringBuffer.append(String.format("%02x", b & 0xff));
+//        }
+//        return StringBuffer.toString();
+//    }
 
-        byte[] digest = MD.digest();
-        StringBuffer StringBuffer = new StringBuffer();
-        for (byte b : digest){
-            StringBuffer.append(String.format("%02x", b & 0xff));
-        }
-        return StringBuffer.toString();
-    }
+    SHAHash HASH = new SHAHash();
 
     public int getID() {
         return id;
@@ -59,18 +61,30 @@ public class EmployeeModel {
     }
 
     public String getPassword() throws NoSuchAlgorithmException {
-        return getHash(Password);
+        return HASH.getHash(Password);
+    }
+
+    //this getter is used to retrieve a hashed password from the database
+    //otherwise the hashed password will be hashed again before being returned
+    //via the EmployeeDAO
+    public String getHashedPassword() {
+        return Password;
     }
 
     public String getRole() {
         return Role;
     }
 
-    public String getSecret_Question() {
+    public String getSecretQuestion() {
         return Secret_Question;
     }
 
-    public String getSQ_Answer() throws NoSuchAlgorithmException {
-        return getHash(SQ_Answer);
+    public String getSQAnswer() throws NoSuchAlgorithmException {
+        return HASH.getHash(SQ_Answer);
+    }
+
+    //same logic as with password
+    public String getHashedSQAnswer(){
+        return SQ_Answer;
     }
 }
