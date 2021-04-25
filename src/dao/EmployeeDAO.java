@@ -1,11 +1,10 @@
 package dao;
 
 import model.EmployeeModel;
+import model.SHAHash;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.security.NoSuchAlgorithmException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,18 +74,93 @@ public class EmployeeDAO {
 
     //get Secret Question of an account
     public String getSecretQuestion(int id) {
-        String role = null;
+        String SQ = null;
         for (EmployeeModel Emp : listOfEmployees) {
             if (Emp.getID() == id) {
-                role = Emp.getSecretQuestion();
+                SQ = Emp.getSecretQuestion();
             }
         }
-        return role;
+        return SQ;
     }
 
+    //get answer to Secret Question of an account
+    public String getSecretQuestionAnswer(int id) {
+        String SQA = null;
+        for (EmployeeModel Emp : listOfEmployees) {
+            if (Emp.getID() == id) {
+                SQA = Emp.getSecretQuestion();
+            }
+        }
+        return SQA;
+    }
+
+    //Adding an account
+    public boolean addAccount(int id, String Firstname, String Lastname, String Username, String Password, String Role,
+                              String Secret_Question, String SQ_Answer){
+        boolean add = false;
+        SHAHash HASH = new SHAHash();
+        String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)";
+
+        try{
+            PreparedStatement pstmt = connect.prepareStatement(sql);{
+                pstmt.setInt(1, id);
+                pstmt.setString(2, Firstname);
+                pstmt.setString(3, Lastname);
+                pstmt.setString(4, Username);
+                pstmt.setString(5, HASH.getHash(Password));
+                pstmt.setString(6, Role);
+                pstmt.setString(7, Secret_Question);
+                pstmt.setString(8, HASH.getHash(SQ_Answer));
+                pstmt.executeUpdate();
+                updateEmployee();
+            }
+
+            for(EmployeeModel Emp : listOfEmployees){
+                if(Emp.getID() == id){
+                    add = true;
+                    break;
+                }
+            }
+        }catch (SQLException | NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+        return add;
+    }
+
+    //delete an account using the account's id
+    public boolean deleteAccount(int id){
+        boolean result = true;
+        String sql = "DELETE FROM Employee WHERE id = ?";
+
+        try{
+            PreparedStatement pstmt = connect.prepareStatement(sql);{
+                pstmt.setInt(1, id);
+                pstmt.executeUpdate();
+                updateEmployee();
+            }
+
+            for(EmployeeModel Emp : listOfEmployees){
+                if(Emp.getID() == id){
+                    result = false;
+                    break;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    //TODO implement updating of account information
+    public boolean updateAccount (int id, String Firstname, String Lastname, String Username, String Password, String Role,
+                                  String Secret_Question, String SQ_Answer){
+        boolean result = false;
+        String sql = "UPDATE Employee SET ";
 
 
 
+        return result;
+    }
 
 
 
