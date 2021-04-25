@@ -11,7 +11,7 @@ import java.util.List;
 
 public class EmployeeDAO {
     private Connection connect = SQLConnection.connect();
-    private List<EmployeeModel> listOfEmployees = new ArrayList<EmployeeModel>();
+    private List<EmployeeModel> listOfEmployees = new ArrayList<>();
 
     //refresh the database
     public void updateEmployee() {
@@ -29,7 +29,7 @@ public class EmployeeDAO {
         }
     }
 
-    //Get the full name of an employee using their ID
+    //Get the full name of an account's owner using their ID
     public String getEmployee(int id) {
         String name = null;
         for (EmployeeModel Emp : listOfEmployees) {
@@ -40,7 +40,7 @@ public class EmployeeDAO {
         return name;
     }
 
-    //Get the username of an employee using their ID
+    //Get the username of an account's owner their ID
     public String getUsername(int id) {
         String username = null;
         for (EmployeeModel Emp : listOfEmployees) {
@@ -51,16 +51,39 @@ public class EmployeeDAO {
         return username;
     }
 
-    //Get the username of an employee using their ID
+    //Get the hashed password of an account's owner using their ID
     public String getPassword(int id) {
-        String username = null;
+        String password = null;
         for (EmployeeModel Emp : listOfEmployees) {
             if (Emp.getID() == id) {
-                username = Emp.getUsername();
+                password = Emp.getHashedPassword();
             }
         }
-        return username;
+        return password;
     }
+
+    //get Role of an account's owner using their ID
+    public String getRole(int id) {
+        String role = null;
+        for (EmployeeModel Emp : listOfEmployees) {
+            if (Emp.getID() == id) {
+                role = Emp.getRole();
+            }
+        }
+        return role;
+    }
+
+    //get Secret Question of an account
+    public String getSecretQuestion(int id) {
+        String role = null;
+        for (EmployeeModel Emp : listOfEmployees) {
+            if (Emp.getID() == id) {
+                role = Emp.getSecretQuestion();
+            }
+        }
+        return role;
+    }
+
 
 
 
