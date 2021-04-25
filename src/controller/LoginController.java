@@ -1,12 +1,13 @@
-package main;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javafx.event.ActionEvent;
+import model.LoginModel;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -41,17 +42,12 @@ public class LoginController implements Initializable {
 
                 isConnected.setText("Logged in successfully");
             }else{
-                isConnected.setText("Username and Password is incorrect");
+                isConnected.setText("Username or Password is incorrect");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
-
-    //11.2.3 big sur
-
 
 
 }

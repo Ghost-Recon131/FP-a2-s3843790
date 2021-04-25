@@ -1,6 +1,6 @@
-package main;
+package model;
 
-import org.sqlite.SQLiteConnection;
+import dao.SQLConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
