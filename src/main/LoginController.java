@@ -41,13 +41,12 @@ public class LoginController implements Initializable {
 
                 isConnected.setText("Logged in successfully");
             }else{
-                isConnected.setText("username and password is incorrect");
+                isConnected.setText("Username and Password is incorrect");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
 
 
