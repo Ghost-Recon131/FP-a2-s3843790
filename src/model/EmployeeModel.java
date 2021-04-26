@@ -1,8 +1,5 @@
 package model;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 public class EmployeeModel {
     private int id;
     private String Firstname;
@@ -24,20 +21,6 @@ public class EmployeeModel {
         this.Secret_Question = Secret_Question;
         this.SQ_Answer = SQ_Answer;
     }
-
-//    public String getHash(String toHash) throws NoSuchAlgorithmException {
-//        //Referenced code from [1]
-//        MessageDigest MD = MessageDigest.getInstance("SHA-256");
-//        MD.update(toHash.getBytes());
-//
-//        byte[] digest = MD.digest();
-//        StringBuffer StringBuffer = new StringBuffer();
-//        for (byte b : digest){
-//            StringBuffer.append(String.format("%02x", b & 0xff));
-//        }
-//        return StringBuffer.toString();
-//    }
-
     SHAHash HASH = new SHAHash();
 
     public int getID() {
@@ -60,14 +43,7 @@ public class EmployeeModel {
         return Username;
     }
 
-    public String getPassword() throws NoSuchAlgorithmException {
-        return HASH.getHash(Password);
-    }
-
-    //this getter is used to retrieve a hashed password from the database
-    //otherwise the hashed password will be hashed again before being returned
-    //via the EmployeeDAO
-    public String getHashedPassword() {
+    public String getPassword() {
         return Password;
     }
 
@@ -79,12 +55,7 @@ public class EmployeeModel {
         return Secret_Question;
     }
 
-    public String getSQAnswer() throws NoSuchAlgorithmException {
-        return HASH.getHash(SQ_Answer);
-    }
-
-    //same logic as with password
-    public String getHashedSQAnswer(){
+    public String getSQAnswer() {
         return SQ_Answer;
     }
 }
