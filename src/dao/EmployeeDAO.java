@@ -29,6 +29,17 @@ public class EmployeeDAO {
         }
     }
 
+    //get the ID of an account
+    public int getAccountID(int id) {
+        int ID = -1;
+        for (EmployeeModel Emp : listOfEmployees) {
+            if (Emp.getID() == id){
+                ID = Emp.getID();
+            }
+        }
+        return ID;
+    }
+
     //Get the full name of an account's owner using their ID
     public String getEmployee(int id) {
         String name = null;
@@ -96,10 +107,11 @@ public class EmployeeDAO {
     }
 
     //Adding an account
-    public boolean addAccount(int id, String Firstname, String Lastname, String Username, String Password,
+    public boolean addAccount(String Firstname, String Lastname, String Username, String Password,
                               String Secret_Question, String SQ_Answer){
         boolean add = false;
         String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)";
+        int id = HASH.Randomint(); //generates random ID to avoid accidentally assigning an ID that is already in use
 
         try{
             PreparedStatement pstmt = connect.prepareStatement(sql);{

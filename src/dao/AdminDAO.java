@@ -69,10 +69,11 @@ public class AdminDAO extends EmployeeDAO{
     }
 
     //Adding an admin account
-    public boolean addAdmin(int id, String Firstname, String Lastname, String Username, String Password,
+    public boolean addAdmin(String Firstname, String Lastname, String Username, String Password,
                               String Secret_Question, String SQ_Answer){
         boolean add = false;
         String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)";
+        int id = HASH.Randomint(); //generates random ID to avoid accidentally assigning an ID that is already in use
 
         try{
             PreparedStatement pstmt = connect.prepareStatement(sql);{
