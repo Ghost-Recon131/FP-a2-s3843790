@@ -69,7 +69,7 @@ public class AdminDAO extends EmployeeDAO{
     }
 
     //Adding an admin account
-    public boolean addAccount(int id, String Firstname, String Lastname, String Username, String Password,
+    public boolean addAdmin(int id, String Firstname, String Lastname, String Username, String Password,
                               String Secret_Question, String SQ_Answer){
         boolean add = false;
         String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)";
