@@ -11,6 +11,7 @@ import java.util.List;
 public class EmployeeDAO {
     private Connection connect = SQLConnection.connect();
     private List<EmployeeModel> listOfEmployees = new ArrayList<>();
+    SHAHash HASH = new SHAHash();
 
     //refresh the database
     public void updateEmployee() {
@@ -55,7 +56,7 @@ public class EmployeeDAO {
         String password = null;
         for (EmployeeModel Emp : listOfEmployees) {
             if (Emp.getID() == id) {
-                password = Emp.getHashedPassword();
+                password = Emp.getPassword();
             }
         }
         return password;
@@ -95,10 +96,9 @@ public class EmployeeDAO {
     }
 
     //Adding an account
-    public boolean addAccount(int id, String Firstname, String Lastname, String Username, String Password, String Role,
+    public boolean addAccount(int id, String Firstname, String Lastname, String Username, String Password,
                               String Secret_Question, String SQ_Answer){
         boolean add = false;
-        SHAHash HASH = new SHAHash();
         String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)";
 
         try{
@@ -108,7 +108,7 @@ public class EmployeeDAO {
                 pstmt.setString(3, Lastname);
                 pstmt.setString(4, Username);
                 pstmt.setString(5, HASH.getHash(Password));
-                pstmt.setString(6, Role);
+                pstmt.setString(6, "employee"); //only admin can add another admin
                 pstmt.setString(7, Secret_Question);
                 pstmt.setString(8, HASH.getHash(SQ_Answer));
                 pstmt.executeUpdate();
@@ -126,43 +126,5 @@ public class EmployeeDAO {
         }
         return add;
     }
-
-    //delete an account using the account's id
-    public boolean deleteAccount(int id){
-        boolean result = true;
-        String sql = "DELETE FROM Employee WHERE id = ?";
-
-        try{
-            PreparedStatement pstmt = connect.prepareStatement(sql);{
-                pstmt.setInt(1, id);
-                pstmt.executeUpdate();
-                updateEmployee();
-            }
-
-            for(EmployeeModel Emp : listOfEmployees){
-                if(Emp.getID() == id){
-                    result = false;
-                    break;
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    //TODO implement updating of account information
-    public boolean updateAccount (int id, String Firstname, String Lastname, String Username, String Password, String Role,
-                                  String Secret_Question, String SQ_Answer){
-        boolean result = false;
-        String sql = "UPDATE Employee SET ";
-
-
-
-        return result;
-    }
-
-
-
 
 }
