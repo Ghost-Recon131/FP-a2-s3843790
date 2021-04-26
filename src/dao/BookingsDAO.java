@@ -1,7 +1,5 @@
 package dao;
-import model.EmployeeModel;
-
-import java.security.NoSuchAlgorithmException;
+import model.BookingsModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,7 +9,7 @@ import java.util.List;
 
 public class BookingsDAO {
     private Connection connect = SQLConnection.connect();
-    private List<EmployeeModel> listOfEmployees = new ArrayList<>();
+    private List<BookingsModel> listOfBookings = new ArrayList<>();
 
 
 }
