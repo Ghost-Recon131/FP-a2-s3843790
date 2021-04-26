@@ -24,28 +24,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
         launch(args);
-
-        //temp code for testing
-//        EmployeeModel EM = new EmployeeModel(2, "homey", "ash", "HAsh", "HELLO",
-//                "employee", "What is your favourite pet's name?", "Toby");
-//
-//        System.out.println(EM.getPassword());
-//        System.out.println(EM.getSQAnswer());
-//
-//        SHAHash Hash = new SHAHash();
-//        String test = "3733cd977ff8eb18b987357e22ced99f46097f31ecb239e878ae63760e83e4d5";
-//        System.out.println(Hash.getHash(test));
-//
-//        EmployeeDAO ED = new EmployeeDAO();
-//        ED.updateEmployee();
-//        if(EM.getPassword().equals(ED.getPassword(1))){
-//            System.out.println("Success!");
-//        }
-//        else{
-//            System.out.println(ED.getPassword(1));
-//            System.out.println("Something went wrong");
-//        }
-
+        //temporary code for testing
 
     }
 }
