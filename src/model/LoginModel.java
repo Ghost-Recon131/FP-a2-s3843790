@@ -10,6 +10,7 @@ import java.sql.SQLException;
 public class LoginModel {
 
     Connection connection;
+    SHAHash HASH = new SHAHash();
 
     public LoginModel(){
 
@@ -36,7 +37,7 @@ public class LoginModel {
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, user);
-            preparedStatement.setString(2, pass);
+            preparedStatement.setString(2, HASH.getHash(pass));
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
