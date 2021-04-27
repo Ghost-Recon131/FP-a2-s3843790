@@ -15,7 +15,7 @@ public class BookingsDAO {
             ResultSet RS = myStmt.executeQuery("select * from Bookings");
             while (RS.next()) {
                 listOfBookings.add(new BookingsModel(RS.getInt("id"), RS.getInt("BookingID"),
-                        RS.getString("Role"), RS.getInt("TableNumber"),
+                        RS.getString("BookingStatus"), RS.getInt("TableNumber"),
                         RS.getInt("PreviousTableNumber"), RS.getString("BookingDate"),
                         RS.getString("SittingDate"), RS.getString("TableStatus")));
             }
