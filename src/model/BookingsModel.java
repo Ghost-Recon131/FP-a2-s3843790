@@ -1,8 +1,8 @@
 package model;
 
 public class BookingsModel {
-    // https://www.geeksforgeeks.org/date-class-java-examples/ use for implementing date features
     private int ID;
+    private int BookingID;
     private String Role;
     private int TableNumber;
     private int PreviousTableNumber;
@@ -10,14 +10,47 @@ public class BookingsModel {
     private String SittingDate;
     private String TableStatus;
 
-    public BookingsModel(int ID, String Role, int TableNumber, int PreviousTableNumber, String Date, String SittingDate,
+    public BookingsModel(int ID, int BookingID, String Role, int TableNumber, int PreviousTableNumber, String Date, String SittingDate,
                          String TableStatus){
         this.ID = ID;
+        this.BookingID = BookingID;
         this.Role = Role;
         this.TableNumber = TableNumber;
         this.PreviousTableNumber = PreviousTableNumber;
         this.Date = Date;
         this.SittingDate = SittingDate;
+        this.TableStatus = TableStatus;
     }
 
+    public int getID() {
+        return ID;
+    }
+
+    public int getBookingID() {
+        return BookingID;
+    }
+
+    public String getRole() {
+        return Role;
+    }
+
+    public int getTableNumber() {
+        return TableNumber;
+    }
+
+    public int getPreviousTableNumber() {
+        return PreviousTableNumber;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public String getSittingDate() {
+        return SittingDate;
+    }
+
+    public String getTableStatus() {
+        return TableStatus;
+    }
 }
