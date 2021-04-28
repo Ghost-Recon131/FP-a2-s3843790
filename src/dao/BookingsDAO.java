@@ -17,7 +17,7 @@ public class BookingsDAO {
                 listOfBookings.add(new BookingsModel(RS.getInt("id"), RS.getInt("BookingID"),
                         RS.getString("BookingStatus"), RS.getInt("TableNumber"),
                         RS.getInt("PreviousTableNumber"), RS.getString("BookingDate"),
-                        RS.getString("SittingDate"), RS.getString("TableStatus")));
+                        RS.getString("SittingDate"), RS.getString("TableStatus"), RS.getString("Status")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
