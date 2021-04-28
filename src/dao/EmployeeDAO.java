@@ -1,6 +1,7 @@
 package dao;
 
 import model.EmployeeModel;
+import model.RandValue;
 import model.SHAHash;
 
 import java.security.NoSuchAlgorithmException;
@@ -12,6 +13,7 @@ public class EmployeeDAO {
     private Connection connect = SQLConnection.connect();
     private List<EmployeeModel> listOfEmployees = new ArrayList<>();
     SHAHash HASH = new SHAHash();
+    RandValue RV = new RandValue();
 
     //refresh the database
     public void updateEmployee() {
@@ -111,7 +113,7 @@ public class EmployeeDAO {
                               String Secret_Question, String SQ_Answer){
         boolean add = false;
         String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)";
-        int id = HASH.Randomint(); //generates random ID to avoid accidentally assigning an ID that is already in use
+        int id = RV.randomID(); //generates random ID to avoid accidentally assigning an ID that is already in use
 
         try{
             PreparedStatement pstmt = connect.prepareStatement(sql);{
