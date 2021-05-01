@@ -1,10 +1,10 @@
-package model;
+package controller.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
-public class SHAHash {
+public class SHAHashUtil {
     public String getHash(String toHash) throws NoSuchAlgorithmException {
         //Referenced code from [1]
         MessageDigest MD = MessageDigest.getInstance("SHA-256");

@@ -1,5 +1,6 @@
 package model;
 
+import controller.utils.SHAHashUtil;
 import dao.SQLConnection;
 
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 public class LoginModel {
 
     Connection connection;
-    SHAHash HASH = new SHAHash();
+    SHAHashUtil HASH = new SHAHashUtil();
 
     public LoginModel(){
 

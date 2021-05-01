@@ -1,5 +1,7 @@
 package model;
 
+
+
 public class EmployeeModel {
     private int id;
     private String Firstname;
@@ -21,8 +23,6 @@ public class EmployeeModel {
         this.Secret_Question = Secret_Question;
         this.SQ_Answer = SQ_Answer;
     }
-    SHAHash HASH = new SHAHash();
-
     public int getID() {
         return id;
     }

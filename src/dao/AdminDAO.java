@@ -1,20 +1,19 @@
 package dao;
 
 import model.EmployeeModel;
-import model.SHAHash;
+import controller.utils.SHAHashUtil;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdminDAO extends EmployeeDAO{
     private Connection connect = SQLConnection.connect();
     private List<EmployeeModel> listOfEmployees = new ArrayList<>();
-    SHAHash HASH = new SHAHash();
+    SHAHashUtil HASH = new SHAHashUtil();
 
     //delete an account using the account's id
     public boolean deleteAccount(int id){

@@ -1,10 +1,10 @@
-package model;
+package controller.utils;
 
 import dao.BookingsDAO;
 import dao.EmployeeDAO;
 import java.util.Random;
 
-public class RandValue {
+public class RandValueUtil {
 
     public int randomID(){
         EmployeeDAO EDAO = new EmployeeDAO();

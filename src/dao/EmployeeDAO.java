@@ -1,8 +1,8 @@
 package dao;
 
 import model.EmployeeModel;
-import model.RandValue;
-import model.SHAHash;
+import controller.utils.RandValueUtil;
+import controller.utils.SHAHashUtil;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -12,8 +12,8 @@ import java.util.List;
 public class EmployeeDAO {
     private Connection connect = SQLConnection.connect();
     private List<EmployeeModel> listOfEmployees = new ArrayList<>();
-    SHAHash HASH = new SHAHash();
-    RandValue RV = new RandValue();
+    SHAHashUtil HASH = new SHAHashUtil();
+    RandValueUtil RV = new RandValueUtil();
 
     //refresh the database
     public void updateEmployee() {
