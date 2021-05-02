@@ -1,5 +1,6 @@
 package dao;
 
+import controller.utils.RandValueUtil;
 import model.EmployeeModel;
 import controller.utils.SHAHashUtil;
 
@@ -14,6 +15,7 @@ public class AdminDAO extends EmployeeDAO{
     private Connection connect = SQLConnection.connect();
     private List<EmployeeModel> listOfEmployees = new ArrayList<>();
     SHAHashUtil HASH = new SHAHashUtil();
+    RandValueUtil RV = new RandValueUtil();
 
     //delete an account using the account's id
     public boolean deleteAccount(int id){
@@ -72,7 +74,7 @@ public class AdminDAO extends EmployeeDAO{
                               String Secret_Question, String SQ_Answer){
         boolean add = false;
         String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)";
-        int id = HASH.Randomint(); //generates random ID to avoid accidentally assigning an ID that is already in use
+        int id = RV.randomID(); //generates random ID to avoid accidentally assigning an ID that is already in use
 
         try{
             PreparedStatement pstmt = connect.prepareStatement(sql);{
