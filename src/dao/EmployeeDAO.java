@@ -24,7 +24,7 @@ public class EmployeeDAO {
                 listOfEmployees.add(new EmployeeModel(RS.getInt("id"), RS.getString("Firstname"),
                         RS.getString("Lastname"), RS.getString("Username"),
                         RS.getString("Password"), RS.getString("Role"),
-                        RS.getString("Secret_Question"), RS.getString("SQ_Answer")));
+                        RS.getString("Secret_Question"), RS.getString("SQ_Answer"), RS.getString("Status")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,7 +112,7 @@ public class EmployeeDAO {
     public boolean addAccount(String Firstname, String Lastname, String Username, String Password,
                               String Secret_Question, String SQ_Answer){
         boolean add = false;
-        String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?,?)";
         int id = RV.randomID(); //generates random ID to avoid accidentally assigning an ID that is already in use
 
         try{
@@ -125,6 +125,7 @@ public class EmployeeDAO {
                 pstmt.setString(6, "employee"); //only admin can add another admin
                 pstmt.setString(7, Secret_Question);
                 pstmt.setString(8, HASH.getHash(SQ_Answer));
+                pstmt.setString(9, "active");
                 pstmt.executeUpdate();
                 updateEmployee();
             }
@@ -139,6 +140,27 @@ public class EmployeeDAO {
             e.printStackTrace();
         }
         return add;
+    }
+
+    // allow employees to change their password
+    public boolean changePassword(int id, String newPassword){
+        boolean Change = false;
+        String sql = "UPDATE Employee SET Password = \"" + newPassword + "\" WHERE id = \"" + id + "\"";
+        try{
+            Statement myStmt = connect.createStatement();
+            myStmt.executeUpdate(sql);
+            updateEmployee();
+
+            for(EmployeeModel Emp : listOfEmployees){
+                if(Emp.getID() == id && Emp.getPassword().equals(newPassword)){
+                    Change = true;
+                    break;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return Change;
     }
 
 }

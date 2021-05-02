@@ -8,10 +8,11 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminDAO extends EmployeeDAO{
+public class AdminEDAO extends EmployeeDAO{
     private Connection connect = SQLConnection.connect();
     private List<EmployeeModel> listOfEmployees = new ArrayList<>();
     SHAHashUtil HASH = new SHAHashUtil();
@@ -101,8 +102,78 @@ public class AdminDAO extends EmployeeDAO{
         return add;
     }
 
+    // output a list of employee accounts
+    public List<EmployeeModel> getListOfEmployees() {
+        List<EmployeeModel> Employees = new ArrayList<EmployeeModel>();
+        for (EmployeeModel Emp : listOfEmployees) {
+            if (Emp.getRole().equals("employee"))
+            {
+                Employees.add(Emp);
+            }
+        }
+        return Employees;
+    }
 
+    // outputs a list of admin accounts
+    public List<EmployeeModel> getListOfAdmins() {
+        List<EmployeeModel> Admins = new ArrayList<EmployeeModel>();
+        for (EmployeeModel Emp : listOfEmployees) {
+            if (Emp.getRole().equals("admin"))
+            {
+                Admins.add(Emp);
+            }
+        }
+        return Admins;
+    }
 
+    //allows admin to activate an account
+    public boolean activateAccount(int id){
+        String newstatus = "active";
+        boolean activate = false;
+        String sql = "UPDATE Employee SET Status = ? WHERE id = ?";
+        try{
+            PreparedStatement pstmt = connect.prepareStatement(sql);{
+                pstmt.setString(1, newstatus);
+                pstmt.setInt(2, id);
+                pstmt.executeUpdate();
+                updateEmployee();
+            }
 
+            for(EmployeeModel Emp : listOfEmployees){
+                if(Emp.getID() == id && Emp.getStatus().equals(newstatus)){
+                    activate = true;
+                    break;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return activate;
+    }
+
+    //allows admin to activate an account
+    public boolean deactivateAccount(int id){
+        String newstatus = "deactivate";
+        boolean deactivate = false;
+        String sql = "UPDATE Employee SET Status = ? WHERE id = ?";
+        try{
+            PreparedStatement pstmt = connect.prepareStatement(sql);{
+                pstmt.setString(1, newstatus);
+                pstmt.setInt(2, id);
+                pstmt.executeUpdate();
+                updateEmployee();
+            }
+
+            for(EmployeeModel Emp : listOfEmployees){
+                if(Emp.getID() == id && Emp.getStatus().equals(newstatus)){
+                    deactivate = true;
+                    break;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return deactivate;
+    }
 
 }
