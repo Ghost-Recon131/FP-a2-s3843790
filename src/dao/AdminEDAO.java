@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +73,7 @@ public class AdminEDAO extends EmployeeDAO{
     public boolean addAdmin(String Firstname, String Lastname, String Username, String Password,
                               String Secret_Question, String SQ_Answer){
         boolean add = false;
-        String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?,?)";
         int id = RV.randomID(); //generates random ID to avoid accidentally assigning an ID that is already in use
 
         try{
@@ -87,6 +86,7 @@ public class AdminEDAO extends EmployeeDAO{
                 pstmt.setString(6, "admin");
                 pstmt.setString(7, Secret_Question);
                 pstmt.setString(8, HASH.getHash(SQ_Answer));
+                pstmt.setString(9, "active");
                 pstmt.executeUpdate();
                 updateEmployee();
             }
