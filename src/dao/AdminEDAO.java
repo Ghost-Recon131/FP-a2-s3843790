@@ -106,8 +106,7 @@ public class AdminEDAO extends EmployeeDAO{
     public List<EmployeeModel> getListOfEmployees() {
         List<EmployeeModel> Employees = new ArrayList<EmployeeModel>();
         for (EmployeeModel Emp : listOfEmployees) {
-            if (Emp.getRole().equals("employee"))
-            {
+            if (Emp.getRole().equals("employee")) {
                 Employees.add(Emp);
             }
         }
@@ -118,8 +117,7 @@ public class AdminEDAO extends EmployeeDAO{
     public List<EmployeeModel> getListOfAdmins() {
         List<EmployeeModel> Admins = new ArrayList<EmployeeModel>();
         for (EmployeeModel Emp : listOfEmployees) {
-            if (Emp.getRole().equals("admin"))
-            {
+            if (Emp.getRole().equals("admin")) {
                 Admins.add(Emp);
             }
         }
