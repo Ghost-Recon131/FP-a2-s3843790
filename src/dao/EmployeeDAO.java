@@ -102,7 +102,7 @@ public class EmployeeDAO {
         String SQA = null;
         for (EmployeeModel Emp : listOfEmployees) {
             if (Emp.getID() == id) {
-                SQA = Emp.getSecretQuestion();
+                SQA = Emp.getSQAnswer();
             }
         }
         return SQA;
