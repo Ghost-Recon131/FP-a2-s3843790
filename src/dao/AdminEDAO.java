@@ -126,21 +126,20 @@ public class AdminEDAO extends EmployeeDAO{
         return Admins;
     }
 
-    //allows admin to activate an account
-    public boolean activateAccount(int id){
-        String newstatus = "active";
+    //allows admin to activate or deactivate an account, controller will set the status = active or deactivated
+    public boolean activateAccount(int id, String newStatus){
         boolean activate = false;
         String sql = "UPDATE Employee SET Status = ? WHERE id = ?";
         try{
             PreparedStatement pstmt = connect.prepareStatement(sql);{
-                pstmt.setString(1, newstatus);
+                pstmt.setString(1, newStatus);
                 pstmt.setInt(2, id);
                 pstmt.executeUpdate();
                 updateEmployee();
             }
 
             for(EmployeeModel Emp : listOfEmployees){
-                if(Emp.getID() == id && Emp.getStatus().equals(newstatus)){
+                if(Emp.getID() == id && Emp.getStatus().equals(newStatus)){
                     activate = true;
                     break;
                 }
@@ -151,29 +150,5 @@ public class AdminEDAO extends EmployeeDAO{
         return activate;
     }
 
-    //allows admin to activate an account
-    public boolean deactivateAccount(int id){
-        String newstatus = "deactivate";
-        boolean deactivate = false;
-        String sql = "UPDATE Employee SET Status = ? WHERE id = ?";
-        try{
-            PreparedStatement pstmt = connect.prepareStatement(sql);{
-                pstmt.setString(1, newstatus);
-                pstmt.setInt(2, id);
-                pstmt.executeUpdate();
-                updateEmployee();
-            }
-
-            for(EmployeeModel Emp : listOfEmployees){
-                if(Emp.getID() == id && Emp.getStatus().equals(newstatus)){
-                    deactivate = true;
-                    break;
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return deactivate;
-    }
 
 }
