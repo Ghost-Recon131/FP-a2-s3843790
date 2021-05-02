@@ -108,6 +108,17 @@ public class EmployeeDAO {
         return SQA;
     }
 
+    //get status of an account
+    public String getStatus(int id) {
+        String Status = null;
+        for (EmployeeModel Emp : listOfEmployees) {
+            if (Emp.getID() == id) {
+                Status = Emp.getStatus();
+            }
+        }
+        return Status;
+    }
+
     //Adding an account
     public boolean addAccount(String Firstname, String Lastname, String Username, String Password,
                               String Secret_Question, String SQ_Answer){
