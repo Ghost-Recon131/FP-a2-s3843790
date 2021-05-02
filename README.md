@@ -42,6 +42,12 @@ to new accounts
 ## View
 1. Login.fxml: GUI for login
 
+##SQlite table structure
+1. Bookings SQlite Table: Stores information about Bookings made by employee or admin
+2. Employee SQlite Table: Stores information about an employee
+3. sqlite_master SQlite Table: Was part of the starter code and cannot be deleted for some reason. Maybe it
+   has configuration settings? 
+4. Tables SQlite Table: Stores status of Tables such as whether it is available or under lockdown.
 # References
 1. [1]S. Akshif, "VoxelPixel/HashingAlgorithmsInJava", GitHub, 2021. [Online]. Available: 
    https://github.com/VoxelPixel/HashingAlgorithmsInJava/blob/master/SHA256.java. [Accessed: 25- Apr- 2021].
