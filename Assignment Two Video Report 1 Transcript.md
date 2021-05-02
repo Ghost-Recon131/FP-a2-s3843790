@@ -1,6 +1,6 @@
 # Assignment Two Video Report 1 transcript
 ##Part 1 - Introduction 
-My name is Jingxuan Feng, and my student number is s3843790. The purpose of this recording is for Milestone 2 of Further Programming in semester 1 2021.
+My name is Jingxuan Feng, and my student number is s3843790. This is my Assignment Two Video Report 1.
 ## Part 2 - Admin UI Wireframes 
 I have created wireframes for all functional requirements for an admin user. Most wireframes begin with the admin already signed in and at their menu screen:
 - A settings page for the admin to change COVID-19 restriction levels 
