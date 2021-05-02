@@ -16,5 +16,9 @@ I've also implemented all features for the employee accounts. The wireframes I c
 - Options for employee to book a table, update their reservation, change their account password, remove their reservation 
   and check in to their table on the day. 
 ## Part 4 - SQLite Tables created
-
+I have created 3 SQL tables for storing data for the program to use. 
+1. Bookings SQlite Table: Stores information about Bookings made by employee or admin
+2. Employee SQlite Table: Stores information about employee and admin accounts
+3. sqlite_master SQlite Table: Was part of the starter code and will not allow me to delete it
+4. Tables SQlite Table: Stores status of Tables such as whether it is available or under lockdown.
 ## Part 5 - Code status
