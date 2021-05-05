@@ -2,16 +2,17 @@ package controller.utils;
 
 import dao.BookingsDAO;
 import dao.EmployeeDAO;
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class RandValueUtil {
+    SecureRandom SRandom = new SecureRandom();
 
     public int randomID(){
         EmployeeDAO EDAO = new EmployeeDAO();
-        Random R = new Random();
-        int random = R.nextInt(10000);
-        int random2 = R.nextInt(10000);
-        int backup = R.nextInt(10000);
+
+        int random = SRandom.nextInt(10000);
+        int random2 = SRandom.nextInt(10000);
+        int backup = SRandom.nextInt(10000);
         int returnvalue;
 
         if(random != EDAO.getAccountID(random)){ //getAccountID will return -1 if there are no matches
@@ -28,10 +29,9 @@ public class RandValueUtil {
 
     public int randomBookingID(){
         BookingsDAO BDAO = new BookingsDAO();
-        Random R = new Random();
-        int random = R.nextInt(100000);
-        int random2 = R.nextInt(10000);
-        int backup = R.nextInt(100000);
+        int random = SRandom.nextInt(100000);
+        int random2 = SRandom.nextInt(10000);
+        int backup = SRandom.nextInt(100000);
         int returnvalue;
 
         if(random != BDAO.getBookingID(random)){ //getAccountID will return -1 if there are no matches
