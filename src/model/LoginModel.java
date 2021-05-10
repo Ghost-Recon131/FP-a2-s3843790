@@ -14,11 +14,9 @@ public class LoginModel {
     SHAHashUtil HASH = new SHAHashUtil();
 
     public LoginModel(){
-
         connection = SQLConnection.connect();
         if (connection == null)
             System.exit(1);
-
     }
 
     public Boolean isDbConnected(){
@@ -55,7 +53,6 @@ public class LoginModel {
            preparedStatement.close();
            resultSet.close();
         }
-
     }
 
 }
