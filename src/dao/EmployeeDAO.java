@@ -164,7 +164,7 @@ public class EmployeeDAO {
             updateEmployee();
 
             for(EmployeeModel Emp : listOfEmployees){
-                if(Emp.getID() == id && Emp.getPassword().equals(newPassword)){
+                if(Emp.getID() == id && Emp.getPassword().equals(HashedPassword)){
                     Change = true;
                     break;
                 }
@@ -176,7 +176,7 @@ public class EmployeeDAO {
     }
 
     public boolean resetPassword(String SQ_A, String newPassword) throws NoSuchAlgorithmException {
-        boolean Change = false;
+        boolean Reset = false;
         String HashedPassword = HASH.getHash(newPassword);
         String HashedSQ_A = HASH.getHash(SQ_A);
         String sql = "UPDATE Employee SET Password = ? WHERE SQ_A = ?";
@@ -189,15 +189,15 @@ public class EmployeeDAO {
             }
 
             for(EmployeeModel Emp : listOfEmployees){
-                if(Emp.getSQAnswer().equals(HASH.getHash(SQ_A)) && Emp.getPassword().equals(newPassword)){
-                    Change = true;
+                if(Emp.getSQAnswer().equals(HashedSQ_A) && Emp.getPassword().equals(HashedPassword)){
+                    Reset = true;
                     break;
                 }
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return Change;
+        return Reset;
     }
 
 }
