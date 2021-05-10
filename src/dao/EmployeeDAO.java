@@ -154,9 +154,10 @@ public class EmployeeDAO {
     }
 
     // allow employees to change their password
-    public boolean changePassword(int id, String newPassword){
+    public boolean changePassword(int id, String newPassword) throws NoSuchAlgorithmException {
         boolean Change = false;
-        String sql = "UPDATE Employee SET Password = \"" + newPassword + "\" WHERE id = \"" + id + "\"";
+        String HashedPassword = HASH.getHash(newPassword);
+        String sql = "UPDATE Employee SET Password = \"" + HashedPassword + "\" WHERE id = \"" + id + "\"";
         try{
             Statement myStmt = connect.createStatement();
             myStmt.executeUpdate(sql);
