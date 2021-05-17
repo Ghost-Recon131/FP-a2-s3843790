@@ -31,11 +31,21 @@ public class EmployeeDAO {
         }
     }
 
-    //get the ID of an account
+    //get the ID of an account using the account's username
     public int getAccountID(int id) {
         int ID = -1;
         for (EmployeeModel Emp : listOfEmployees) {
             if (Emp.getID() == id){
+                ID = Emp.getID();
+            }
+        }
+        return ID;
+    }
+
+    public int getAccountIDbyUsername(String Username) {
+        int ID = -1;
+        for (EmployeeModel Emp : listOfEmployees) {
+            if (Emp.getUsername().equals(Username)){
                 ID = Emp.getID();
             }
         }
