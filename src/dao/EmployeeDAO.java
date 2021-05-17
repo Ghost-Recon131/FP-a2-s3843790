@@ -346,7 +346,6 @@ public class EmployeeDAO {
                     pstmt.executeUpdate();
                     updateEmployee();
                 }
-
                 for (EmployeeModel Emp : listOfEmployees) {
                     if (Emp.getID() == id && Emp.getStatus().equals(newStatus)) {
                         activate = true;
