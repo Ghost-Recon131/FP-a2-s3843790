@@ -57,7 +57,7 @@ public class TableDAO {
         }
         return message;
     }
-
+    //todo finish admin setters
     // allows for setting custom messages
     // table -1 is reserved for an announcement that applies to all users & is not able to be reserved for seating
     public boolean UpdateAdminMessage(String newMessage, int TableNumber) {
@@ -72,12 +72,7 @@ public class TableDAO {
                     pstmt.executeUpdate();
                     updateTables();
                 }
-                for (TableModel Tbm : listOfTables) {
-                    if (Tbm.getTableNumber() == TableNumber) {
-                        update = true;
-                        break;
-                    }
-                }
+                update = true;
             } catch (SQLException e) {
                 e.printStackTrace();
             }

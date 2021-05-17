@@ -183,4 +183,6 @@ public class BookingsDAO {
         return cancel;
     }
 
+    //todo Implement admin setters
+
 }
