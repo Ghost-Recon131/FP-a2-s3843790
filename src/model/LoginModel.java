@@ -1,6 +1,7 @@
 package model;
 
 import controller.utils.SHAHashUtil;
+import dao.EmployeeDAO;
 import dao.SQLConnection;
 
 import java.sql.Connection;
@@ -9,9 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginModel {
+    private static int CurrentUserID;
+    private static String CurrentUserRole;
 
     Connection connection;
     SHAHashUtil HASH = new SHAHashUtil();
+    EmployeeDAO EDAO = new EmployeeDAO();
 
     public LoginModel(){
         connection = SQLConnection.connect();
@@ -40,6 +44,8 @@ public class LoginModel {
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                CurrentUserID = EDAO.getAccountIDbyUsername(user); // locates ID of current user
+                CurrentUserRole = EDAO.getRole(CurrentUserID); // gets the role of current user
                 return true;
             }
             else{
@@ -55,4 +61,12 @@ public class LoginModel {
         }
     }
 
+    //these are static so they can be used by any other class to check who the current user is and their role in the system
+    public static int getCurrentUserID() {
+        return CurrentUserID;
+    }
+
+    public static String getCurrentUserRole() {
+        return CurrentUserRole;
+    }
 }
