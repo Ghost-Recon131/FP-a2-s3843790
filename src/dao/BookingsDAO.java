@@ -1,9 +1,6 @@
 package dao;
 import controller.utils.RandValueUtil;
 import model.BookingsModel;
-import model.EmployeeModel;
-
-import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +30,7 @@ public class BookingsDAO {
     public int getAccountID(int getBookingID) {
         int ID = -1;
         for (BookingsModel Bkm : listOfBookings) {
-            if (Bkm.getBookingID() == getBookingID){
+            if (Bkm.getBookingID() == getBookingID) {
                 ID = Bkm.getID();
             }
         }
@@ -44,7 +41,7 @@ public class BookingsDAO {
     public int getBookingID(int ID) {
         int bookingID = -1;
         for (BookingsModel Bkm : listOfBookings) {
-            if (Bkm.getID() == ID){
+            if (Bkm.getID() == ID) {
                 bookingID = Bkm.getBookingID();
             }
         }
@@ -52,10 +49,10 @@ public class BookingsDAO {
     }
 
     //get booking status via BookingID
-    public String getBookingStatus(int BID){
+    public String getBookingStatus(int BID) {
         String BookingStatus = null;
-        for (BookingsModel Bkm : listOfBookings){
-            if (Bkm.getBookingID() == BID){
+        for (BookingsModel Bkm : listOfBookings) {
+            if (Bkm.getBookingID() == BID) {
                 BookingStatus = Bkm.getBookingStatus();
             }
         }
@@ -63,10 +60,10 @@ public class BookingsDAO {
     }
 
     //get Table Number via BookingID
-    public int getTableNumber(int BID){
+    public int getTableNumber(int BID) {
         int TableNumber = -1;
-        for (BookingsModel Bkm : listOfBookings){
-            if (Bkm.getBookingID() == BID){
+        for (BookingsModel Bkm : listOfBookings) {
+            if (Bkm.getBookingID() == BID) {
                 TableNumber = Bkm.getTableNumber();
             }
         }
@@ -74,10 +71,10 @@ public class BookingsDAO {
     }
 
     //get previous Table Number via BookingID
-    public int getPreviousTableNumber(int BID){
+    public int getPreviousTableNumber(int BID) {
         int PreviousTableNumber = -1;
-        for (BookingsModel Bkm : listOfBookings){
-            if (Bkm.getBookingID() == BID){
+        for (BookingsModel Bkm : listOfBookings) {
+            if (Bkm.getBookingID() == BID) {
                 PreviousTableNumber = Bkm.getPreviousTableNumber();
             }
         }
@@ -85,10 +82,10 @@ public class BookingsDAO {
     }
 
     //get Booking date via BookingID
-    public String getBookingDate(int BID){
+    public String getBookingDate(int BID) {
         String BookingDate = null;
-        for (BookingsModel Bkm : listOfBookings){
-            if (Bkm.getBookingID() == BID){
+        for (BookingsModel Bkm : listOfBookings) {
+            if (Bkm.getBookingID() == BID) {
                 BookingDate = Bkm.getBookingDate();
             }
         }
@@ -96,10 +93,10 @@ public class BookingsDAO {
     }
 
     //get setting date via BookingID
-    public String getSittingDate(int BID){
+    public String getSittingDate(int BID) {
         String SittingDate = null;
-        for (BookingsModel Bkm : listOfBookings){
-            if (Bkm.getBookingID() == BID){
+        for (BookingsModel Bkm : listOfBookings) {
+            if (Bkm.getBookingID() == BID) {
                 SittingDate = Bkm.getSittingDate();
             }
         }
@@ -108,34 +105,82 @@ public class BookingsDAO {
 
     //Adding a booking
     public boolean addBooking(int ID, String BookingStatus, int TableNumber, int PreviousTableNumber,
-                              String Date, String SittingDate){
+                              String BookingDate, String SittingDate) {
         boolean add = false;
         String sql = "INSERT INTO Bookings VALUES (?,?,?,?,?,?,?)";
         int BookingID = RV.randomBookingID(); //generates random ID to avoid accidentally assigning an ID that is already in use
 
-        try{
-            PreparedStatement pstmt = connect.prepareStatement(sql);{
+        try {
+            PreparedStatement pstmt = connect.prepareStatement(sql);
+            {
                 pstmt.setInt(1, ID);
                 pstmt.setString(2, BookingStatus);
                 pstmt.setInt(3, TableNumber);
                 pstmt.setInt(4, PreviousTableNumber);
-                pstmt.setString(5, Date);
+                pstmt.setString(5, BookingDate);
                 pstmt.setString(6, SittingDate); //only admin can add another admin
                 pstmt.setInt(7, BookingID);
                 pstmt.executeUpdate();
                 updateBookings();
             }
             for (BookingsModel Bkm : listOfBookings) {
-                if (Bkm.getBookingID() == ID){
+                if (Bkm.getBookingID() == ID) {
                     add = true;
                     break;
                 }
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return add;
     }
 
-    //todo finish implementing BookingsDAO
+    public boolean changeBooking(String Status, int TableNumber, String BookingDate, String SittingDate, int BookingID) {
+        boolean change = false;
+        String sql = "UPDATE Bookings SET BookingStatus = ?, TableNumber = ?, BookingDate = ?, SittingDate =? WHERE BookingID = ?";
+        try {
+            PreparedStatement pstmt = connect.prepareStatement(sql);
+            {
+                pstmt.setString(1, "Pending");
+                pstmt.setInt(2, TableNumber);
+                pstmt.setString(3, BookingDate);
+                pstmt.setString(4, SittingDate);
+                pstmt.setInt(5, BookingID);
+                pstmt.executeUpdate();
+                updateBookings();
+            }
+            for (BookingsModel Bkm : listOfBookings) {
+                if (Bkm.getBookingID() == BookingID) {
+                    change = true;
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return change;
+    }
+
+    public boolean cancelBooking(int BookingID) {
+        boolean cancel = false;
+        String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
+        try {
+            PreparedStatement pstmt = connect.prepareStatement(sql);
+            {
+                pstmt.setString(1, "Cancelled");
+                pstmt.executeUpdate();
+                updateBookings();
+            }
+            for (BookingsModel Bkm : listOfBookings) {
+                if (Bkm.getBookingID() == BookingID) {
+                    cancel = true;
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cancel;
+    }
+
 }
