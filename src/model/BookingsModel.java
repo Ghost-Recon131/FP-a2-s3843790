@@ -6,17 +6,17 @@ public class BookingsModel {
     private String BookingStatus;
     private int TableNumber;
     private int PreviousTableNumber;
-    private String Date;
+    private String BookingDate;
     private String SittingDate;
 
     public BookingsModel(int ID, int BookingID, String BookingStatus, int TableNumber, int PreviousTableNumber,
-                         String Date, String SittingDate){
+                         String BookingDate, String SittingDate){
         this.ID = ID;
         this.BookingID = BookingID;
         this.BookingStatus = BookingStatus;
         this.TableNumber = TableNumber;
         this.PreviousTableNumber = PreviousTableNumber;
-        this.Date = Date;
+        this.BookingDate = BookingDate;
         this.SittingDate = SittingDate;
     }
 
@@ -40,8 +40,8 @@ public class BookingsModel {
         return PreviousTableNumber;
     }
 
-    public String getDate() {
-        return Date;
+    public String getBookingDate() {
+        return BookingDate;
     }
 
     public String getSittingDate() {
