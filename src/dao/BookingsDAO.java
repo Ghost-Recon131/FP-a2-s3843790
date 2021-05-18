@@ -1,6 +1,8 @@
 package dao;
 import controller.utils.RandValueUtil;
 import model.BookingsModel;
+import model.LoginModel;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -183,6 +185,52 @@ public class BookingsDAO {
         return cancel;
     }
 
-    //todo Implement admin setters
+    public boolean approveBooking(int BookingID) {
+        boolean approve = false;
+        if(LoginModel.getCurrentUserRole().equals("admin")) {
+            String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
+            try {
+                PreparedStatement pstmt = connect.prepareStatement(sql);
+                {
+                    pstmt.setString(1, "Approved");
+                    pstmt.executeUpdate();
+                    updateBookings();
+                }
+                for (BookingsModel Bkm : listOfBookings) {
+                    if (Bkm.getBookingID() == BookingID) {
+                        approve = true;
+                        break;
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return approve;
+    }
+
+    public boolean rejectBooking(int BookingID) {
+        boolean reject = false;
+        if(LoginModel.getCurrentUserRole().equals("admin")) {
+            String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
+            try {
+                PreparedStatement pstmt = connect.prepareStatement(sql);
+                {
+                    pstmt.setString(1, "Rejected");
+                    pstmt.executeUpdate();
+                    updateBookings();
+                }
+                for (BookingsModel Bkm : listOfBookings) {
+                    if (Bkm.getBookingID() == BookingID) {
+                        reject = true;
+                        break;
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return reject;
+    }
 
 }
