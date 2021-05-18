@@ -102,8 +102,27 @@ public class TableDAO {
         }
     }
 
-    // automatically locks down tables to avoid situation edge situation mentioned in README.md
-    public boolean enactLockdown(){
+    // helper method to release tables from lockdown
+    private void Release(int TableNumber){
+        if(LoginModel.getCurrentUserRole().equals("admin")){
+            String sql = "UPDATE Tables SET TableStatus = ? , COVID = ? WHERE TableNumber = ?";
+            try {
+                PreparedStatement pstmt = connect.prepareStatement(sql);
+                {
+                    pstmt.setInt(1, 1);
+                    pstmt.setInt(2, 0);
+                    pstmt.setInt(3, TableNumber);
+                    pstmt.executeUpdate();
+                    updateTables();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // quickly locks down tables to avoid situation edge situation mentioned in README.md
+    public boolean PartialLockdown(){
         boolean lockdown = false;
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             for(int i = 2; i <= 10; i += 2){ //change tables 2, 4, 6, 8, 10 by for loop
@@ -113,6 +132,67 @@ public class TableDAO {
             lockdown = true;
         }
         return lockdown;
+    }
+
+    // Remove lockdown
+    public boolean removePartialLockdown(){
+        boolean release = false;
+        if(LoginModel.getCurrentUserRole().equals("admin")) {
+            for(int i = 2; i <= 10; i += 2){ //change tables 2, 4, 6, 8, 10 by for loop
+                Release(i);
+                UpdateAdminMessage(i, "COVID restriction lifted");
+            }
+            release = true;
+        }
+        return release;
+    }
+
+    // lockdown all tables
+    public boolean LockdownAllTables(){
+        boolean lockdown = false;
+        if(LoginModel.getCurrentUserRole().equals("admin")) {
+            for(int i = 1; i <= 10; i ++){ //change tables 2, 4, 6, 8, 10 by for loop
+                Lockdown(i);
+                UpdateAdminMessage(i, "Table is under COVID lockdown");
+            }
+            lockdown = true;
+        }
+        return lockdown;
+    }
+
+    // remove all COVID lockdown
+    public boolean removeCompleteLockdown(){
+        boolean release = false;
+        if(LoginModel.getCurrentUserRole().equals("admin")) {
+            for(int i = 1; i <= 10; i ++){ //change tables 2, 4, 6, 8, 10 by for loop
+                Release(i);
+                UpdateAdminMessage(i, "COVID restriction lifted");
+            }
+            release = true;
+        }
+        return release;
+    }
+
+    // lockdown specific table
+    public boolean lockdownSpecificTable(int TableNumber){
+        boolean lockdown = false;
+        if(LoginModel.getCurrentUserRole().equals("admin")) {
+            Lockdown(TableNumber);
+            UpdateAdminMessage(TableNumber, "Table is under COVID lockdown");
+            lockdown = true;
+        }
+        return lockdown;
+    }
+
+    // release specific table
+    public boolean releaseSpecificTable(int TableNumber){
+        boolean release = false;
+        if(LoginModel.getCurrentUserRole().equals("admin")) {
+            Release(TableNumber);
+            UpdateAdminMessage(TableNumber, "COVID restriction lifted");
+            release = true;
+        }
+        return release;
     }
 
 }
