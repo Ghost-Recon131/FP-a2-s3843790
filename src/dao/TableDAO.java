@@ -23,18 +23,21 @@ public class TableDAO {
             e.printStackTrace();
         }
     }
-    //todo complete TableDAO
-    //get the status of a table via table number
-    public int getTableStatus(int TableNumber) {
-        int TableStatus = -1;
+
+    //get the status of a table via table number and returns boolean value
+    public boolean getTableStatus(int TableNumber) {
+        boolean TableStatus = false;
         for (TableModel Tbm : listOfTables) {
             if (Tbm.getTableNumber() == TableNumber) {
-                TableStatus = Tbm.getTableStatus();
+                if(Tbm.getTableStatus() == 1){
+                    TableStatus = true;
+                }
             }
         }
         return TableStatus;
     }
 
+    // returns boolean value of whether COVID lockdown is in place.
     public boolean getCOVID(int TableNumber) {
         boolean COVIDLockdown = true;
         for (TableModel Tbm : listOfTables) {
@@ -57,10 +60,10 @@ public class TableDAO {
         }
         return message;
     }
-    //todo finish admin setters
+
     // allows for setting custom messages
     // table -1 is reserved for an announcement that applies to all users & is not able to be reserved for seating
-    public boolean UpdateAdminMessage(String newMessage, int TableNumber) {
+    public boolean UpdateAdminMessage(int TableNumber, String newMessage) {
         boolean update = false;
         if(LoginModel.getCurrentUserRole().equals("admin")){
             String sql = "UPDATE Tables SET AdminMessage = ? WHERE TableNumber = ?";
@@ -78,6 +81,38 @@ public class TableDAO {
             }
         }
         return update;
+    }
+
+    // helper method to lockdown tables
+    private void Lockdown(int TableNumber){
+        if(LoginModel.getCurrentUserRole().equals("admin")){
+            String sql = "UPDATE Tables SET TableStatus = ? , COVID = ? WHERE TableNumber = ?";
+            try {
+                PreparedStatement pstmt = connect.prepareStatement(sql);
+                {
+                    pstmt.setInt(1, 0);
+                    pstmt.setInt(2, 1);
+                    pstmt.setInt(3, TableNumber);
+                    pstmt.executeUpdate();
+                    updateTables();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // automatically locks down tables to avoid situation edge situation mentioned in README.md
+    public boolean enactLockdown(){
+        boolean lockdown = false;
+        if(LoginModel.getCurrentUserRole().equals("admin")) {
+            for(int i = 2; i <= 10; i += 2){ //change tables 2, 4, 6, 8, 10 by for loop
+                Lockdown(i);
+                UpdateAdminMessage(i, "Table is under COVID lockdown");
+            }
+            lockdown = true;
+        }
+        return lockdown;
     }
 
 }
