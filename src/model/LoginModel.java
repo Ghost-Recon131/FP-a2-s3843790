@@ -44,6 +44,7 @@ public class LoginModel {
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                EDAO.updateEmployee(); // need to load data otherwise will not work
                 CurrentUserID = EDAO.getAccountIDbyUsername(user); // locates ID of current user
                 CurrentUserRole = EDAO.getRole(CurrentUserID); // gets the role of current user
                 return true;
