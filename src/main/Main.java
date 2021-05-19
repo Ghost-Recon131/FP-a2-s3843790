@@ -18,6 +18,7 @@ public class Main extends Application {
             primaryStage.show();
         }
         catch (Exception e){
+            System.err.println(e);
             System.err.println("Error in launching GUI");
         }
     }
