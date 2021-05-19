@@ -2,15 +2,12 @@ package controller.utils;
 
 public class StringCheck {
 
-    public String VerifyString(String value){
-        String returnValue;
+    public boolean VerifyString(String value){
+        boolean check = false;
         if(value != null && value.length() > 0){
-            returnValue = value;
+            check = true;
         }
-        else{
-            returnValue = "Invalid entry";
-        }
-        return returnValue;
+        return check;
     }
 
 }
