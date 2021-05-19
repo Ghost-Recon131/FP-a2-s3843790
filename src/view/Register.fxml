@@ -53,7 +53,6 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="ConfirmPassword" layoutX="527.0" layoutY="337.0" prefHeight="30.0" prefWidth="244.0" />
       <Text layoutX="235.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your secret question">
          <font>
             <Font size="24.0" />
@@ -112,5 +111,6 @@
       </Label>
       <PasswordField fx:id="Password" layoutX="527.0" layoutY="291.0" prefHeight="29.0" prefWidth="244.0" />
       <PasswordField fx:id="SQ_A" layoutX="528.0" layoutY="432.0" prefHeight="29.0" prefWidth="244.0" />
+      <PasswordField fx:id="ConfirmPassword" layoutX="527.0" layoutY="337.0" prefHeight="29.0" prefWidth="244.0" />
    </children>
 </AnchorPane>
