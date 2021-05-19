@@ -147,9 +147,8 @@ public class EmployeeDAO {
     public boolean addAccount(String Firstname, String Lastname, String Username, String Password,
                               String Secret_Question, String SQ_Answer){
         boolean add = false;
-        String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?,?,?)";
         int id = RV.randomID(); //generates random ID to avoid accidentally assigning an ID that is already in use
-
         try{
             PreparedStatement pstmt = connect.prepareStatement(sql);{
                 pstmt.setInt(1, id);
@@ -161,6 +160,7 @@ public class EmployeeDAO {
                 pstmt.setString(7, Secret_Question);
                 pstmt.setString(8, HASH.getHash(SQ_Answer));
                 pstmt.setString(9, "active");
+                pstmt.setInt(10, -1);// default table which does not effect initial booking
                 pstmt.executeUpdate();
                 updateEmployee();
             }
