@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
+   <children>
+      <Text layoutX="375.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please supply the following information">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <Button fx:id="LoginButton" layoutX="962.0" layoutY="42.0" mnemonicParsing="false" onAction="#setLoginButtonClick" prefHeight="46.0" prefWidth="122.0" text="Sign In">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="HomeButton" layoutX="1103.0" layoutY="42.0" mnemonicParsing="false" onAction="#setHomeButtonClick" prefHeight="46.0" prefWidth="122.0" text="Home">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Text layoutX="406.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="527.0" layoutY="157.0" prefHeight="30.0" prefWidth="244.0" />
+      <Text layoutX="408.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lastname">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="527.0" layoutY="199.0" prefHeight="30.0" prefWidth="244.0" />
+      <Text layoutX="405.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="527.0" layoutY="246.0" prefHeight="30.0" prefWidth="244.0" />
+      <Text layoutX="409.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="527.0" layoutY="289.0" prefHeight="30.0" prefWidth="244.0" />
+      <Text layoutX="315.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="527.0" layoutY="337.0" prefHeight="30.0" prefWidth="244.0" />
+      <Text layoutX="235.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your secret question">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="527.0" layoutY="385.0" prefHeight="30.0" prefWidth="244.0" />
+      <Text layoutX="179.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter answer to secret question">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="527.0" layoutY="429.0" prefHeight="30.0" prefWidth="244.0" />
+      <Button fx:id="LoginButton1" layoutX="554.0" layoutY="507.0" mnemonicParsing="false" onAction="#setLoginButtonClick" prefHeight="46.0" prefWidth="191.0" text="Confirm Details">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

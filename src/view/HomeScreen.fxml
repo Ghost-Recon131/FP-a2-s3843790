@@ -17,7 +17,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="1103.0" layoutY="42.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="122.0" text="Register">
+      <Button fx:id="RegisterButton" layoutX="1103.0" layoutY="42.0" mnemonicParsing="false" onAction="#setRegisterButtonClick" prefHeight="46.0" prefWidth="122.0" text="Register">
          <font>
             <Font size="18.0" />
          </font>

@@ -64,7 +64,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button layoutX="531.0" layoutY="545.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="279.0" text="Register">
+      <Button fx:id="RegisterButton" layoutX="531.0" layoutY="545.0" mnemonicParsing="false" onAction="#setRegisterButtonClick" prefHeight="35.0" prefWidth="279.0" text="Register">
          <font>
             <Font size="16.0" />
          </font>
