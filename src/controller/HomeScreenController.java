@@ -12,34 +12,30 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class HomeScreenController {
+    LoginController LC = new LoginController();
 
     @FXML
     private Button LoginButton;
     public void setLoginButtonClick(ActionEvent event){
-        Scene scene = LoginButton.getScene(); // get the current scene from the button
-        Window window = scene.getWindow();
-        Stage primaryStage = (Stage) window;
-
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/Login.fxml"))); // get Login.fxml
-            primaryStage.setScene(new Scene(root, 1280, 720));
-        } catch (IOException e) {
-            System.out.println("Failed to load Login");
-        }
+        LC.LoginScene(LoginButton);
     }
 
     @FXML
     private Button RegisterButton;
     public void setRegisterButtonClick(ActionEvent event){
-        Scene scene = RegisterButton.getScene(); // get the current scene from the button
+        LC.RegisterScene(RegisterButton);
+    }
+
+    public void HomeScene(Button button){
+        Scene scene = button.getScene(); // get the current scene from the button
         Window window = scene.getWindow();
         Stage primaryStage = (Stage) window;
 
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/Register.fxml"))); // get Login.fxml
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/HomeScreen.fxml"))); // get Login.fxml
             primaryStage.setScene(new Scene(root, 1280, 720));
         } catch (IOException e) {
-            System.out.println("Failed to load register page");
+            System.out.println("Failed to load Home");
         }
     }
 
