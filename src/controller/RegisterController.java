@@ -69,7 +69,7 @@ public class RegisterController {
 
     // checks for any errors then passes information onto DAO to enter into database
     public void RegisterNewAccount(){
-        boolean error1, error2, error3, error4, error5, error6, error7 = true;
+        boolean error1, error2, error3, error4, error5, error6, error7;
         error1 = InputNotEmpty(Firstname, FirstnameError);
         error2 = InputNotEmpty(Lastname, LastnameError);
         error3 = InputNotEmpty(Username, UsernameError);
