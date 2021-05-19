@@ -10,9 +10,10 @@ public class EmployeeModel {
     private String Secret_Question;
     private String SQ_Answer;
     private String Status;
+    private int PreviousTableNumber;
 
     public EmployeeModel(int id, String Firstname, String Lastname, String Username, String Password, String Role,
-                         String Secret_Question, String SQ_Answer, String Status){
+                         String Secret_Question, String SQ_Answer, String Status, int PreviousTableNumber){
         this.id = id;
         this.Firstname = Firstname;
         this.Lastname = Lastname;
@@ -22,6 +23,7 @@ public class EmployeeModel {
         this.Secret_Question = Secret_Question;
         this.SQ_Answer = SQ_Answer;
         this.Status = Status;
+        this.PreviousTableNumber = PreviousTableNumber;
     }
     public int getID() {
         return id;
@@ -61,5 +63,9 @@ public class EmployeeModel {
 
     public String getStatus() {
         return Status;
+    }
+
+    public int getPreviousTableNumber() {
+        return PreviousTableNumber;
     }
 }

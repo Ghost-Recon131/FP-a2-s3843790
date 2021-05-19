@@ -20,8 +20,7 @@ public class BookingsDAO {
             while (RS.next()) {
                 listOfBookings.add(new BookingsModel(RS.getInt("id"), RS.getInt("BookingID"),
                         RS.getString("BookingStatus"), RS.getInt("TableNumber"),
-                        RS.getInt("PreviousTableNumber"), RS.getString("BookingDate"),
-                        RS.getString("SittingDate")));
+                        RS.getString("BookingDate"), RS.getString("SittingDate")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,17 +71,6 @@ public class BookingsDAO {
         return TableNumber;
     }
 
-    //get previous Table Number via BookingID
-    public int getPreviousTableNumber(int BID) {
-        int PreviousTableNumber = -1;
-        for (BookingsModel Bkm : listOfBookings) {
-            if (Bkm.getBookingID() == BID) {
-                PreviousTableNumber = Bkm.getPreviousTableNumber();
-            }
-        }
-        return PreviousTableNumber;
-    }
-
     //get Booking date via BookingID
     public String getBookingDate(int BID) {
         String BookingDate = null;
@@ -106,10 +94,9 @@ public class BookingsDAO {
     }
 
     //Adding a booking
-    public boolean addBooking(int ID, String BookingStatus, int TableNumber, int PreviousTableNumber,
-                              String BookingDate, String SittingDate) {
+    public boolean addBooking(int ID, String BookingStatus, int TableNumber, String BookingDate, String SittingDate) {
         boolean add = false;
-        String sql = "INSERT INTO Bookings VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Bookings VALUES (?,?,?,?,?,?)";
         int BookingID = RV.randomBookingID(); //generates random ID to avoid accidentally assigning an ID that is already in use
 
         try {
@@ -118,10 +105,9 @@ public class BookingsDAO {
                 pstmt.setInt(1, ID);
                 pstmt.setString(2, BookingStatus);
                 pstmt.setInt(3, TableNumber);
-                pstmt.setInt(4, PreviousTableNumber);
-                pstmt.setString(5, BookingDate);
-                pstmt.setString(6, SittingDate); //only admin can add another admin
-                pstmt.setInt(7, BookingID);
+                pstmt.setString(4, BookingDate);
+                pstmt.setString(5, SittingDate); //only admin can add another admin
+                pstmt.setInt(6, BookingID);
                 pstmt.executeUpdate();
                 updateBookings();
             }

@@ -1,5 +1,6 @@
 package dao;
 
+import model.BookingsModel;
 import model.EmployeeModel;
 import controller.utils.RandValueUtil;
 import controller.utils.SHAHashUtil;
@@ -25,7 +26,8 @@ public class EmployeeDAO {
                 listOfEmployees.add(new EmployeeModel(RS.getInt("id"), RS.getString("Firstname"),
                         RS.getString("Lastname"), RS.getString("Username"),
                         RS.getString("Password"), RS.getString("Role"),
-                        RS.getString("Secret_Question"), RS.getString("SQ_Answer"), RS.getString("Status")));
+                        RS.getString("Secret_Question"), RS.getString("SQ_Answer"),
+                        RS.getString("Status"), RS.getInt("PreviousTableNumber")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,7 +132,18 @@ public class EmployeeDAO {
         return Status;
     }
 
-    //Adding an account
+    //get previous Table Number via ID
+    public int getPreviousTableNumber(int ID) {
+        int PreviousTableNumber = -1;
+        for (EmployeeModel Emp : listOfEmployees) {
+            if (Emp.getID() == ID) {
+                PreviousTableNumber = Emp.getPreviousTableNumber();
+            }
+        }
+        return PreviousTableNumber;
+    }
+
+    //Adding an account / Register
     public boolean addAccount(String Firstname, String Lastname, String Username, String Password,
                               String Secret_Question, String SQ_Answer){
         boolean add = false;
@@ -212,7 +225,6 @@ public class EmployeeDAO {
     }
 
     // Below are administrator functions
-
     //delete an account using the account's id
     public boolean deleteAccount(int id){
         boolean result = true;
