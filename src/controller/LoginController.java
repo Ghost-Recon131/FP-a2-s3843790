@@ -1,5 +1,6 @@
 package controller;
 
+import controller.usercontroller.ResetPasswordController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,16 +49,30 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private Button RegisterButton;
+    private Button RegisterButton; // takes user to registration page
     public void setRegisterButtonClick(ActionEvent event){
        RegisterScene(RegisterButton);
+    }
+
+    @FXML // take user to reset password page
+    private Button ForgotPasswordButton;
+    public void setForgotPasswordButtonClick(ActionEvent event){
+        Scene scene = ForgotPasswordButton.getScene(); // get the current scene from the button
+        Window window = scene.getWindow();
+        Stage primaryStage = (Stage) window;
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/userview/ResetPassword.fxml"))); // get Login.fxml
+            primaryStage.setScene(new Scene(root, 1280, 720));
+        } catch (IOException e) {
+            System.out.println("Failed to load Reset password");
+        }
     }
 
     Window window;
     public void Login(){
         Stage primaryStage = (Stage) window;
         try {
-            if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
+            if (loginModel.isLogin(txtUsername.getText().toUpperCase(),txtPassword.getText())){
 
                 isConnected.setText("Logged in successfully");
             }else{
