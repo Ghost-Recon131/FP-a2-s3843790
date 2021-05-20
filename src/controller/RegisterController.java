@@ -69,7 +69,7 @@ public class RegisterController {
 
     // checks for any errors then passes information onto DAO to enter into database
     public void RegisterNewAccount(){
-        boolean error1, error2, error3, error4, error5, error6, error7;
+        boolean error1, error2, error3, error4, error5, error6, error7, error8, error9;
         error1 = InputNotEmpty(Firstname, FirstnameError);
         error2 = InputNotEmpty(Lastname, LastnameError);
         error3 = InputNotEmpty(Username, UsernameError);
@@ -84,9 +84,28 @@ public class RegisterController {
                 error7 = false;
             }
 
-            if (!error1 && !error2 && !error3 && !error4 && !error5 && !error6 && !error7) {
-                registerModel.RegisterAccount(Firstname.getText(), Lastname.getText(), Username.getText(), Password.getText(),
-                        SQ.getText(), SQ_A.getText());
+            //ensure the username is unique
+            if (!registerModel.UniqueUsername(Username.getText().toUpperCase())) {
+                UsernameError.setText("Username Already Exists!");
+                error8 = true;
+            } else {
+                UsernameError.setText("");
+                error8 = false;
+            }
+            //ensure the username is unique
+            if(!registerModel.UniqueName(Firstname.getText().toUpperCase(), Lastname.getText().toUpperCase())){
+                FirstnameError.setText("An account with this name already exists");
+                LastnameError.setText("An account with this name already exists");
+                error9 = true;
+            } else{
+                FirstnameError.setText("");
+                LastnameError.setText("");
+                error9 = false;
+            }
+
+            if (!error1 && !error2 && !error3 && !error4 && !error5 && !error6 && !error7 && !error8 && !error9) {
+                registerModel.RegisterAccount(Firstname.getText().toUpperCase(), Lastname.getText().toUpperCase(),
+                        Username.getText().toUpperCase(), Password.getText(), SQ.getText().toUpperCase(), SQ_A.getText());
 
                 HSC.HomeScene(HomeButton); // take user back to home
             } else {
