@@ -43,8 +43,9 @@ public class ResetPasswordController {
         } catch (IOException e) {
             System.out.println("Failed to load Confirmation page for reset password");
         }
-        //todo
     }
+
+
 
 
 }
