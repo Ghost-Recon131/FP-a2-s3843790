@@ -1,9 +1,10 @@
 package controller;
 
-import controller.usercontroller.ResetPasswordController;
+import controller.usercontroller.UserHomeController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -44,14 +45,18 @@ public class LoginController implements Initializable {
     /* login Action method
        check if user input is the same as database.
      */
-    public void Login(ActionEvent event){
+
+    ActionEvent event;
+    public void Login(ActionEvent event1){
+
+        event=event1;
         Login();
     }
 
     @FXML
     private Button RegisterButton; // takes user to registration page
     public void setRegisterButtonClick(ActionEvent event){
-       RegisterScene(RegisterButton);
+        RegisterScene(RegisterButton);
     }
 
     @FXML // take user to reset password page
@@ -69,16 +74,29 @@ public class LoginController implements Initializable {
     }
 
     Window window;
+    Button LoginButton;
     public void Login(){
-        Stage primaryStage = (Stage) window;
+        // Stage primaryStage = (Stage) window;
         try {
-            if (loginModel.isLogin(txtUsername.getText().toUpperCase(),txtPassword.getText())){
-
+            boolean HasAccount = loginModel.isLogin(txtUsername.getText().toUpperCase(),txtPassword.getText());
+            if (HasAccount && LoginModel.getCurrentUserRole().equals("employee")){
                 isConnected.setText("Logged in successfully");
-            }else{
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/userview/UserHome.fxml"));
+                    Parent root = (Parent) loader.load();
+                    Stage primaryStage = new Stage();
+                    Scene scene = new Scene(root);
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
+                    ((Node) event.getSource()).getScene().getWindow().hide();
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+            }
+            else{
                 isConnected.setText("Username or Password is incorrect");
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
