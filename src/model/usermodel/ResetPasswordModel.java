@@ -1,4 +1,4 @@
-package model;
+package model.usermodel;
 
 import controller.utils.RandPasswordUtil;
 import controller.utils.SHAHashUtil;
@@ -17,7 +17,7 @@ public class ResetPasswordModel {
     RandPasswordUtil RPU = new RandPasswordUtil();
     EmployeeDAO EDAO = new EmployeeDAO();
 
-    public Boolean isLogin(String SQ, String SQ_A) throws SQLException {
+    public Boolean LocateUser(String SQ, String SQ_A) throws SQLException {
         PreparedStatement pstmt = null;
         ResultSet resultSet=null;
         String query = "select * from employee where Secret_Question = ? and SQ_Answer= ?";
