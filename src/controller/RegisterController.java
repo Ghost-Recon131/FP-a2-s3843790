@@ -49,8 +49,12 @@ public class RegisterController {
     // button for creating new account
     @FXML
     private Button RegisterAccountButton;
-    public void setRegisterAccountButton(ActionEvent event) throws SQLException {
-        RegisterNewAccount();
+    public void setRegisterAccountButton(ActionEvent event) {
+        try {
+            RegisterNewAccount();
+        } catch (SQLException e) {
+            System.err.println("Exception occurred in account registration");
+        }
     }
 
     // checks for any errors then passes information onto DAO to enter into database

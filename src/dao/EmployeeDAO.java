@@ -203,7 +203,7 @@ public class EmployeeDAO {
         boolean Reset = false;
         String HashedPassword = HASH.getHash(newPassword);
         String HashedSQ_A = HASH.getHash(SQ_A);
-        String sql = "UPDATE Employee SET Password = ? WHERE SQ_A = ?";
+        String sql = "UPDATE Employee SET Password = ? WHERE SQ_Answer = ?";
         try{
             PreparedStatement pstmt = connect.prepareStatement(sql);{
                 pstmt.setString(1, HashedPassword);

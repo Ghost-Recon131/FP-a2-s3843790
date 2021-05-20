@@ -23,12 +23,12 @@ public class ResetPasswordController {
     @FXML private TextField SQ_A;
 
     @FXML private Label SQError;
-    @FXML private Label SQ_AError;
     @FXML private Label ErrorMessage;
 
     HomeScreenController HSC = new HomeScreenController();
     StringCheck StringCheck = new StringCheck();
     ResetPasswordModel ResetPasswordModel = new ResetPasswordModel();
+    FinalResetPasswordController FRPC = new FinalResetPasswordController();
 
     @FXML
     private Button HomeButton;
@@ -36,42 +36,38 @@ public class ResetPasswordController {
         HSC.HomeScene(HomeButton);
     }
 
-    @FXML
-    private Button ContinueButton;
-    public void setContinueButtonClick(ActionEvent event){
-        ResetPasswordScene(ContinueButton);
-    }
-
-    // method for switching to final password reset scene
-    public void ResetPasswordScene(Button button) {
-        Scene scene = button.getScene(); // get the current scene from the button
-        Window window = scene.getWindow();
-        Stage primaryStage = (Stage) window;
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/userview/FinalResetPassword.fxml"))); // get Login.fxml
-            primaryStage.setScene(new Scene(root, 1280, 720));
-        } catch (IOException e) {
-            System.out.println("Failed to load Confirmation page for reset password");
-        }
-    }
-
-    // button that takes user to new scene
+    // button activates the reset password process
     @FXML
     private Button ResetPasswordButton;
     public void setResetPasswordButtonClick(ActionEvent event) {
-        ResetPassword();
+        try {
+            ResetPassword();
+        } catch (SQLException e){
+            System.err.println("Exception in reset password");
+        }
+
     }
 
-    // program logic
-    private void ResetPassword(){
+    // program logic for checking and resetting password
+    private void ResetPassword() throws SQLException {
         boolean error1, error2, error3;
+
+        // check that the entered information matches database
+        if (ResetPasswordModel.LocateUser(SQ.getText(), SQ_A.getText())){
+            SQError.setText("Secret question or answer is wrong");
+            ErrorMessage.setText("Failed to reset password");
+            error3 = true;
+        } else{
+            error3 = false;
+        }
+
         error1 = StringCheck.InputNotEmpty(SQ, SQError);
         error2 = StringCheck.InputNotEmpty(SQ_A, SQError);
-        try {
-            if (ResetPasswordModel.LocateUser(SQ.getText(), SQ_A.getText())){
 
-            }
-        } catch (SQLException e){
+        // proceed when there's no errors
+        if (!error1 && !error2 && !error3){
+            ResetPasswordModel.ResetPassword(SQ_A.getText());
+            FRPC.ResetPasswordScene(ResetPasswordButton);
         }
 
     }

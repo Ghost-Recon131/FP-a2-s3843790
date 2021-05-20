@@ -13,6 +13,7 @@ import java.sql.SQLException;
 
 public class ResetPasswordModel {
     private Connection connect = SQLConnection.connect();
+    private String NewPassword;
     SHAHashUtil HASH = new SHAHashUtil();
     RandPasswordUtil RPU = new RandPasswordUtil();
     EmployeeDAO EDAO = new EmployeeDAO();
@@ -20,7 +21,7 @@ public class ResetPasswordModel {
     public Boolean LocateUser(String SQ, String SQ_A) throws SQLException {
         PreparedStatement pstmt = null;
         ResultSet resultSet=null;
-        String query = "select * from employee where Secret_Question = ? and SQ_Answer= ?";
+        String query = "select * from employee where Secret_Question = ? and SQ_Answer = ?";
         try {
             pstmt = connect.prepareStatement(query);
             pstmt.setString(1, SQ);
@@ -41,10 +42,18 @@ public class ResetPasswordModel {
         }
     }
 
-    public String ResetPassword(String SQ_A) throws NoSuchAlgorithmException {
-        String newPassword = RPU.getRandomPassword();
-        EDAO.resetPassword(SQ_A, newPassword);
-        return newPassword;
+    public boolean ResetPassword(String SQ_A) {
+        try {
+            NewPassword = RPU.getRandomPassword();
+            EDAO.resetPassword(SQ_A, NewPassword);
+        }catch(NoSuchAlgorithmException e){
+            System.err.println("Exception in writing new password to database");
+        }
+        return true;
+    }
+
+    public String getNewPassword() {
+        return NewPassword;
     }
 
 }
