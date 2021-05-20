@@ -1,6 +1,7 @@
 package controller.usercontroller;
 
 import controller.HomeScreenController;
+import controller.utils.StringCheck;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import java.util.Objects;
 
 public class ResetPasswordController {
     @FXML private TextField SQ;
+    @FXML private TextField SQConfirm;
     @FXML private TextField SQ_A;
 
     @FXML private Label SQError;
@@ -24,6 +26,7 @@ public class ResetPasswordController {
     @FXML private Label ErrorMessage;
 
     HomeScreenController HSC = new HomeScreenController();
+    StringCheck StringCheck = new StringCheck();
 
     @FXML
     private Button HomeButton;
@@ -34,7 +37,12 @@ public class ResetPasswordController {
     @FXML
     private Button ContinueButton;
     public void setContinueButtonClick(ActionEvent event){
-        Scene scene = ContinueButton.getScene(); // get the current scene from the button
+        ResetPasswordScene(ContinueButton);
+    }
+
+    // method for switching to final password reset scene
+    public void ResetPasswordScene(Button button) {
+        Scene scene = button.getScene(); // get the current scene from the button
         Window window = scene.getWindow();
         Stage primaryStage = (Stage) window;
         try {
@@ -45,6 +53,20 @@ public class ResetPasswordController {
         }
     }
 
+    // button that takes user to new scene
+    @FXML
+    private Button ResetPasswordButton;
+    public void setResetPasswordButtonClick(ActionEvent event){
+        ResetPassword();
+    }
+
+    // program logic
+    private void ResetPassword(){
+        boolean error1, error2, error3;
+        error1 = StringCheck.InputNotEmpty(SQ, SQError);
+        error2 = StringCheck.InputNotEmpty(SQ_A, SQError);
+
+    }
 
 
 
