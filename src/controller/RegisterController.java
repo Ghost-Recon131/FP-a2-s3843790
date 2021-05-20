@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import model.RegisterModel;
 import java.sql.SQLException;
 
-
 public class RegisterController {
     @FXML private TextField Firstname;
     @FXML private TextField Lastname;
@@ -33,18 +32,6 @@ public class RegisterController {
     RegisterModel registerModel = new RegisterModel();
     StringCheck StringCheck = new StringCheck();
 
-    // sets error messages when information is missing
-    public boolean InputNotEmpty(TextField Variable, Label ErrorVariable){
-        boolean Error = true;
-        if(!StringCheck.VerifyString(Variable.getText())){
-            ErrorVariable.setText("This cannot be empty");
-        }
-        else{
-            Error = false;
-        }
-        return Error;
-    }
-
     // go to Login scene
     @FXML
     private Button LoginButton;
@@ -59,23 +46,42 @@ public class RegisterController {
         HSC.HomeScene(HomeButton);
     }
 
-
     // button for creating new account
     @FXML
     private Button RegisterAccountButton;
-    public void setRegisterAccountButton(ActionEvent event){
+    public void setRegisterAccountButton(ActionEvent event) throws SQLException {
         RegisterNewAccount();
     }
 
     // checks for any errors then passes information onto DAO to enter into database
-    private void RegisterNewAccount(){
+    private void RegisterNewAccount() throws SQLException {
         boolean error1, error2, error3, error4, error5, error6, error7, error8, error9;
-        error1 = InputNotEmpty(Firstname, FirstnameError);
-        error2 = InputNotEmpty(Lastname, LastnameError);
-        error3 = InputNotEmpty(Username, UsernameError);
-        error4 = InputNotEmpty(Password, PasswordError);
-        error5 = InputNotEmpty(SQ, SQError);
-        error6 = InputNotEmpty(SQ_A, SQ_AError);
+
+        //ensure the username is unique
+        if (!registerModel.UniqueUsername(Username.getText().toUpperCase())) {
+            UsernameError.setText("Username Already Exists!");
+            error8 = true;
+        } else {
+            UsernameError.setText("");
+            error8 = false;
+        }
+        //ensure the username is unique
+        if(!registerModel.UniqueName(Firstname.getText().toUpperCase(), Lastname.getText().toUpperCase())){
+            FirstnameError.setText("An account with this name already exists");
+            LastnameError.setText("An account with this name already exists");
+            error9 = true;
+        } else{
+            FirstnameError.setText("");
+            LastnameError.setText("");
+            error9 = false;
+        }
+
+        error1 = StringCheck.InputNotEmpty(Firstname, FirstnameError);
+        error2 = StringCheck.InputNotEmpty(Lastname, LastnameError);
+        error3 = StringCheck.InputNotEmpty(Username, UsernameError);
+        error4 = StringCheck.InputNotEmpty(Password, PasswordError);
+        error5 = StringCheck.InputNotEmpty(SQ, SQError);
+        error6 = StringCheck.InputNotEmpty(SQ_A, SQ_AError);
         try { // checks that passwords match
             if (!Password.getText().equals(ConfirmPassword.getText())|| !StringCheck.VerifyString(ConfirmPassword.getText())) {
                 ConfirmPasswordError.setText("Password does not match!");
@@ -83,26 +89,7 @@ public class RegisterController {
             } else {
                 error7 = false;
             }
-
-            //ensure the username is unique
-            if (!registerModel.UniqueUsername(Username.getText().toUpperCase())) {
-                UsernameError.setText("Username Already Exists!");
-                error8 = true;
-            } else {
-                UsernameError.setText("");
-                error8 = false;
-            }
-            //ensure the username is unique
-            if(!registerModel.UniqueName(Firstname.getText().toUpperCase(), Lastname.getText().toUpperCase())){
-                FirstnameError.setText("An account with this name already exists");
-                LastnameError.setText("An account with this name already exists");
-                error9 = true;
-            } else{
-                FirstnameError.setText("");
-                LastnameError.setText("");
-                error9 = false;
-            }
-
+            // verify there are no errors remaining before proceeding
             if (!error1 && !error2 && !error3 && !error4 && !error5 && !error6 && !error7 && !error8 && !error9) {
                 registerModel.RegisterAccount(Firstname.getText().toUpperCase(), Lastname.getText().toUpperCase(),
                         Username.getText().toUpperCase(), Password.getText(), SQ.getText().toUpperCase(), SQ_A.getText());
@@ -115,6 +102,5 @@ public class RegisterController {
             System.err.println("Exception occurred in account registration");
         }
     }
-
 
 }
