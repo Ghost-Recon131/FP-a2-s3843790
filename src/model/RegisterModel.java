@@ -19,10 +19,8 @@ public class RegisterModel {
     ResultSet RS = null;
 
     //passes values onto addAccount method in Employee DAO to finalise the registration
-    public boolean RegisterAccount(String Firstname, String Lastname, String Username, String Password, String SQ, String SQ_A) throws SQLException {
+    public void RegisterAccount(String Firstname, String Lastname, String Username, String Password, String SQ, String SQ_A) throws SQLException {
         EDAO.addAccount(Firstname, Lastname, Username, Password, SQ, SQ_A);
-
-        return false;
     }
 
     // check if username selected by user is unique
