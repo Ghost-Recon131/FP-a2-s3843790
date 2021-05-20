@@ -4,11 +4,19 @@ import controller.HomeScreenController;
 import controller.utils.StringCheck;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.usermodel.ResetPasswordModel;
+
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class ResetPasswordController {
     @FXML private TextField SQ;
@@ -17,6 +25,9 @@ public class ResetPasswordController {
     @FXML private Label SQError;
     @FXML private Label SQAError;
     @FXML private Label ErrorMessage;
+    @FXML private Label ResetText;
+    @FXML private Label ResetText2;
+    @FXML private TextField NewPassword;
 
     HomeScreenController HSC = new HomeScreenController();
     StringCheck StringCheck = new StringCheck();
@@ -60,9 +71,11 @@ public class ResetPasswordController {
         // proceed when there's no errors
         if (!error1 && !error2 && !error3){
             ResetPasswordModel.ResetPassword(SQ_A.getText());
-            //todo new method for showing password
+            ResetText.setText("Your password has been reset!");
+            ResetText2.setText("Your new password is: ");
+            NewPassword.setVisible(true);
+            NewPassword.setText(ResetPasswordModel.getNewPassword());
         }
     }
-//todo update fxml to show password
 
 }
