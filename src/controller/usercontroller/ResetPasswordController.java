@@ -12,13 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import model.usermodel.ResetPasswordModel;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class ResetPasswordController {
     @FXML private TextField SQ;
-    @FXML private TextField SQConfirm;
     @FXML private TextField SQ_A;
 
     @FXML private Label SQError;
@@ -27,6 +28,7 @@ public class ResetPasswordController {
 
     HomeScreenController HSC = new HomeScreenController();
     StringCheck StringCheck = new StringCheck();
+    ResetPasswordModel ResetPasswordModel = new ResetPasswordModel();
 
     @FXML
     private Button HomeButton;
@@ -56,7 +58,7 @@ public class ResetPasswordController {
     // button that takes user to new scene
     @FXML
     private Button ResetPasswordButton;
-    public void setResetPasswordButtonClick(ActionEvent event){
+    public void setResetPasswordButtonClick(ActionEvent event) {
         ResetPassword();
     }
 
@@ -65,9 +67,14 @@ public class ResetPasswordController {
         boolean error1, error2, error3;
         error1 = StringCheck.InputNotEmpty(SQ, SQError);
         error2 = StringCheck.InputNotEmpty(SQ_A, SQError);
+        try {
+            if (ResetPasswordModel.LocateUser(SQ.getText(), SQ_A.getText())){
+
+            }
+        } catch (SQLException e){
+        }
 
     }
-
 
 
 }
