@@ -1,4 +1,4 @@
-package controller.usercontroller;
+package controller.UserFeatures;
 
 import controller.HomeScreenController;
 import javafx.event.Event;
@@ -10,9 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import model.usermodel.UserHomeModel;
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +33,7 @@ public class UserHomeController implements Initializable{
     // allow other classes to switch back to UserHome scene
     public void UserHomeScene(Event event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/userview/UserHome.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/UserView/UserHome.fxml"));
             Parent root = loader.load();
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root);
@@ -47,9 +45,16 @@ public class UserHomeController implements Initializable{
         }
     }
 
-    @FXML private Button LogoutButton; // takes user back to home essentially logging out since theres no way back
+    @FXML
+    private Button LogoutButton; // takes user back to home essentially logging out since theres no way back
     public void LogoutButtonClick(){
         HSC.HomeScene(LogoutButton);
+    }
+
+    @FXML
+    private Button BookUpdateTable;
+    public void BookUpdateTableButtonClick(){
+
     }
 
 }

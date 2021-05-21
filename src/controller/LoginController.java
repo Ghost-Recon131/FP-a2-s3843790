@@ -70,7 +70,7 @@ public class LoginController implements Initializable {
             if (HasAccount && LoginModel.getCurrentUserRole().equals("employee")){
                 isConnected.setText("Logged in successfully");
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/userview/UserHome.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/UserView/UserHome.fxml"));
                     Parent root = (Parent) loader.load();
                     Stage primaryStage = new Stage();
                     Scene scene = new Scene(root);
