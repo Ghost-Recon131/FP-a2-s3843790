@@ -1,5 +1,6 @@
 package controller.UserFeatures;
 
+import controller.utils.ChangeSceneUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ public class ChangePasswordController {
     @FXML private TextField ConfirmPassword;
 
     UserHomeController UHC = new UserHomeController();
+    ChangeSceneUtil CSU = new ChangeSceneUtil();
 
     // method for switching to Update booking view
     public void ChangePasswordScene(Event event) {
@@ -35,12 +37,13 @@ public class ChangePasswordController {
 
     @FXML
     public void setBackButtonClick(Event event){ // goes back to employee menu
-        UHC.UserHomeScene(event);
+        CSU.ChangeScene(event,"/view/UserView/userHome.fxml");
     }
 
     @FXML
-    public void setLogoutButtonClick(){
-        UHC.LogoutButtonClick();
+    public void setLogoutButtonClick(Event event){ // goes back to Home Screen
+        CSU.ChangeScene(event,"/view/HomeScreen.fxml");
     }
+
 
 }

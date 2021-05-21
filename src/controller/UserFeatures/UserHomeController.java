@@ -1,6 +1,8 @@
 package controller.UserFeatures;
 
 import controller.HomeScreenController;
+import controller.utils.ChangeSceneUtil;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import model.UserModel.UserHomeModel;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -25,26 +29,14 @@ public class UserHomeController implements Initializable{
     @FXML private Label EmployeeName;
 
     UserHomeModel UHM = new UserHomeModel();
+    ChangeSceneUtil CSU = new ChangeSceneUtil();
+//    BookTableController BTC = new BookTableController(); // these cause problems
+//    UpdateBookingController UBC = new UpdateBookingController();
 
     @Override // loads in some values as soon as user gets to home page
     public void initialize(URL url, ResourceBundle rb) {
         EmployeeName.setText(UHM.getEmployeeName());
         COVIDNotifications.setText(UHM.getCOVIDNotification() + "\n Admin Message: \n" + "- " +UHM.GetGlobalAdminMessage());
-    }
-
-    // allow other classes to switch back to UserHome scene
-    public void UserHomeScene(Event event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/UserView/UserHome.fxml"));
-            Parent root = loader.load();
-            Stage primaryStage = new Stage();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        }catch (IOException e){
-            System.err.println("Exception loading User Home screen");
-        }
     }
 
     @FXML
@@ -57,29 +49,19 @@ public class UserHomeController implements Initializable{
     @FXML
     // determines which scene to display
     public void BookUpdateTableButtonClick(Event event){
-//        BookTableController BTC = new BookTableController();
-//        UpdateBookingController UBC = new UpdateBookingController();
+        CSU.ChangeScene(event,"/view/UserView/BookTable.fxml");
 //        if(UHM.HasBooking()){
-//            UBC.UpdateBookingScene(event); // load UpdateBookingScene when there is existing booking
-//        }else{
-//            BTC.BookTableScene(event); // load BookTableScene when there is no existing / active booking
+//            System.out.println(" booking");
+//
+//       }else{
+//         System.out.println("Not booked");
 //        }
     }
 
     @FXML
     private Button ChangePasswordButton;
     public void ChangePasswordButtonClick(Event event){ // takes user to Change Password scene
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/UserView/ChangePassword.fxml"));
-            Parent root = loader.load();
-            Stage primaryStage = new Stage();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        }catch (IOException e){
-            System.err.println("Exception loading Change password view");
-        }
+        CSU.ChangeScene(event,"/view/UserView/ChangePassword.fxml");
     }
 
     @FXML
