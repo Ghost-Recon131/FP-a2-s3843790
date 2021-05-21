@@ -14,7 +14,7 @@ public class TableDAO {
     public void updateTables() {
         try {
             Statement myStmt = connect.createStatement();
-            ResultSet RS = myStmt.executeQuery("select * from Bookings");
+            ResultSet RS = myStmt.executeQuery("select * from Tables");
             while (RS.next()) {
                 listOfTables.add(new TableModel(RS.getInt("TableNumber"), RS.getInt("TableStatus"),
                         RS.getInt("COVID"), RS.getString("AdminMessage")));
@@ -37,14 +37,12 @@ public class TableDAO {
         return TableStatus;
     }
 
-    // returns boolean value of whether COVID lockdown is in place.
-    public boolean getCOVID(int TableNumber) {
-        boolean COVIDLockdown = true;
+    // returns an int for COVID lockdown, 0 = no lockdown, 1 = partial lockdown and 2 = total lockdown
+    public int getCOVID(int TableNumber) {
+        int COVIDLockdown = -1;
         for (TableModel Tbm : listOfTables) {
             if (Tbm.getTableNumber() == TableNumber) {
-                if(Tbm.getCOVID() == 0){
-                    COVIDLockdown = false;
-                }
+                COVIDLockdown = Tbm.getCOVID();
             }
         }
         return COVIDLockdown;

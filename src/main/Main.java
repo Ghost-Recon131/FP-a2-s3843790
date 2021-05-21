@@ -18,12 +18,18 @@ public class Main extends Application {
             primaryStage.show();
         }
         catch (IOException e){
-            System.err.println("Error in  GUI");
+            System.err.println("Error in GUI");
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        launch(args);
+    public static void main(String[] args) {
+        try{
+            launch(args);
+        }catch (Exception e){
+            System.err.println("Error in GUI");
+            System.err.println(e);
+        }
+
         //temporary code for testing
     }
 }
