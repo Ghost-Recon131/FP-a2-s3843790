@@ -19,7 +19,6 @@ public class ChangePasswordController {
     @FXML private Label ConfirmPasswordError;
     @FXML private Label ChangePasswordError;
 
-    UserHomeController UHC = new UserHomeController();
     ChangeSceneUtil CSU = new ChangeSceneUtil();
     ChangePasswordModel CPM = new ChangePasswordModel();
     StringCheck StringCheck = new StringCheck();
@@ -50,16 +49,14 @@ public class ChangePasswordController {
                 error4 = false;
             }
 
-            if(!error1 && !error2 && !error3 && !error4 ){
+            if(!error1 && !error2 && !error3 && !error4){
                 CPM.ChangePassword(ConfirmPassword.getText());
-                ChangePasswordError.setText("Password changed!");
                 TimeUnit.SECONDS.sleep(1);
                 CSU.ChangeScene(event,"/view/UserView/userHome.fxml");
             }else{
                 ChangePasswordError.setText("Failed to register");
             }
         }catch(InterruptedException e){
-            System.err.println(e);
             System.err.println("Something went wrong in program hold");
         }
     }
