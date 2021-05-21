@@ -38,10 +38,8 @@ public class UserHomeController implements Initializable{
     // determines which scene to display
     public void BookUpdateTableButtonClick(Event event){
         if(!UHM.HasBooking()){
-            System.err.println("No booking detected");
             CSU.ChangeScene(event,"/view/UserView/BookTable.fxml");
        }else{
-            System.err.println("booking detected");
             CSU.ChangeScene(event,"/view/UserView/UpdateBooking.fxml");
         }
     }
