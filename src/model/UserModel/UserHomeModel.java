@@ -7,6 +7,7 @@ import model.LoginModel;
 
 public class UserHomeModel {
     private String COVIDStatus;
+    private boolean ActiveBooking;
     EmployeeDAO EDAO = new EmployeeDAO();
     TableDAO TDAO = new TableDAO();
     BookingsDAO BDAO = new BookingsDAO();
@@ -36,15 +37,18 @@ public class UserHomeModel {
     }
 
     public boolean HasBooking(){
-        BDAO.updateBookings();
-        boolean ActiveBooking = false;
-        int BookingID = BDAO.getBookingID(LoginModel.getCurrentUserID());
-        boolean Status1 = BDAO.getBookingStatus(BookingID).equals("cancelled");
-        boolean Status2 = BDAO.getBookingStatus(BookingID).equals("completed");
-        if(BookingID != -1 && !Status1 && !Status2){
-            ActiveBooking = true;
+        try{
+            BDAO.updateBookings();
+            int BookingID = BDAO.getBookingID(LoginModel.getCurrentUserID());
+            boolean Status1 = BDAO.getBookingStatus(BookingID).equals("cancelled");
+            boolean Status2 = BDAO.getBookingStatus(BookingID).equals("completed");
+            if(BookingID != -1 && !Status1 && !Status2){
+                ActiveBooking = true;
+            }
+            return ActiveBooking;
+        }catch(Exception e){
+            return ActiveBooking;
         }
-        return ActiveBooking;
     }
 
 }

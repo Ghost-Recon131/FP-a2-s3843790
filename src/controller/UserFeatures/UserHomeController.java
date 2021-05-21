@@ -2,24 +2,14 @@ package controller.UserFeatures;
 
 import controller.HomeScreenController;
 import controller.utils.ChangeSceneUtil;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import model.UserModel.UserHomeModel;
 
-import javax.swing.*;
-import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class UserHomeController implements Initializable{
@@ -30,8 +20,6 @@ public class UserHomeController implements Initializable{
 
     UserHomeModel UHM = new UserHomeModel();
     ChangeSceneUtil CSU = new ChangeSceneUtil();
-//    BookTableController BTC = new BookTableController(); // these cause problems
-//    UpdateBookingController UBC = new UpdateBookingController();
 
     @Override // loads in some values as soon as user gets to home page
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,13 +37,13 @@ public class UserHomeController implements Initializable{
     @FXML
     // determines which scene to display
     public void BookUpdateTableButtonClick(Event event){
-        CSU.ChangeScene(event,"/view/UserView/BookTable.fxml");
-//        if(UHM.HasBooking()){
-//            System.out.println(" booking");
-//
-//       }else{
-//         System.out.println("Not booked");
-//        }
+        if(!UHM.HasBooking()){
+            System.err.println("No booking detected");
+            CSU.ChangeScene(event,"/view/UserView/BookTable.fxml");
+       }else{
+            System.err.println("booking detected");
+            CSU.ChangeScene(event,"/view/UserView/UpdateBooking.fxml");
+        }
     }
 
     @FXML
