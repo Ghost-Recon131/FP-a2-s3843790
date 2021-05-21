@@ -19,8 +19,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UserHomeController implements Initializable{
-    @FXML private TextField COVIDNotifications;
-    @FXML private TextField GeneralNotifications;
+    @FXML private Label COVIDNotifications;
+    @FXML private Label GeneralNotifications;
     @FXML private Label CheckinError;
     @FXML private Label EmployeeName;
     HomeScreenController HSC = new HomeScreenController();
@@ -29,15 +29,14 @@ public class UserHomeController implements Initializable{
     @Override // loads in some values as soon as user gets to home page
     public void initialize(URL url, ResourceBundle rb) {
         EmployeeName.setText(UHM.getEmployeeName());
-        COVIDNotifications.setText(UHM.getCOVIDNotification() );
-//        + "\n" + UHM.GetGlobalAdminMessage()
+        COVIDNotifications.setText(UHM.getCOVIDNotification() + "\n Admin Message: \n" + "- " +UHM.GetGlobalAdminMessage());
     }
 
     // allow other classes to switch back to UserHome scene
     public void UserHomeScene(Event event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/userview/UserHome.fxml"));
-            Parent root = (Parent) loader.load();
+            Parent root = loader.load();
             Stage primaryStage = new Stage();
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
@@ -49,7 +48,7 @@ public class UserHomeController implements Initializable{
     }
 
     @FXML private Button LogoutButton; // takes user back to home essentially logging out since theres no way back
-    public void LogoutButtonClick(Event event){
+    public void LogoutButtonClick(){
         HSC.HomeScene(LogoutButton);
     }
 

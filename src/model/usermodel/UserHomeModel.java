@@ -19,11 +19,11 @@ public class UserHomeModel {
     public String getCOVIDNotification(){
         TDAO.updateTables();
         if(TDAO.getCOVID(-1) == 0){ //table number -1 is used for "global" COVID status and messages by admin
-            COVIDStatus = "No lockdown";
+            COVIDStatus = "- No lockdown";
         } else if (TDAO.getCOVID(-1) == 1){
-            COVIDStatus = "Partial lockdown";
+            COVIDStatus = "- Partial lockdown";
         } else if (TDAO.getCOVID(-1) == 2){
-            COVIDStatus = "Total Lockdown";
+            COVIDStatus = "- Total Lockdown";
         }
         return COVIDStatus;
     }
