@@ -1,22 +1,15 @@
-package controller.usercontroller;
+package controller;
 
 import controller.HomeScreenController;
 import controller.utils.StringCheck;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import model.usermodel.ResetPasswordModel;
+import model.ResetPasswordModel;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Objects;
 
 public class ResetPasswordController {
     @FXML private TextField SQ;

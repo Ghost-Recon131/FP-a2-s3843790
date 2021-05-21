@@ -1,4 +1,4 @@
-package model.usermodel;
+package model;
 
 import controller.utils.RandPasswordUtil;
 import controller.utils.SHAHashUtil;
