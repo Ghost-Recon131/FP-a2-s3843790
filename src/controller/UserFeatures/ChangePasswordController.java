@@ -1,39 +1,28 @@
 package controller.UserFeatures;
 
 import controller.utils.ChangeSceneUtil;
+import controller.utils.StringCheck;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import model.UserModel.ChangePasswordModel;
 
-import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class ChangePasswordController {
     @FXML private TextField Password;
     @FXML private TextField NewPassword;
     @FXML private TextField ConfirmPassword;
+    @FXML private Label PasswordError;
+    @FXML private Label NewPasswordError;
+    @FXML private Label ConfirmPasswordError;
+    @FXML private Label ChangePasswordError;
 
     UserHomeController UHC = new UserHomeController();
     ChangeSceneUtil CSU = new ChangeSceneUtil();
-
-    // method for switching to Update booking view
-    public void ChangePasswordScene(Event event) {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/UserView/ChangePassword.fxml"));
-            Parent root = loader.load();
-            Stage primaryStage = new Stage();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        }catch (IOException e){
-            System.err.println("Exception loading Change password view");
-        }
-    }
+    ChangePasswordModel CPM = new ChangePasswordModel();
+    StringCheck StringCheck = new StringCheck();
 
     @FXML
     public void setBackButtonClick(Event event){ // goes back to employee menu
@@ -43,6 +32,36 @@ public class ChangePasswordController {
     @FXML
     public void setLogoutButtonClick(Event event){ // goes back to Home Screen
         CSU.ChangeScene(event,"/view/HomeScreen.fxml");
+    }
+
+    @FXML
+    public void setUpdatePasswordButtonClick(Event event){
+        boolean error1, error2, error3, error4;
+        error1 = StringCheck.InputNotEmpty(Password, PasswordError);
+        error2 = StringCheck.InputNotEmpty(NewPassword, NewPasswordError);
+        error3 = StringCheck.InputNotEmpty(ConfirmPassword, ConfirmPasswordError);
+
+        try{
+            // check that the new password and confirm password is equal
+            if (!NewPassword.getText().equals(ConfirmPassword.getText()) || !StringCheck.VerifyString(ConfirmPassword.getText())) {
+                ConfirmPasswordError.setText("Password does not match!");
+                error4 = true;
+            } else {
+                error4 = false;
+            }
+
+            if(!error1 && !error2 && !error3 && !error4 ){
+                CPM.ChangePassword(ConfirmPassword.getText());
+                ChangePasswordError.setText("Password changed!");
+                TimeUnit.SECONDS.sleep(1);
+                CSU.ChangeScene(event,"/view/UserView/userHome.fxml");
+            }else{
+                ChangePasswordError.setText("Failed to register");
+            }
+        }catch(InterruptedException e){
+            System.err.println(e);
+            System.err.println("Something went wrong in program hold");
+        }
     }
 
 
