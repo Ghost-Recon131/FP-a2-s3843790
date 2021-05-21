@@ -1,14 +1,13 @@
 package controller;
 
-import controller.HomeScreenController;
 import controller.utils.StringCheck;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.ResetPasswordModel;
-
 import java.sql.SQLException;
 
 public class ResetPasswordController {
@@ -18,9 +17,7 @@ public class ResetPasswordController {
     @FXML private Label SQError;
     @FXML private Label SQAError;
     @FXML private Label ErrorMessage;
-    @FXML private Label ResetText;
-    @FXML private Label ResetText2;
-    @FXML private TextField NewPassword;
+    private static String NewPassword; // allows it to be passed to next scene very easily
 
     HomeScreenController HSC = new HomeScreenController();
     StringCheck StringCheck = new StringCheck();
@@ -37,14 +34,14 @@ public class ResetPasswordController {
     public Button ResetPasswordButton;
     public void setResetPasswordButtonClick(ActionEvent event) {
         try {
-            ResetPassword();
+            ResetPassword(event);
         } catch (SQLException e) {
             System.err.println("Exception occurred in password reset");
         }
     }
 
     // program logic for checking and resetting password
-    private void ResetPassword() throws SQLException {
+    private void ResetPassword(Event event) throws SQLException {
         boolean error1, error2, error3;
 
         // check that the entered information matches database
@@ -64,11 +61,14 @@ public class ResetPasswordController {
         // proceed when there's no errors
         if (!error1 && !error2 && !error3){
             ResetPasswordModel.ResetPassword(SQ_A.getText());
-            ResetText.setText("Your password has been reset!");
-            ResetText2.setText("Your new password is: ");
-            NewPassword.setVisible(true);
-            NewPassword.setText(ResetPasswordModel.getNewPassword());
+            NewPassword = ResetPasswordModel.getNewPassword();
+            ResetPasswordController2 RPC = new ResetPasswordController2();
+            RPC.NextScene(event);
         }
+    }
+
+    public String getNewPassword(){ // pass new password to next scene
+        return NewPassword;
     }
 
 }
