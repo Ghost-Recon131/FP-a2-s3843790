@@ -22,14 +22,18 @@ public class UserHomeController implements Initializable {
     }
 
     // allow other classes to switch back to UserHome scene
-    public void UserHomeScene(Event event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/userview/UserHome.fxml"));
-        Parent root = (Parent) loader.load();
-        Stage primaryStage = new Stage();
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        ((Node) event.getSource()).getScene().getWindow().hide();
+    public void UserHomeScene(Event event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/userview/UserHome.fxml"));
+            Parent root = (Parent) loader.load();
+            Stage primaryStage = new Stage();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        }catch (IOException e){
+            System.err.println("Exception loading User Home view");
+        }
     }
 
 

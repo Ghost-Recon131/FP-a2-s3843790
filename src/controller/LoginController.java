@@ -1,6 +1,5 @@
 package controller;
 
-import controller.usercontroller.UserHomeController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,15 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import model.LoginModel;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -31,7 +27,6 @@ public class LoginController implements Initializable {
     @FXML
     private TextField txtPassword;
 
-
     // Check database connection
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -40,15 +35,10 @@ public class LoginController implements Initializable {
         }else{
             isConnected.setText("Not Connected");
         }
-
     }
-    /* login Action method
-       check if user input is the same as database.
-     */
 
     ActionEvent event;
     public void Login(ActionEvent event1){
-
         event=event1;
         Login();
     }
@@ -74,9 +64,7 @@ public class LoginController implements Initializable {
     }
 
     Window window;
-    Button LoginButton;
     public void Login(){
-        // Stage primaryStage = (Stage) window;
         try {
             boolean HasAccount = loginModel.isLogin(txtUsername.getText().toUpperCase(),txtPassword.getText());
             if (HasAccount && LoginModel.getCurrentUserRole().equals("employee")){
@@ -90,10 +78,9 @@ public class LoginController implements Initializable {
                     primaryStage.show();
                     ((Node) event.getSource()).getScene().getWindow().hide();
                 }catch (Exception e){
-                    System.out.println(e);
+                    System.err.println("Failed to load User Home scene");
                 }
-            }
-            else{
+            }else{
                 isConnected.setText("Username or Password is incorrect");
             }
         } catch (Exception e) {
