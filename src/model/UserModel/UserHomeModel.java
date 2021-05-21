@@ -1,5 +1,6 @@
 package model.UserModel;
 
+import dao.BookingsDAO;
 import dao.EmployeeDAO;
 import dao.TableDAO;
 import model.LoginModel;
@@ -8,7 +9,7 @@ public class UserHomeModel {
     private String COVIDStatus;
     EmployeeDAO EDAO = new EmployeeDAO();
     TableDAO TDAO = new TableDAO();
-
+    BookingsDAO BDAO = new BookingsDAO();
 
     public String getEmployeeName(){
         EDAO.updateEmployee();
@@ -32,6 +33,18 @@ public class UserHomeModel {
     public String GetGlobalAdminMessage(){
         TDAO.updateTables();
         return TDAO.getAdminMessage(-1);
+    }
+
+    public boolean HasBooking(){
+        BDAO.updateBookings();
+        boolean ActiveBooking = false;
+        int BookingID = BDAO.getBookingID(LoginModel.getCurrentUserID());
+        boolean Status1 = BDAO.getBookingStatus(BookingID).equals("cancelled");
+        boolean Status2 = BDAO.getBookingStatus(BookingID).equals("completed");
+        if(BookingID != -1 && !Status1 && !Status2){
+            ActiveBooking = true;
+        }
+        return ActiveBooking;
     }
 
 }

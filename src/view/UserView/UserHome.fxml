@@ -7,54 +7,55 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserFeatures.UserHomeController">
-   <Button fx:id="LogoutButton" layoutX="1132.0" layoutY="37.0" mnemonicParsing="false" onAction="#LogoutButtonClick"
-           prefHeight="33.0" prefWidth="88.0" text="Log Out">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserFeatures.UserHomeController">
+   <Button fx:id="LogoutButton" layoutX="1132.0" layoutY="37.0" mnemonicParsing="false" onAction="#LogoutButtonClick" prefHeight="33.0" prefWidth="88.0" text="Log Out">
       <font>
-         <Font size="16.0"/>
+         <Font size="16.0" />
       </font>
    </Button>
-   <Text layoutX="424.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back"
-         wrappingWidth="223.13671875">
+   <Text layoutX="424.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back" wrappingWidth="223.13671875">
       <font>
-         <Font name="System Bold" size="32.0"/>
+         <Font name="System Bold" size="32.0" />
       </font>
    </Text>
-   <Text layoutX="808.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notifications"
-         wrappingWidth="168.13671875">
+   <Text layoutX="808.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notifications" wrappingWidth="168.13671875">
       <font>
-         <Font name="System Bold" size="26.0"/>
+         <Font name="System Bold" size="26.0" />
       </font>
    </Text>
-   <TextField editable="false" layoutX="608.0" layoutY="203.0" prefHeight="375.0" prefWidth="569.0"/>
-   <TextField alignment="TOP_LEFT" editable="false" layoutX="89.0" layoutY="203.0" prefHeight="79.0" prefWidth="318.0"/>
-   <Text layoutX="89.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current COVID Restrictions"
-         wrappingWidth="335.13671875">
+   <TextField editable="false" layoutX="608.0" layoutY="203.0" prefHeight="375.0" prefWidth="569.0" />
+   <TextField alignment="TOP_LEFT" editable="false" layoutX="89.0" layoutY="203.0" prefHeight="79.0" prefWidth="318.0" />
+   <Text layoutX="89.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current COVID Restrictions" wrappingWidth="335.13671875">
       <font>
-         <Font name="System Bold" size="24.0"/>
+         <Font name="System Bold" size="24.0" />
       </font>
    </Text>
-   <Button layoutX="121.0" layoutY="293.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="157.0" text="Button"/>
-   <Button layoutX="121.0" layoutY="354.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="157.0" text="Button"/>
-   <Button layoutX="121.0" layoutY="420.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="157.0" text="Button"/>
-   <Label fx:id="CheckinError" layoutX="286.0" layoutY="435.0" prefHeight="20.0" prefWidth="210.0" text=" "
-          textFill="RED">
+   <Button layoutX="121.0" layoutY="293.0" mnemonicParsing="false" onAction="#BookUpdateTableButtonClick" prefHeight="47.0" prefWidth="187.0" text="Book or update table">
       <font>
-         <Font size="14.0"/>
+         <Font size="17.0" />
+      </font></Button>
+   <Button fx:id="ChangePasswordButton" layoutX="121.0" layoutY="354.0" mnemonicParsing="false" onAction="#ChangePasswordButtonClick" prefHeight="47.0" prefWidth="187.0" text="Change Password">
+      <font>
+         <Font size="17.0" />
+      </font></Button>
+   <Button layoutX="121.0" layoutY="420.0" mnemonicParsing="false" onAction="#CheckInButtonClick" prefHeight="47.0" prefWidth="187.0" text="Check In">
+      <font>
+         <Font size="17.0" />
+      </font></Button>
+   <Label fx:id="CheckinError" layoutX="286.0" layoutY="435.0" prefHeight="20.0" prefWidth="210.0" text=" " textFill="RED">
+      <font>
+         <Font size="14.0" />
       </font>
    </Label>
    <Label fx:id="EmployeeName" layoutX="658.0" layoutY="85.0" prefHeight="20.0" prefWidth="210.0" text="   ">
       <font>
-         <Font name="System Bold" size="32.0"/>
+         <Font name="System Bold" size="32.0" />
       </font>
    </Label>
-   <Label fx:id="COVIDNotifications" alignment="TOP_LEFT" layoutX="98.0" layoutY="208.0" prefHeight="69.0"
-          prefWidth="300.0" text="     ">
+   <Label fx:id="COVIDNotifications" alignment="TOP_LEFT" layoutX="98.0" layoutY="208.0" prefHeight="69.0" prefWidth="300.0" text="     ">
       <font>
-         <Font size="14.0"/>
+         <Font size="14.0" />
       </font>
    </Label>
-   <Label fx:id="GeneralNotifications" alignment="TOP_LEFT" layoutX="615.0" layoutY="214.0" prefHeight="355.0"
-          prefWidth="554.0" text="     "/>
+   <Label fx:id="GeneralNotifications" alignment="TOP_LEFT" layoutX="615.0" layoutY="214.0" prefHeight="355.0" prefWidth="554.0" text="     " />
 </AnchorPane>
