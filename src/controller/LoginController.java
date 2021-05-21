@@ -80,6 +80,18 @@ public class LoginController implements Initializable {
                 }catch (Exception e){
                     System.err.println("Failed to load User Home scene");
                 }
+            }else if(HasAccount && LoginModel.getCurrentUserRole().equals("admin")){
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/AdminView/AdminHome.fxml"));
+                    Parent root = (Parent) loader.load();
+                    Stage primaryStage = new Stage();
+                    Scene scene = new Scene(root);
+                    primaryStage.setScene(scene);
+                    primaryStage.show();
+                    ((Node) event.getSource()).getScene().getWindow().hide();
+                }catch (Exception e){
+                    System.err.println("Failed to load User Home scene");
+                }
             }else{
                 isConnected.setText("Username or Password is incorrect");
             }
