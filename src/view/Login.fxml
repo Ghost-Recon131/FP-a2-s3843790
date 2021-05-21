@@ -18,8 +18,14 @@
             <Label fx:id="isConnected" layoutX="45.0" layoutY="660.0" text="Database Status">
 
             </Label>
-      <TextField fx:id="txtUsername" layoutX="463.0" layoutY="232.0" prefHeight="50.0" prefWidth="466.0" AnchorPane.bottomAnchor="438.0" AnchorPane.leftAnchor="463.0" AnchorPane.rightAnchor="351.0" AnchorPane.topAnchor="232.0" />
-      <PasswordField fx:id="txtPassword" layoutX="463.0" layoutY="298.0" prefHeight="44.0" prefWidth="466.0" AnchorPane.bottomAnchor="378.0" AnchorPane.leftAnchor="463.0" AnchorPane.rightAnchor="351.0" AnchorPane.topAnchor="298.0" />
+      <TextField fx:id="txtUsername" layoutX="463.0" layoutY="232.0" prefHeight="50.0" prefWidth="466.0" AnchorPane.bottomAnchor="438.0" AnchorPane.leftAnchor="463.0" AnchorPane.rightAnchor="351.0" AnchorPane.topAnchor="232.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <PasswordField fx:id="txtPassword" layoutX="463.0" layoutY="298.0" prefHeight="44.0" prefWidth="466.0" AnchorPane.bottomAnchor="378.0" AnchorPane.leftAnchor="463.0" AnchorPane.rightAnchor="351.0" AnchorPane.topAnchor="298.0">
+         <font>
+            <Font size="20.0" />
+         </font></PasswordField>
       <Button defaultButton="true" layoutX="407.0" layoutY="394.0" mnemonicParsing="false" onAction="#Login" prefHeight="70.0" prefWidth="252.0" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="256.0" AnchorPane.leftAnchor="407.0" AnchorPane.rightAnchor="621.0" AnchorPane.topAnchor="394.0">
          <effect>
             <Lighting bumpInput="$null">
