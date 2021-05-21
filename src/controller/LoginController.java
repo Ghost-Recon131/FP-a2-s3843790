@@ -66,7 +66,7 @@ public class LoginController implements Initializable {
         Window window = scene.getWindow();
         Stage primaryStage = (Stage) window;
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/userview/ResetPassword.fxml"))); // get Login.fxml
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/ResetPassword.fxml"))); // get Login.fxml
             primaryStage.setScene(new Scene(root, 1280, 720));
         } catch (IOException e) {
             System.out.println("Failed to load Reset password");
