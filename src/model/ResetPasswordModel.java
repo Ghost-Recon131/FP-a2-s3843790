@@ -35,7 +35,7 @@ public class ResetPasswordModel {
             }else{
                 Located = false;
             }
-        } catch (NoSuchAlgorithmException | SQLException e){
+        } catch (SQLException e){
             return false;
         }finally {
             pstmt.close();
