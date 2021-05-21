@@ -1,4 +1,4 @@
-package model.usermodel;
+package model.UserModel;
 
 import dao.EmployeeDAO;
 import dao.TableDAO;
