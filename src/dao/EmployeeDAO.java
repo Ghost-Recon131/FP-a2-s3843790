@@ -171,14 +171,14 @@ public class EmployeeDAO {
                     break;
                 }
             }
-        }catch (SQLException | NoSuchAlgorithmException e){
+        }catch (SQLException e){
             e.printStackTrace();
         }
         return add;
     }
 
     // allow employees to change their password
-    public boolean changePassword(int id, String newPassword) throws NoSuchAlgorithmException {
+    public boolean changePassword(int id, String newPassword) {
         boolean Change = false;
         String HashedPassword = HASH.getHash(newPassword);
         String sql = "UPDATE Employee SET Password = \"" + HashedPassword + "\" WHERE id = \"" + id + "\"";
@@ -310,7 +310,7 @@ public class EmployeeDAO {
                         break;
                     }
                 }
-            } catch (SQLException | NoSuchAlgorithmException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
