@@ -1,6 +1,5 @@
 package dao;
 
-import model.BookingsModel;
 import model.EmployeeModel;
 import controller.utils.RandValueUtil;
 import controller.utils.SHAHashUtil;
@@ -144,9 +143,8 @@ public class EmployeeDAO {
     }
 
     //Adding an account / Register
-    public boolean addAccount(String Firstname, String Lastname, String Username, String Password,
-                              String Secret_Question, String SQ_Answer){
-        boolean add = false;
+    public void addAccount(String Firstname, String Lastname, String Username, String Password,
+                           String Secret_Question, String SQ_Answer){
         String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?,?,?)";
         int id = RV.randomID(); //generates random ID to avoid accidentally assigning an ID that is already in use
         try{
@@ -164,43 +162,25 @@ public class EmployeeDAO {
                 pstmt.executeUpdate();
                 updateEmployee();
             }
-
-            for(EmployeeModel Emp : listOfEmployees){
-                if(Emp.getID() == id){
-                    add = true;
-                    break;
-                }
-            }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return add;
     }
 
     // allow employees to change their password
-    public boolean changePassword(int id, String newPassword) {
-        boolean Change = false;
+    public void changePassword(int id, String newPassword) {
         String HashedPassword = HASH.getHash(newPassword);
         String sql = "UPDATE Employee SET Password = \"" + HashedPassword + "\" WHERE id = \"" + id + "\"";
         try{
             Statement myStmt = connect.createStatement();
             myStmt.executeUpdate(sql);
             updateEmployee();
-
-            for(EmployeeModel Emp : listOfEmployees){
-                if(Emp.getID() == id && Emp.getPassword().equals(HashedPassword)){
-                    Change = true;
-                    break;
-                }
-            }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return Change;
     }
 
-    public boolean resetPassword(String SQ_A, String newPassword) throws NoSuchAlgorithmException {
-        boolean Reset = false;
+    public void resetPassword(String SQ_A, String newPassword){
         String sql = "UPDATE Employee SET Password = ? WHERE SQ_Answer = ?";
         try{
             PreparedStatement pstmt = connect.prepareStatement(sql);{
@@ -209,23 +189,14 @@ public class EmployeeDAO {
                 pstmt.executeUpdate();
                 updateEmployee();
             }
-
-            for(EmployeeModel Emp : listOfEmployees){
-                if(Emp.getSQAnswer().equals(HASH.getHash(SQ_A)) && Emp.getPassword().equals(HASH.getHash(newPassword))){
-                    Reset = true;
-                    break;
-                }
-            }
-        }catch (Exception e){
+        }catch (SQLException e){
             e.printStackTrace();
         }
-        return Reset;
     }
 
     // Below are administrator functions
     //delete an account using the account's id
-    public boolean deleteAccount(int id){
-        boolean result = true;
+    public void deleteAccount(int id){
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             String sql = "DELETE FROM Employee WHERE id = ?";
             try {
@@ -235,23 +206,16 @@ public class EmployeeDAO {
                     pstmt.executeUpdate();
                     updateEmployee();
                 }
-                for (EmployeeModel Emp : listOfEmployees) {
-                    if (Emp.getID() == id) {
-                        result = false;
-                        break;
-                    }
-                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return result;
     }
 
     //allows admin to update an account
-    public boolean updateAccount (int CurrentID, int id, String Firstname, String Lastname, String Username, String Password,
+    public void updateAccount (int CurrentID, int id, String Firstname, String Lastname, String Username, String Password,
                                   String Secret_Question, String SQ_Answer){
-        boolean result = false;
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             String sql = "UPDATE Employee SET id = ?, Firstname = ?, Lastname = ?, Username = ?, Password = ?, " +
                     "Secret_Question = ?, SQ_Answer = ? WHERE id = ?";
@@ -268,23 +232,15 @@ public class EmployeeDAO {
                     pstmt.setInt(8, CurrentID);
                     pstmt.executeUpdate();
                 }
-                for (EmployeeModel Emp : listOfEmployees) { //check the account ID is valid
-                    if (Emp.getID() == id) {
-                        result = true;
-                        break;
-                    }
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return result;
     }
 
     //Adding an admin account
-    public boolean addAdmin(String Firstname, String Lastname, String Username, String Password,
+    public void addAdmin(String Firstname, String Lastname, String Username, String Password,
                             String Secret_Question, String SQ_Answer){
-        boolean add = false;
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?,?)";
             int id = RV.randomID(); //generates random ID to avoid accidentally assigning an ID that is already in use
@@ -304,17 +260,10 @@ public class EmployeeDAO {
                     pstmt.executeUpdate();
                     updateEmployee();
                 }
-                for (EmployeeModel Emp : listOfEmployees) {
-                    if (Emp.getID() == id) {
-                        add = true;
-                        break;
-                    }
-                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return add;
     }
 
     // output a list of employee accounts
@@ -344,8 +293,7 @@ public class EmployeeDAO {
     }
 
     //allows admin to activate or deactivate an account, controller will set the status = active or deactivated
-    public boolean activateAccount(int id, String newStatus){
-        boolean activate = false;
+    public void activateAccount(int id, String newStatus){
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             String sql = "UPDATE Employee SET Status = ? WHERE id = ?";
             try {
@@ -356,17 +304,10 @@ public class EmployeeDAO {
                     pstmt.executeUpdate();
                     updateEmployee();
                 }
-                for (EmployeeModel Emp : listOfEmployees) {
-                    if (Emp.getID() == id && Emp.getStatus().equals(newStatus)) {
-                        activate = true;
-                        break;
-                    }
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return activate;
     }
 
 }

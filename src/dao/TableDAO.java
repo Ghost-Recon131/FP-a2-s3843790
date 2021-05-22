@@ -79,8 +79,7 @@ public class TableDAO {
 
     // allows for setting custom messages
     // table -1 is reserved for an announcement that applies to all users & is not able to be reserved for seating
-    public boolean UpdateAdminMessage(int TableNumber, String newMessage) {
-        boolean update = false;
+    public void UpdateAdminMessage(int TableNumber, String newMessage) {
         if(LoginModel.getCurrentUserRole().equals("admin")){
             String sql = "UPDATE Tables SET AdminMessage = ? WHERE TableNumber = ?";
             try {
@@ -91,12 +90,10 @@ public class TableDAO {
                     pstmt.executeUpdate();
                     updateTables();
                 }
-                update = true;
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return update;
     }
 
     // helper method to lockdown tables
