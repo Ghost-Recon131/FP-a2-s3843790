@@ -59,6 +59,24 @@ public class TableDAO {
         return message;
     }
 
+    public boolean setTableStatus(int TableStatus, int TableNumber){
+        boolean changed = false;
+        String sql = "UPDATE Tables SET TableStatus = ? WHERE TableNumber = ?";
+        try {
+            PreparedStatement pstmt = connect.prepareStatement(sql);
+            {
+                pstmt.setInt(1, TableStatus);
+                pstmt.setInt(2, TableNumber);
+                pstmt.executeUpdate();
+                updateTables();
+            }
+            changed = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return changed;
+    }
+
     // allows for setting custom messages
     // table -1 is reserved for an announcement that applies to all users & is not able to be reserved for seating
     public boolean UpdateAdminMessage(int TableNumber, String newMessage) {
