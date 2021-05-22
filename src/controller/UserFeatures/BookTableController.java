@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
+import model.UserModel.BookTableModel;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -17,13 +18,14 @@ import java.util.ResourceBundle;
 public class BookTableController implements Initializable {
     private LocalDate SelectedDate;
     private int TableChosen = 0;
-    @FXML private Label DateError, TableError, PickedTable;
+    @FXML private Label DateError, TableError, PickedTable, PickDate;
     @FXML private Button B1, B2, B3, B4, B5, B6, B7, B8, B9, B10;
     @FXML private Rectangle R1, R2, R3, R4, R5, R6, R7, R8, R9, R10;
     ChangeSceneUtil CSU = new ChangeSceneUtil();
     TableStatusUtil TSU = new TableStatusUtil();
+    BookTableModel BTM = new BookTableModel();
 
-    @Override // loads in some values without user interaction
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         TSU.SetTableColour(R1, 1); // first part sets table colours
         TSU.SetTableColour(R2, 2);
@@ -65,14 +67,16 @@ public class BookTableController implements Initializable {
     @FXML private DatePicker Date; // get the date selected by the user
     public void setDatePickerAction(){
         SelectedDate = Date.getValue();
-        LocalDate ChangeFormat = LocalDate.parse(Date.getValue().toString());
-        System.err.println("Selected date: " + SelectedDate);
-        System.err.println("Format to LocalDate: " + ChangeFormat);
-        System.err.println(TableChosen);
+        PickDate.setText("You selected date: " + SelectedDate.toString());
     }
 
     @FXML
     public void setReserveTableButtonClick(Event event){
+        boolean error1, error2, error3, error4;
+        error1 = BTM.CorrectDate(SelectedDate);
+        error2 = BTM.TableAvailable(TableChosen);
+        error3 = BTM.HasBooking();
+
 
     }
 
