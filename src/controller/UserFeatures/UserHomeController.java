@@ -35,17 +35,12 @@ public class UserHomeController implements Initializable{
     }
 
     @FXML
-    // determines which scene to display
+    // displays the Book Table screen
     public void BookUpdateTableButtonClick(Event event){
-        if(!UHM.HasBooking()){
-            CSU.ChangeScene(event,"/view/UserView/BookTable.fxml");
-       }else{
-            CSU.ChangeScene(event,"/view/UserView/UpdateBooking.fxml");
-        }
+        CSU.ChangeScene(event,"/view/UserView/BookTable.fxml");
     }
 
     @FXML
-    private Button ChangePasswordButton;
     public void ChangePasswordButtonClick(Event event){ // takes user to Change Password scene
         CSU.ChangeScene(event,"/view/UserView/ChangePassword.fxml");
     }
