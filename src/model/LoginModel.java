@@ -26,8 +26,7 @@ public class LoginModel {
     public Boolean isDbConnected(){
         try {
             return !connection.isClosed();
-        }
-        catch(Exception e){
+        }catch(Exception e){
             return false;
         }
     }
@@ -37,7 +36,6 @@ public class LoginModel {
         ResultSet resultSet=null;
         String query = "select * from employee where username = ? and password= ?";
         try {
-
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, user);
             preparedStatement.setString(2, HASH.getHash(pass));
@@ -48,18 +46,24 @@ public class LoginModel {
                 CurrentUserID = EDAO.getAccountIDbyUsername(user); // locates ID of current user
                 CurrentUserRole = EDAO.getRole(CurrentUserID); // gets the role of current user
                 return true;
-            }
-            else{
+            }else{
                 return false;
             }
-        }
-        catch (Exception e)
-        {
+        }catch (Exception e){
             return false;
-        }finally {
+        }finally{
            preparedStatement.close();
            resultSet.close();
         }
+    }
+
+    public boolean AccountStatus(){
+        boolean AccountStatus = false;
+        EDAO.updateEmployee();
+        if(EDAO.getStatus(CurrentUserID).equals("active")){
+            AccountStatus = true;
+        }
+        return AccountStatus;
     }
 
     //these are static so they can be used by any other class to check who the current user is and their role in the system

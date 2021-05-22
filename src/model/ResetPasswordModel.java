@@ -58,4 +58,11 @@ public class ResetPasswordModel {
         return NewPassword;
     }
 
+    public boolean InactiveAccount(){
+        boolean inactiveAccount = true;
+        EDAO.updateEmployee();
+        inactiveAccount = !EDAO.getStatus(LoginModel.getCurrentUserID()).equals("active");
+        return inactiveAccount;
+    }
+
 }

@@ -67,7 +67,7 @@ public class LoginController implements Initializable {
     public void Login(){
         try {
             boolean HasAccount = loginModel.isLogin(txtUsername.getText().toUpperCase(),txtPassword.getText());
-            if (HasAccount && LoginModel.getCurrentUserRole().equals("employee")){
+            if (HasAccount && LoginModel.getCurrentUserRole().equals("employee") && loginModel.AccountStatus()){
                 isConnected.setText("Logged in successfully");
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/UserView/UserHome.fxml"));
@@ -80,7 +80,7 @@ public class LoginController implements Initializable {
                 }catch (Exception e){
                     System.err.println("Failed to load User Home scene");
                 }
-            }else if(HasAccount && LoginModel.getCurrentUserRole().equals("admin")){
+            }else if(HasAccount && LoginModel.getCurrentUserRole().equals("admin") && loginModel.AccountStatus()){
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/AdminView/AdminHome.fxml"));
                     Parent root = (Parent) loader.load();
@@ -92,6 +92,8 @@ public class LoginController implements Initializable {
                 }catch (Exception e){
                     System.err.println("Failed to load User Home scene");
                 }
+            }else if(HasAccount && !loginModel.AccountStatus()){
+                isConnected.setText("Account is not active, please contact admin");
             }else{
                 isConnected.setText("Username or Password is incorrect");
             }

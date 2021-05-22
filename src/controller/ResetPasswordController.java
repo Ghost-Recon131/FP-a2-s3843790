@@ -42,24 +42,26 @@ public class ResetPasswordController {
 
     // program logic for checking and resetting password
     private void ResetPassword(Event event) throws SQLException {
-        boolean error1, error2, error3;
+        boolean error1, error2, error3 = true, error4 = true;
 
         // check that the entered information matches database
         if (!ResetPasswordModel.LocateUser(SQ.getText().toUpperCase(), SQ_A.getText())){
             SQError.setText("Secret question or answer is wrong");
             ErrorMessage.setText("Failed to reset password");
-            error3 = true;
+        }else if(ResetPasswordModel.InactiveAccount()){
+            ErrorMessage.setText("Account is inactive, please contact admin!");
         }else{
             SQError.setText("");
             ErrorMessage.setText("");
             error3 = false;
+            error4 = false;
         }
 
         error1 = StringCheck.InputNotEmpty(SQ, SQError);
         error2 = StringCheck.InputNotEmpty(SQ_A, SQAError);
 
         // proceed when there's no errors
-        if (!error1 && !error2 && !error3){
+        if (!error1 && !error2 && !error3 && !error4){
             ResetPasswordModel.ResetPassword(SQ_A.getText());
             NewPassword = ResetPasswordModel.getNewPassword();
             ResetPasswordController2 RPC = new ResetPasswordController2();
