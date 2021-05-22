@@ -28,16 +28,7 @@ public class BookTableController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        TSU.SetTableColour(R1, 1); // first part sets table colours
-        TSU.SetTableColour(R2, 2);
-        TSU.SetTableColour(R3, 3);
-        TSU.SetTableColour(R4, 4);
-        TSU.SetTableColour(R5, 5);
-        TSU.SetTableColour(R6, 6);
-        TSU.SetTableColour(R7, 7);
-        TSU.SetTableColour(R8, 8);
-        TSU.SetTableColour(R9, 9);
-        TSU.SetTableColour(R10, 10);
+        UpdateTables();
         B1.setOnAction(e-> {TableChosen = 1; ShowTableChosen();}); // this part determines which table the user choose
         B2.setOnAction(e-> {TableChosen = 2; ShowTableChosen();});
         B3.setOnAction(e-> {TableChosen = 3; ShowTableChosen();});
@@ -49,6 +40,19 @@ public class BookTableController implements Initializable {
         B9.setOnAction(e-> {TableChosen = 9; ShowTableChosen();});
         B10.setOnAction(e-> {TableChosen = 10; ShowTableChosen();});
         DisplayMessage();
+    }
+
+    public void UpdateTables(){
+        TSU.SetTableColour(R1, 1); // first part sets table colours
+        TSU.SetTableColour(R2, 2);
+        TSU.SetTableColour(R3, 3);
+        TSU.SetTableColour(R4, 4);
+        TSU.SetTableColour(R5, 5);
+        TSU.SetTableColour(R6, 6);
+        TSU.SetTableColour(R7, 7);
+        TSU.SetTableColour(R8, 8);
+        TSU.SetTableColour(R9, 9);
+        TSU.SetTableColour(R10, 10);
     }
 
     private void ShowTableChosen(){ // gives user visual confirmation of their chosen table
@@ -69,6 +73,7 @@ public class BookTableController implements Initializable {
     public void setDatePickerAction(){
         SelectedDate = Date.getValue();
         PickDate.setText("You selected date: " + SelectedDate.toString());
+        UpdateTables();
     }
 
     @FXML
@@ -83,6 +88,7 @@ public class BookTableController implements Initializable {
             BTM.PlaceBooking(TableChosen, SelectedDate);
             ReserveTableError.setTextFill(GREEN);
             ReserveTableError.setText("Booking successful!");
+            UpdateTables();
             DisplayMessage();
         }else{
             ReserveTableError.setTextFill(RED);
