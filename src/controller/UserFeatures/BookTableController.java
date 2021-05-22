@@ -10,15 +10,16 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 import model.UserModel.BookTableModel;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import static javafx.scene.paint.Color.GREEN;
+import static javafx.scene.paint.Color.RED;
 
 public class BookTableController implements Initializable {
     private LocalDate SelectedDate;
     private int TableChosen = 0;
-    @FXML private Label DateError, TableError, PickedTable, PickDate;
+    @FXML private Label DateError, TableError, TableError2, PickedTable, PickDate, ReserveTableError, CurrentBooking;
     @FXML private Button B1, B2, B3, B4, B5, B6, B7, B8, B9, B10;
     @FXML private Rectangle R1, R2, R3, R4, R5, R6, R7, R8, R9, R10;
     ChangeSceneUtil CSU = new ChangeSceneUtil();
@@ -71,16 +72,32 @@ public class BookTableController implements Initializable {
     }
 
     @FXML
-    public void setReserveTableButtonClick(Event event){
+    public void setReserveTableButtonClick(){
         boolean error1, error2, error3, error4;
-        error1 = BTM.CorrectDate(SelectedDate);
-        error2 = BTM.TableAvailable(TableChosen);
+        error1 = BTM.CorrectDate(SelectedDate, DateError);
+        error2 = BTM.TableAvailable(TableChosen, TableError);
         error3 = BTM.HasBooking();
+        error4 = BTM.NotSameTable(TableChosen, TableError2);
 
-
+        if(error1 && error2 && !error3 && error4){
+            BTM.PlaceBooking(TableChosen, SelectedDate);
+            ReserveTableError.setTextFill(GREEN);
+            ReserveTableError.setText("Booking successful!");
+        }else{
+            ReserveTableError.setTextFill(RED);
+            ReserveTableError.setText("Booking failed!");
+        }
     }
 
-
-
+    public void DisplayMessage(){
+        if(BTM.HasBooking()){
+            CurrentBooking.setText(
+                    "Your your booking is on: " + BTM.getBookingDate() + "\n" +
+                    "Your your Table is : " + BTM.getTableNumber() + "\n" +
+                    "Your your Booking ID is : " + BTM.getCurrentBookingID() + "\n");
+        }else{
+            CurrentBooking.setText("No reservations found, please select a date then a \n + table that is coloured Green.");
+        }
+    }
 
 }

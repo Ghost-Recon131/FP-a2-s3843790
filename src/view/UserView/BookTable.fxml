@@ -37,7 +37,7 @@
       </font>
    </Text>
    <TextField alignment="TOP_LEFT" editable="false" layoutX="127.0" layoutY="505.0" prefHeight="117.0" prefWidth="400.0" />
-   <Label alignment="TOP_LEFT" layoutX="134.0" layoutY="513.0" prefHeight="33.0" prefWidth="386.0" text="No reservations found, please select a date then a ">
+   <Label fx:id="CurrentBooking" alignment="TOP_LEFT" layoutX="134.0" layoutY="513.0" prefHeight="33.0" prefWidth="386.0" text="No reservations found, please select a date then a ">
       <font>
          <Font size="16.0" />
       </font>
@@ -88,6 +88,11 @@
       </font>
    </Button>
    <Label fx:id="PickDate" layoutX="603.0" layoutY="479.0" prefHeight="17.0" prefWidth="386.0" text=" ">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <Label fx:id="ReserveTableError" layoutX="1035.0" layoutY="549.0" prefHeight="20.0" prefWidth="141.0" text="   " textFill="#2bff00">
       <font>
          <Font size="14.0" />
       </font>
