@@ -133,7 +133,7 @@ public class BookingsDAO {
         return add;
     }
 
-    public boolean changeBooking(String Status, int TableNumber, LocalDate BookingDate, LocalDate SittingDate, int BookingID) {
+    public boolean changeBooking(int TableNumber, LocalDate BookingDate, LocalDate SittingDate, int BookingID) {
         boolean change = false;
         String sql = "UPDATE Bookings SET BookingStatus = ?, TableNumber = ?, BookingDate = ?, SittingDate =? WHERE BookingID = ?";
         try {

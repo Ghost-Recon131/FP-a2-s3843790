@@ -36,8 +36,9 @@ public class BookTableController implements Initializable {
     @FXML private DatePicker Date; // get the date selected by the user
     public void setDatePickerAction(){
         SelectedDate = Date.getValue();
+        LocalDate ChangeFormat = LocalDate.parse(Date.getValue().toString());
         System.err.println("Selected date: " + SelectedDate);
-
+        System.err.println("Format to LocalDate: " + ChangeFormat);
     }
 
 

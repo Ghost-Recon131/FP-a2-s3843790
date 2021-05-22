@@ -47,7 +47,12 @@
          <Font size="16.0" />
       </font>
    </Label>
-   <Label fx:id="DateError" layoutX="127.0" layoutY="440.0" prefHeight="17.0" prefWidth="386.0" text="Label" textFill="RED">
+   <Label fx:id="DateError" layoutX="127.0" layoutY="447.0" prefHeight="17.0" prefWidth="386.0" text="    " textFill="RED">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <Label fx:id="TableError" layoutX="601.0" layoutY="554.0" prefHeight="17.0" prefWidth="386.0" text="     " textFill="RED">
       <font>
          <Font size="14.0" />
       </font>
