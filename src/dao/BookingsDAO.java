@@ -133,26 +133,19 @@ public class BookingsDAO {
         return add;
     }
 
-    public boolean cancelBooking(int BookingID) {
-        boolean cancel = false;
+    public void cancelBooking(int BookingID) {
         String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
         try {
             PreparedStatement pstmt = connect.prepareStatement(sql);
             {
                 pstmt.setString(1, "cancelled");
+                pstmt.setInt(2, BookingID);
                 pstmt.executeUpdate();
                 updateBookings();
-            }
-            for (BookingsModel Bkm : listOfBookings) {
-                if (Bkm.getBookingID() == BookingID) {
-                    cancel = true;
-                    break;
-                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return cancel;
     }
 
     public boolean approveBooking(int BookingID) {
