@@ -28,7 +28,7 @@
          <Font size="20.0" />
       </font>
    </Text>
-   <DatePicker layoutX="127.0" layoutY="181.0" prefHeight="33.0" prefWidth="363.0" />
+   <DatePicker fx:id="Date" layoutX="127.0" layoutY="181.0" onAction="#setDatePickerAction" prefHeight="33.0" prefWidth="363.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="446.0" layoutX="563.0" layoutY="181.0" stroke="BLACK" strokeType="INSIDE" width="631.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="409.0" layoutX="582.0" layoutY="198.0" stroke="BLACK" strokeType="INSIDE" width="593.0" />
    <Text layoutX="127.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Current Reservations ">
@@ -45,6 +45,11 @@
    <Label layoutX="134.0" layoutY="534.0" prefHeight="25.0" prefWidth="386.0" text="table that is coloured Green.">
       <font>
          <Font size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="DateError" layoutX="127.0" layoutY="440.0" prefHeight="17.0" prefWidth="386.0" text="Label" textFill="RED">
+      <font>
+         <Font size="14.0" />
       </font>
    </Label>
 </AnchorPane>
