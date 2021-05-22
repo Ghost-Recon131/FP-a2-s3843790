@@ -24,28 +24,35 @@ Contains all the controllers used in the program
 1. AdminHomeController: Not yet implemented
 
 ## Controllers - User
-1. BookTableController: 
+1. BookTableController: Allows users to select a date and table to reserve. Cancelling bookings is also done here.
 
 2. ChangePasswordController: Checks the user's password matches then updates the database with their new password.
 
-3. UpdateBookingController: Responsible for updating an employee's existing booking as well as handle any errors.
-
-4. UserHomeController: Responsible for switching to different scenes and showing the employee any updates on COVID
+3. UserHomeController: Responsible for switching to different scenes and showing the employee any updates on COVID
    lockdown, or their reservation request.
 
 ## Utils
 These are supporting classes which provides methods that may be used by controllers or DAOs'
-1. IntegerCheck: Checks the provided integer & handles exceptions if the value provided is not an integer
+1. ChangeSceneUtil: Allows for changing scenes, used by controllers inside AdminFeatures and UserFeatures. 
 
-2. RandPasswordUtil: Generates a new password when a user or admin uses the "Forgot Password" feature
+2. DateFormatConversionUtil: Handles converting Strings into LocalDate as well as handling exceptions. 
 
-3. RandValueUtil: Provides random number generation for generating employee ID & Booking ID
+3. IntegerCheck: Checks the provided integer & handles exceptions if the value provided is not an integer
 
-4. SHAHashUtil: Provides hashing method and returns hash in the form of a string
+4. RandPasswordUtil: Generates a new password when a user or admin uses the "Forgot Password" feature
 
-5. StringCheck: Provides 2 methods. VerifyString will return false if a string is empty and true if it is not. The other
+5. RandValueUtil: Provides random number generation for generating employee ID & Booking ID
+
+6. SHAHashUtil: Provides hashing method and returns hash in the form of a string
+
+7. StringCheck: Provides 2 methods. VerifyString will return false if a string is empty and true if it is not. The other
 method; InputNotEmpty checks for GUI text fields and ensures the user has entered something. It will return true if
    nothing is entered, as well as setting a warning message. 
+   
+8. TableStatusUtil: Originally created due to different scenes being used to show user booking / cancel booking. This is 
+   now combined into a single scene. 
+   
+   This still provides useful features such as setting the colour of the tables based on their status. 
 ## DAO
 These are Data access objects that perform retrieving, adding, updating or removing data from the database.
 
@@ -65,7 +72,7 @@ to new accounts. Also provides setters that admins use, they require current use
 
 2. EmployeeModel: Provides constructor & getters used by EmployeeDAO 
 
-3. LoginModel: Provides login functionality
+3. LoginModel: Provides helping methods to LoginController. Also allows other classes to get the current user's role and ID.
 
 4. RegisterModel: Provides additional SQL queries and supporting methods to RegisterController
 
@@ -76,8 +83,12 @@ to new accounts. Also provides setters that admins use, they require current use
 ## Model - AdminModel
 1. AdminHomeModel: Provides supporting methods for AdminHomeController
 
-## Model - Overall
-1. UserHomeModel: Provides supporting methods for UserHomeController
+## Model - UserModel
+1. BookTableModel: Provides supporting methods for BookTableController
+   
+2. ChangePasswordModel: Provides supporting methods for ChangePasswordController
+
+3. UserHomeModel: Provides supporting methods for UserHomeController
 
 ## View - Shared
 1. HomeScreen.fxml: Default home page when starting the program
@@ -98,9 +109,7 @@ to new accounts. Also provides setters that admins use, they require current use
 
 2. ChangePassword.fxml: GUI for employees to change their password
 
-3. UpdateBooking.fxml: Essentially the same as BookTable but updated with the user's booking
-
-4. UserHome.fxml: The default home page for employee accounts once they have logged in
+3. UserHome.fxml: The default home page for employee accounts once they have logged in
 
 ## SQlite table structure
 1. Bookings SQlite Table: Stores information about Bookings made by employee or admin
