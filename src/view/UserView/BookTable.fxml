@@ -31,23 +31,18 @@
    <DatePicker fx:id="Date" layoutX="127.0" layoutY="181.0" onAction="#setDatePickerAction" prefHeight="33.0" prefWidth="363.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="446.0" layoutX="563.0" layoutY="181.0" stroke="BLACK" strokeType="INSIDE" width="631.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="409.0" layoutX="582.0" layoutY="198.0" stroke="BLACK" strokeType="INSIDE" width="593.0" />
-   <Text layoutX="127.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Current Reservations ">
+   <Text layoutX="127.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Current Reservations ">
       <font>
          <Font size="20.0" />
       </font>
    </Text>
-   <TextField alignment="TOP_LEFT" editable="false" layoutX="127.0" layoutY="505.0" prefHeight="117.0" prefWidth="400.0" />
-   <Label fx:id="CurrentBooking" alignment="TOP_LEFT" layoutX="134.0" layoutY="513.0" prefHeight="33.0" prefWidth="386.0" text="No reservations found, please select a date then a ">
+   <TextField alignment="TOP_LEFT" editable="false" layoutX="127.0" layoutY="475.0" prefHeight="154.0" prefWidth="400.0" />
+   <Label fx:id="CurrentBooking" alignment="TOP_LEFT" layoutX="134.0" layoutY="483.0" prefHeight="137.0" prefWidth="386.0" text="    ">
       <font>
          <Font size="16.0" />
       </font>
    </Label>
-   <Label layoutX="134.0" layoutY="534.0" prefHeight="25.0" prefWidth="386.0" text="table that is coloured Green.">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Label>
-   <Label fx:id="DateError" layoutX="127.0" layoutY="447.0" prefHeight="17.0" prefWidth="386.0" text="    " textFill="RED">
+   <Label fx:id="DateError" layoutX="127.0" layoutY="425.0" prefHeight="17.0" prefWidth="386.0" text="    " textFill="RED">
       <font>
          <Font size="14.0" />
       </font>
@@ -73,9 +68,9 @@
    <Button fx:id="B4" layoutX="966.0" layoutY="277.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 4" />
    <Button fx:id="B5" layoutX="1075.0" layoutY="277.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 5" />
    <Button fx:id="B6" layoutX="622.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 6" />
-   <Button fx:id="B9" layoutX="966.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 7" />
-   <Button fx:id="B7" layoutX="736.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 8" />
-   <Button fx:id="B8" layoutX="849.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 9" />
+   <Button fx:id="B9" layoutX="966.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 9" />
+   <Button fx:id="B7" layoutX="736.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 7" />
+   <Button fx:id="B8" layoutX="849.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 8" />
    <Button fx:id="B10" layoutX="1075.0" layoutY="435.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Table 10" />
    <Label fx:id="PickedTable" layoutX="603.0" layoutY="503.0" prefHeight="17.0" prefWidth="386.0" text=" ">
       <font>
@@ -97,4 +92,15 @@
          <Font size="14.0" />
       </font>
    </Label>
+   <Label fx:id="TableError2" layoutX="609.0" layoutY="328.0" prefHeight="25.0" prefWidth="386.0" text="     " textFill="RED">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Button layoutX="404.0" layoutY="594.0" mnemonicParsing="false" onAction="#setReserveTableButtonClick" prefHeight="35.0" prefWidth="123.0" text="Cancel Booking">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Button>
+   <Label fx:id="CancelBooking" layoutX="308.0" layoutY="637.0" prefHeight="27.0" prefWidth="216.0" text="  " textFill="RED" />
 </AnchorPane>

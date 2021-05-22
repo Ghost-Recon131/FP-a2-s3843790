@@ -19,7 +19,7 @@ import static javafx.scene.paint.Color.RED;
 public class BookTableController implements Initializable {
     private LocalDate SelectedDate;
     private int TableChosen = 0;
-    @FXML private Label DateError, TableError, TableError2, PickedTable, PickDate, ReserveTableError, CurrentBooking;
+    @FXML private Label DateError, TableError, TableError2, PickedTable, PickDate, ReserveTableError, CurrentBooking, CancelBooking;
     @FXML private Button B1, B2, B3, B4, B5, B6, B7, B8, B9, B10;
     @FXML private Rectangle R1, R2, R3, R4, R5, R6, R7, R8, R9, R10;
     ChangeSceneUtil CSU = new ChangeSceneUtil();
@@ -48,13 +48,13 @@ public class BookTableController implements Initializable {
         B8.setOnAction(e-> {TableChosen = 8; ShowTableChosen();});
         B9.setOnAction(e-> {TableChosen = 9; ShowTableChosen();});
         B10.setOnAction(e-> {TableChosen = 10; ShowTableChosen();});
+        DisplayMessage();
     }
 
     private void ShowTableChosen(){ // gives user visual confirmation of their chosen table
         PickedTable.setText("You have picked Table " + TableChosen);
     }
 
-    //todo Implement controller & model
     @FXML
     public void setBackButtonClick(Event event){ // goes back to employee menu
         CSU.ChangeScene(event,"/view/UserView/userHome.fxml");
@@ -83,6 +83,7 @@ public class BookTableController implements Initializable {
             BTM.PlaceBooking(TableChosen, SelectedDate);
             ReserveTableError.setTextFill(GREEN);
             ReserveTableError.setText("Booking successful!");
+            DisplayMessage();
         }else{
             ReserveTableError.setTextFill(RED);
             ReserveTableError.setText("Booking failed!");
@@ -96,8 +97,10 @@ public class BookTableController implements Initializable {
                     "Your your Table is : " + BTM.getTableNumber() + "\n" +
                     "Your your Booking ID is : " + BTM.getCurrentBookingID() + "\n");
         }else{
-            CurrentBooking.setText("No reservations found, please select a date then a \n + table that is coloured Green.");
+            CurrentBooking.setText("No reservations found, please select a date then a \n table that is coloured Green.");
         }
     }
+
+    //todo Implement cancel booking
 
 }

@@ -45,12 +45,8 @@ public class ResetPasswordModel {
     }
 
     public boolean ResetPassword(String SQ_A) {
-        try {
-            NewPassword = RPU.getRandomPassword();
-            EDAO.resetPassword(SQ_A, NewPassword);
-        }catch(NoSuchAlgorithmException e){
-            System.err.println("Exception in writing new password to database");
-        }
+        NewPassword = RPU.getRandomPassword();
+        EDAO.resetPassword(SQ_A, NewPassword);
         return true;
     }
 

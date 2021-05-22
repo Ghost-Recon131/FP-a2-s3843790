@@ -7,7 +7,7 @@ import model.LoginModel;
 
 import java.time.LocalDate;
 
-public class BookTableModel {
+public class BookTableModel { //todo: book tables on days, not to set table as unavailable for all days
     TableDAO TDAO = new TableDAO();
     BookingsDAO BDAO = new BookingsDAO();
     EmployeeDAO EDAO = new EmployeeDAO();
@@ -21,10 +21,12 @@ public class BookTableModel {
         boolean ActiveBooking = false;
         try{
             BDAO.updateBookings();
+            EDAO.updateEmployee();
             int BookingID = BDAO.getBookingID(LoginModel.getCurrentUserID());
+            int LastTable = EDAO.getPreviousTableNumber(LoginModel.getCurrentUserID());
             boolean Status1 = BDAO.getBookingStatus(BookingID).equals("cancelled");
             boolean Status2 = BDAO.getBookingStatus(BookingID).equals("completed");
-            if(BookingID != -1 && !Status1 && !Status2){
+            if(LastTable != -1 || !Status1 || !Status2){
                 ActiveBooking = true;
             }
             return ActiveBooking;
@@ -38,6 +40,7 @@ public class BookTableModel {
         boolean Available = false;
         if(TDAO.getTableStatus(TableNumber) && TDAO.getCOVID(TableNumber) == 0){
             Available = true;
+        }else{
             label.setText("Table is not available for reservation");
         }
         return Available;
@@ -46,9 +49,11 @@ public class BookTableModel {
     public boolean CorrectDate(LocalDate selectedDate, Label label) {
         TDAO.updateTables();
         boolean Correct = false;
-        if(!selectedDate.isEqual(LocalDate.now()) && !selectedDate.isAfter(LocalDate.now())){
+        if(!selectedDate.isEqual(LocalDate.now()) || !selectedDate.isBefore(LocalDate.now())){
             Correct = true;
-            label.setText("The selected date is available");
+
+        }else{
+            label.setText("The selected date is not available");
         }
         return Correct;
     }
@@ -56,8 +61,10 @@ public class BookTableModel {
     public boolean NotSameTable(int TableNumber, Label label) {
         boolean NotSameTable = false;
         EDAO.updateEmployee();
-        if(EDAO.getPreviousTableNumber(LoginModel.getCurrentUserID()) == TableNumber){
+        if(EDAO.getPreviousTableNumber(LoginModel.getCurrentUserID()) != TableNumber){
             NotSameTable = true;
+
+        }else{
             label.setText("Please choose a different table as to where you sat last time");
         }
         return NotSameTable;
@@ -70,10 +77,14 @@ public class BookTableModel {
         TDAO.setTableStatus(0, TableNumber); // set booked table as unavailable for others
     }
 
-    public void CancelBooking(){ // sets booking as cancelled
+    public void CancelBooking(){ // sets booking as cancelled //todo implement cancel booking
         BDAO.updateBookings();
         TDAO.updateTables();
         BDAO.cancelBooking(getCurrentBookingID());
+    }
+
+    public void CheckIn(){
+        //todo implement checkin
     }
 
     public String getBookingDate(){
