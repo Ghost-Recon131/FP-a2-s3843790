@@ -57,4 +57,34 @@
          <Font size="14.0" />
       </font>
    </Label>
+   <Button fx:id="B1" layoutX="621.0" layoutY="277.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 1" />
+   <Rectangle fx:id="R5" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="1061.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R4" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="951.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R3" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="835.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="722.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="607.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R10" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="1062.0" layoutY="379.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R9" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="952.0" layoutY="379.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R8" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="836.0" layoutY="379.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R7" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="723.0" layoutY="379.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R6" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="608.0" layoutY="379.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Button fx:id="B2" layoutX="736.0" layoutY="277.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 2" />
+   <Button fx:id="B3" layoutX="850.0" layoutY="277.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 3" />
+   <Button fx:id="B4" layoutX="966.0" layoutY="277.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 4" />
+   <Button fx:id="B5" layoutX="1075.0" layoutY="277.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 5" />
+   <Button fx:id="B6" layoutX="622.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 6" />
+   <Button fx:id="B9" layoutX="966.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 7" />
+   <Button fx:id="B7" layoutX="736.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 8" />
+   <Button fx:id="B8" layoutX="849.0" layoutY="435.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="60.0" text="Table 9" />
+   <Button fx:id="B10" layoutX="1075.0" layoutY="435.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Table 10" />
+   <Label fx:id="PickedTable" layoutX="603.0" layoutY="479.0" prefHeight="17.0" prefWidth="386.0" text="     ">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <Button layoutX="1030.0" layoutY="505.0" mnemonicParsing="false" onAction="#setReserveTableButtonClick" prefHeight="35.0" prefWidth="134.0" text="Reserve Table">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Button>
 </AnchorPane>

@@ -7,7 +7,7 @@ import model.LoginModel;
 
 import java.time.LocalDate;
 
-public class UpdateBookingModel {
+public class UpdateBookingModel extends BookTableModel{
     TableDAO TDAO = new TableDAO();
     BookingsDAO BDAO = new BookingsDAO();
     DateFormatConversionUtil DFU = new DateFormatConversionUtil();
