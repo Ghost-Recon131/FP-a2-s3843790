@@ -4,6 +4,8 @@ import model.BookingsModel;
 import model.LoginModel;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,29 +74,37 @@ public class BookingsDAO {
     }
 
     //get Booking date via BookingID
-    public String getBookingDate(int BID) {
-        String BookingDate = null;
-        for (BookingsModel Bkm : listOfBookings) {
-            if (Bkm.getBookingID() == BID) {
-                BookingDate = Bkm.getBookingDate();
+    public LocalDate getBookingDate(int BID) {
+        LocalDate BookingDate = null;
+        try{
+            for (BookingsModel Bkm : listOfBookings) {
+                if (Bkm.getBookingID() == BID) {
+                    BookingDate = LocalDate.parse(Bkm.getBookingDate()); // convert string into LocalDate format
+                }
             }
+        }catch(DateTimeParseException e){
+            System.err.println("Error in converting string into LocalDate format");
         }
         return BookingDate;
     }
 
     //get setting date via BookingID
-    public String getSittingDate(int BID) {
-        String SittingDate = null;
-        for (BookingsModel Bkm : listOfBookings) {
-            if (Bkm.getBookingID() == BID) {
-                SittingDate = Bkm.getSittingDate();
+    public LocalDate getSittingDate(int BID) {
+        LocalDate SittingDate = null;
+        try{
+            for (BookingsModel Bkm : listOfBookings) {
+                if (Bkm.getBookingID() == BID) {
+                    SittingDate = LocalDate.parse(Bkm.getSittingDate()); // convert string into LocalDate format
+                }
             }
+        }catch(DateTimeParseException e){
+            System.err.println("Error in converting string into LocalDate format");
         }
         return SittingDate;
     }
 
     //Adding a booking
-    public boolean addBooking(int ID, String BookingStatus, int TableNumber, String BookingDate, String SittingDate) {
+    public boolean addBooking(int ID, String BookingStatus, int TableNumber, LocalDate BookingDate, LocalDate SittingDate) {
         boolean add = false;
         String sql = "INSERT INTO Bookings VALUES (?,?,?,?,?,?)";
         int BookingID = RV.randomBookingID(); //generates random ID to avoid accidentally assigning an ID that is already in use
@@ -105,8 +115,8 @@ public class BookingsDAO {
                 pstmt.setInt(1, ID);
                 pstmt.setString(2, BookingStatus);
                 pstmt.setInt(3, TableNumber);
-                pstmt.setString(4, BookingDate);
-                pstmt.setString(5, SittingDate); //only admin can add another admin
+                pstmt.setString(4, BookingDate.toString());
+                pstmt.setString(5, SittingDate.toString()); //only admin can add another admin
                 pstmt.setInt(6, BookingID);
                 pstmt.executeUpdate();
                 updateBookings();
@@ -123,7 +133,7 @@ public class BookingsDAO {
         return add;
     }
 
-    public boolean changeBooking(String Status, int TableNumber, String BookingDate, String SittingDate, int BookingID) {
+    public boolean changeBooking(String Status, int TableNumber, LocalDate BookingDate, LocalDate SittingDate, int BookingID) {
         boolean change = false;
         String sql = "UPDATE Bookings SET BookingStatus = ?, TableNumber = ?, BookingDate = ?, SittingDate =? WHERE BookingID = ?";
         try {
@@ -131,8 +141,8 @@ public class BookingsDAO {
             {
                 pstmt.setString(1, "Pending");
                 pstmt.setInt(2, TableNumber);
-                pstmt.setString(3, BookingDate);
-                pstmt.setString(4, SittingDate);
+                pstmt.setString(3, BookingDate.toString());
+                pstmt.setString(4, SittingDate.toString());
                 pstmt.setInt(5, BookingID);
                 pstmt.executeUpdate();
                 updateBookings();
