@@ -133,32 +133,6 @@ public class BookingsDAO {
         return add;
     }
 
-    public boolean changeBooking(int TableNumber, LocalDate BookingDate, LocalDate SittingDate, int BookingID) {
-        boolean change = false;
-        String sql = "UPDATE Bookings SET BookingStatus = ?, TableNumber = ?, BookingDate = ?, SittingDate =? WHERE BookingID = ?";
-        try {
-            PreparedStatement pstmt = connect.prepareStatement(sql);
-            {
-                pstmt.setString(1, "Pending");
-                pstmt.setInt(2, TableNumber);
-                pstmt.setString(3, BookingDate.toString());
-                pstmt.setString(4, SittingDate.toString());
-                pstmt.setInt(5, BookingID);
-                pstmt.executeUpdate();
-                updateBookings();
-            }
-            for (BookingsModel Bkm : listOfBookings) {
-                if (Bkm.getBookingID() == BookingID) {
-                    change = true;
-                    break;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return change;
-    }
-
     public boolean cancelBooking(int BookingID) {
         boolean cancel = false;
         String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
