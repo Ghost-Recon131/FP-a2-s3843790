@@ -104,7 +104,7 @@ public class BookingsDAO {
     }
 
     //Adding a booking
-    public boolean addBooking(int ID, String BookingStatus, int TableNumber, LocalDate BookingDate, LocalDate SittingDate) {
+    public boolean addBooking(int ID, int TableNumber, LocalDate BookingDate, LocalDate SittingDate) {
         boolean add = false;
         String sql = "INSERT INTO Bookings VALUES (?,?,?,?,?,?)";
         int BookingID = RV.randomBookingID(); //generates random ID to avoid accidentally assigning an ID that is already in use
@@ -113,7 +113,7 @@ public class BookingsDAO {
             PreparedStatement pstmt = connect.prepareStatement(sql);
             {
                 pstmt.setInt(1, ID);
-                pstmt.setString(2, BookingStatus);
+                pstmt.setString(2, "pending");
                 pstmt.setInt(3, TableNumber);
                 pstmt.setString(4, BookingDate.toString());
                 pstmt.setString(5, SittingDate.toString()); //only admin can add another admin
@@ -139,7 +139,7 @@ public class BookingsDAO {
         try {
             PreparedStatement pstmt = connect.prepareStatement(sql);
             {
-                pstmt.setString(1, "Cancelled");
+                pstmt.setString(1, "cancelled");
                 pstmt.executeUpdate();
                 updateBookings();
             }
@@ -162,7 +162,7 @@ public class BookingsDAO {
             try {
                 PreparedStatement pstmt = connect.prepareStatement(sql);
                 {
-                    pstmt.setString(1, "Approved");
+                    pstmt.setString(1, "approved");
                     pstmt.executeUpdate();
                     updateBookings();
                 }
@@ -186,7 +186,7 @@ public class BookingsDAO {
             try {
                 PreparedStatement pstmt = connect.prepareStatement(sql);
                 {
-                    pstmt.setString(1, "Rejected");
+                    pstmt.setString(1, "rejected");
                     pstmt.executeUpdate();
                     updateBookings();
                 }
