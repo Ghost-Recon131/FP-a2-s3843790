@@ -103,12 +103,21 @@ public class BookingsDAO {
         return SittingDate;
     }
 
+    public boolean getTableAvailability(int TableNumber, LocalDate SittingDate){ // only checks if a table is booked on a certain day, does not check for COVID
+        boolean Available = true;
+        for (BookingsModel Bkm : listOfBookings) {
+            if (Bkm.getTableNumber() == TableNumber && Bkm.getSittingDate().equals(SittingDate.toString())) {
+                Available = false;
+                break;
+            }
+        }
+        return Available;
+    }
+
     //Adding a booking
-    public boolean addBooking(int ID, int TableNumber, LocalDate BookingDate, LocalDate SittingDate) {
-        boolean add = false;
+    public void addBooking(int ID, int TableNumber, LocalDate BookingDate, LocalDate SittingDate) {
         String sql = "INSERT INTO Bookings VALUES (?,?,?,?,?,?)";
         int BookingID = RV.randomBookingID(); //generates random ID to avoid accidentally assigning an ID that is already in use
-
         try {
             PreparedStatement pstmt = connect.prepareStatement(sql);
             {
@@ -121,16 +130,9 @@ public class BookingsDAO {
                 pstmt.executeUpdate();
                 updateBookings();
             }
-            for (BookingsModel Bkm : listOfBookings) {
-                if (Bkm.getBookingID() == ID) {
-                    add = true;
-                    break;
-                }
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return add;
     }
 
     public void cancelBooking(int BookingID) {
@@ -148,7 +150,7 @@ public class BookingsDAO {
         }
     }
 
-    public boolean approveBooking(int BookingID) {
+    public void approveBooking(int BookingID) {
         boolean approve = false;
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
@@ -159,21 +161,13 @@ public class BookingsDAO {
                     pstmt.executeUpdate();
                     updateBookings();
                 }
-                for (BookingsModel Bkm : listOfBookings) {
-                    if (Bkm.getBookingID() == BookingID) {
-                        approve = true;
-                        break;
-                    }
-                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return approve;
     }
 
-    public boolean rejectBooking(int BookingID) {
-        boolean reject = false;
+    public void rejectBooking(int BookingID) {
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
             try {
@@ -183,17 +177,10 @@ public class BookingsDAO {
                     pstmt.executeUpdate();
                     updateBookings();
                 }
-                for (BookingsModel Bkm : listOfBookings) {
-                    if (Bkm.getBookingID() == BookingID) {
-                        reject = true;
-                        break;
-                    }
-                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return reject;
     }
 
 }
