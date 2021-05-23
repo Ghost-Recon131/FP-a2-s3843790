@@ -1,16 +1,20 @@
 package controller.utils;
 
+import dao.BookingsDAO;
 import dao.TableDAO;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.time.LocalDate;
+
 public class TableStatusUtil {
     TableDAO TDAO = new TableDAO();
+    BookingsDAO BDAO = new BookingsDAO();
 
     // will return status of table, true for a table that is available and false for table that is not available
-    public boolean TableStatus(int TableNumber){
-        TDAO.updateTables();
-        return TDAO.getTableStatus(TableNumber);
+    public boolean TableStatus(int TableNumber, LocalDate SittingDate){
+        BDAO.updateBookings();
+        return BDAO.getTableAvailability(TableNumber, SittingDate);
     }
 
     public boolean COVIDLockDown(int TableNumber){
@@ -23,14 +27,16 @@ public class TableStatusUtil {
         return tableLockdown;
     }
 
-    public void SetTableColour(Rectangle rectangle, int TableNumber){
+    public void SetTableColour(Rectangle rectangle, int TableNumber, LocalDate SittingDate){
         TDAO.updateTables();
-        if(TableStatus(TableNumber)){
+        BDAO.updateBookings();
+        if(TableStatus(TableNumber, SittingDate)){
             rectangle.setFill(javafx.scene.paint.Color.GREEN);
-        }else if(COVIDLockDown(TableNumber)){
-            rectangle.setFill(javafx.scene.paint.Color.ORANGE);
         }else{
             rectangle.setFill(javafx.scene.paint.Color.RED);
+        }
+        if(COVIDLockDown(TableNumber)) {
+            rectangle.setFill(javafx.scene.paint.Color.ORANGE);
         }
 
     }
