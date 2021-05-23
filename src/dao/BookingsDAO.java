@@ -154,6 +154,21 @@ public class BookingsDAO {
         }
     }
 
+    public void CheckIn(int BookingID) {
+        String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
+        try {
+            PreparedStatement pstmt = connect.prepareStatement(sql);
+            {
+                pstmt.setString(1, "completed");
+                pstmt.setInt(2, BookingID);
+                pstmt.executeUpdate();
+                updateBookings();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void approveBooking(int BookingID) {
         boolean approve = false;
         if(LoginModel.getCurrentUserRole().equals("admin")) {

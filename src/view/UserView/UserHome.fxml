@@ -34,7 +34,7 @@
       <font>
          <Font size="17.0" />
       </font></Button>
-   <Button fx:id="ChangePasswordButton" layoutX="121.0" layoutY="354.0" mnemonicParsing="false" onAction="#ChangePasswordButtonClick" prefHeight="47.0" prefWidth="187.0" text="Change Password">
+   <Button layoutX="121.0" layoutY="354.0" mnemonicParsing="false" onAction="#ChangePasswordButtonClick" prefHeight="47.0" prefWidth="187.0" text="Change Password">
       <font>
          <Font size="17.0" />
       </font></Button>
@@ -42,7 +42,7 @@
       <font>
          <Font size="17.0" />
       </font></Button>
-   <Label fx:id="CheckinError" layoutX="319.0" layoutY="428.0" prefHeight="32.0" prefWidth="210.0" text=" " textFill="RED">
+   <Label fx:id="CheckinError" layoutX="121.0" layoutY="474.0" prefHeight="148.0" prefWidth="474.0" text=" " textFill="RED">
       <font>
          <Font size="14.0" />
       </font>
@@ -57,5 +57,8 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <Label fx:id="GeneralNotifications" alignment="TOP_LEFT" layoutX="615.0" layoutY="214.0" prefHeight="355.0" prefWidth="554.0" text="     " />
+   <Label fx:id="GeneralNotifications" alignment="TOP_LEFT" layoutX="615.0" layoutY="214.0" prefHeight="355.0" prefWidth="554.0" text="     ">
+      <font>
+         <Font size="18.0" />
+      </font></Label>
 </AnchorPane>

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import model.UserModel.BookTableModel;
 import model.UserModel.UserHomeModel;
 
 import java.net.URL;
@@ -20,6 +21,7 @@ public class UserHomeController implements Initializable{
 
     UserHomeModel UHM = new UserHomeModel();
     ChangeSceneUtil CSU = new ChangeSceneUtil();
+    BookTableModel BTM = new BookTableModel();
 
     @Override // loads in some values as soon as user gets to home page
     public void initialize(URL url, ResourceBundle rb) {
@@ -48,10 +50,19 @@ public class UserHomeController implements Initializable{
     @FXML
     public void CheckInButtonClick(Event event){ // no new scene here, just marks a booking as complete
         //todo
-    }
+        boolean error1, error2, error3;
+        error1 = UHM.HasBooking();
+        error2 = UHM.BookingIsApproved();
+        error3 = UHM.SittingDateIsNow();
 
-    public void CheckIn(){
-        //todo implement checkin
+        if(error1 && error2 && error3){
+            UHM.FinaliseCheckIn();
+            GeneralNotifications.setText("Successfully checked in");
+        }else{
+            CheckinError.setText("Failed to check in, please ensure your booking is\n" +
+                    "on the current day and it has been approved by admin.");
+        }
+
     }
 
 }
