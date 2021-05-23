@@ -83,9 +83,6 @@ public class BookTableModel { //todo: book tables on days, not to set table as u
         BDAO.cancelBooking(getCurrentBookingID());
     }
 
-    public void CheckIn(){
-        //todo implement checkin
-    }
 
     public String getBookingDate(){
         BDAO.updateBookings();

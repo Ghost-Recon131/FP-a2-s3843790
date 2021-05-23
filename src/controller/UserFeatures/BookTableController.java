@@ -17,7 +17,7 @@ import static javafx.scene.paint.Color.GREEN;
 import static javafx.scene.paint.Color.RED;
 
 public class BookTableController implements Initializable {
-    private LocalDate SelectedDate;
+    private LocalDate SelectedDate = LocalDate.now();
     private int TableChosen = 0;
     @FXML private Label DateError, TableError, TableError2, PickedTable, PickDate, ReserveTableError, CurrentBooking, CancelBooking;
     @FXML private Button B1, B2, B3, B4, B5, B6, B7, B8, B9, B10;
@@ -43,16 +43,16 @@ public class BookTableController implements Initializable {
     }
 
     public void UpdateTables(){
-        TSU.SetTableColour(R1, 1); // first part sets table colours
-        TSU.SetTableColour(R2, 2);
-        TSU.SetTableColour(R3, 3);
-        TSU.SetTableColour(R4, 4);
-        TSU.SetTableColour(R5, 5);
-        TSU.SetTableColour(R6, 6);
-        TSU.SetTableColour(R7, 7);
-        TSU.SetTableColour(R8, 8);
-        TSU.SetTableColour(R9, 9);
-        TSU.SetTableColour(R10, 10);
+        TSU.SetTableColour(R1, 1, SelectedDate); // first part sets table colours
+        TSU.SetTableColour(R2, 2, SelectedDate);
+        TSU.SetTableColour(R3, 3, SelectedDate);
+        TSU.SetTableColour(R4, 4, SelectedDate);
+        TSU.SetTableColour(R5, 5, SelectedDate);
+        TSU.SetTableColour(R6, 6, SelectedDate);
+        TSU.SetTableColour(R7, 7, SelectedDate);
+        TSU.SetTableColour(R8, 8, SelectedDate);
+        TSU.SetTableColour(R9, 9, SelectedDate);
+        TSU.SetTableColour(R10, 10, SelectedDate);
     }
 
     private void ShowTableChosen(){ // gives user visual confirmation of their chosen table
