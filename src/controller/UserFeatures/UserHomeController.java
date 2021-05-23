@@ -18,6 +18,7 @@ public class UserHomeController implements Initializable{
     @FXML private Label GeneralNotifications;
     @FXML private Label CheckinError;
     @FXML private Label EmployeeName;
+    @FXML private Button CheckInButton;
 
     UserHomeModel UHM = new UserHomeModel();
     ChangeSceneUtil CSU = new ChangeSceneUtil();
@@ -27,6 +28,11 @@ public class UserHomeController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         EmployeeName.setText(UHM.getEmployeeName());
         COVIDNotifications.setText(UHM.getCOVIDNotification() + "\n Admin Message: \n" + "- " +UHM.GetGlobalAdminMessage());
+        if(!BTM.HasBooking()){
+            CheckInButton.setVisible(false);
+        }else{
+            CheckInButton.setVisible(true);
+        }
     }
 
     @FXML
@@ -54,12 +60,6 @@ public class UserHomeController implements Initializable{
         error1 = BTM.HasBooking();
         error2 = BTM.BookingIsApproved();
         error3 = BTM.SittingDateIsNow();
-
-        boolean Ifstatement = error1 && error2 && error3;
-        System.err.println("Error 1: " + error1);
-        System.err.println("Error 2: " + error2);
-        System.err.println("Error 3: " + error3);
-        System.err.println("If statement: " + Ifstatement);
 
         if(error1 && error2 && error3){
             UHM.FinaliseCheckIn(BTM.getTableNumber());

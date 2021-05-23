@@ -38,7 +38,7 @@
       <font>
          <Font size="17.0" />
       </font></Button>
-   <Button layoutX="121.0" layoutY="420.0" mnemonicParsing="false" onAction="#CheckInButtonClick" prefHeight="47.0" prefWidth="187.0" text="Check In">
+   <Button fx:id="CheckInButton" layoutX="121.0" layoutY="420.0" mnemonicParsing="false" onAction="#CheckInButtonClick" prefHeight="47.0" prefWidth="187.0" text="Check In">
       <font>
          <Font size="17.0" />
       </font></Button>
