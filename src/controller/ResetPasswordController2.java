@@ -32,18 +32,4 @@ public class ResetPasswordController2 implements Initializable {
         HSC.HomeScene(HomeButton);
     }
 
-    // loads Password reset scene 2
-    public void NextScene(Event event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ResetPassword2.fxml"));
-            Parent root = loader.load();
-            Stage primaryStage = new Stage();
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        }catch (IOException e){
-            System.err.println("Exception loading 2nd reset password");
-        }
-    }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import controller.utils.ChangeSceneUtil;
 import controller.utils.StringCheck;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -10,7 +11,7 @@ import javafx.scene.control.TextField;
 import model.ResetPasswordModel;
 import java.sql.SQLException;
 
-public class ResetPasswordController {
+public class ResetPasswordController { //todo fix reset password controller
     @FXML private TextField SQ;
     @FXML private TextField SQ_A;
 
@@ -22,6 +23,7 @@ public class ResetPasswordController {
     HomeScreenController HSC = new HomeScreenController();
     StringCheck StringCheck = new StringCheck();
     ResetPasswordModel ResetPasswordModel = new ResetPasswordModel();
+    ChangeSceneUtil CSU = new ChangeSceneUtil();
 
     @FXML
     private Button HomeButton;
@@ -65,7 +67,7 @@ public class ResetPasswordController {
             ResetPasswordModel.ResetPassword(SQ_A.getText());
             NewPassword = ResetPasswordModel.getNewPassword();
             ResetPasswordController2 RPC = new ResetPasswordController2();
-            RPC.NextScene(event);
+            CSU.ChangeScene(event, "/view/ResetPassword2.fxml");
         }
     }
 
