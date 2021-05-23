@@ -5,14 +5,12 @@ public class TableModel {
     private int TableStatus;
     private int COVID;
     private String AdminMessage;
-    private String SittingDate;
 
-    public TableModel(int TableNumber, int TableStatus, int COVID, String AdminMessage, String SittingDate) {
+    public TableModel(int TableNumber, int TableStatus, int COVID, String AdminMessage) {
         this.TableNumber = TableNumber;
         this.TableStatus = TableStatus;
         this.COVID = COVID;
         this.AdminMessage = AdminMessage;
-        this.SittingDate = SittingDate;
     }
 
     public int getTableNumber() {
@@ -31,7 +29,4 @@ public class TableModel {
         return AdminMessage;
     }
 
-    public String getSittingDate() {
-        return SittingDate;
-    }
 }

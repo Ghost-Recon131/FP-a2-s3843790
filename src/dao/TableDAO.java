@@ -17,7 +17,7 @@ public class TableDAO {
             ResultSet RS = myStmt.executeQuery("select * from Tables");
             while (RS.next()) {
                 listOfTables.add(new TableModel(RS.getInt("TableNumber"), RS.getInt("TableStatus"),
-                        RS.getInt("COVID"), RS.getString("AdminMessage"), RS.getString("SittingDate")));
+                        RS.getInt("COVID"), RS.getString("AdminMessage")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
