@@ -19,7 +19,8 @@ import static javafx.scene.paint.Color.RED;
 public class BookTableController implements Initializable {
     private LocalDate SelectedDate = LocalDate.now();
     private int TableChosen = 0;
-    @FXML private Label DateError, TableError, TableError2, PickedTable, PickDate, ReserveTableError, CurrentBooking, CancelBooking;
+    @FXML private Label DateError, TableError, TableError2, PickedTable, PickDate, ReserveTableError, CurrentBooking;
+    @FXML private Label CancelBooking, CurrentlyViewing;
     @FXML private Button B1, B2, B3, B4, B5, B6, B7, B8, B9, B10;
     @FXML private Rectangle R1, R2, R3, R4, R5, R6, R7, R8, R9, R10;
     ChangeSceneUtil CSU = new ChangeSceneUtil();
@@ -73,6 +74,7 @@ public class BookTableController implements Initializable {
     public void setDatePickerAction(){
         SelectedDate = Date.getValue();
         PickDate.setText("You selected date: " + SelectedDate.toString());
+        CurrentlyViewing.setText("Currently viewing tables on :" + SelectedDate.toString());
         UpdateTables();
     }
 
@@ -80,7 +82,7 @@ public class BookTableController implements Initializable {
     public void setReserveTableButtonClick(){
         boolean error1, error2, error3, error4;
         error1 = BTM.CorrectDate(SelectedDate, DateError);
-        error2 = BTM.TableAvailable(TableChosen, TableError);
+        error2 = BTM.TableAvailable(TableChosen, SelectedDate,TableError);
         error3 = BTM.HasBooking();
         error4 = BTM.NotSameTable(TableChosen, TableError2);
 
@@ -90,6 +92,8 @@ public class BookTableController implements Initializable {
             ReserveTableError.setText("Booking successful!");
             UpdateTables();
             DisplayMessage();
+        }else if(error3){
+            ReserveTableError.setText("You can only have 1 active booking at a time");
         }else{
             ReserveTableError.setTextFill(RED);
             ReserveTableError.setText("Booking failed!");
@@ -108,5 +112,10 @@ public class BookTableController implements Initializable {
     }
 
     //todo Implement cancel booking
+    public void setCancelBookingButtonClick(){
+
+    }
+
+
 
 }

@@ -103,4 +103,9 @@
       </font>
    </Button>
    <Label fx:id="CancelBooking" layoutX="308.0" layoutY="637.0" prefHeight="27.0" prefWidth="216.0" text="  " textFill="RED" />
+   <Label layoutX="563.0" layoutY="147.0" prefHeight="35.0" prefWidth="609.0" text="   " textFill="#0011ff">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Label>
 </AnchorPane>
