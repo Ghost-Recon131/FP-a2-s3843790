@@ -180,6 +180,7 @@ public class EmployeeDAO {
         }
     }
 
+    // used to reset a user's password by matching their secret question to their secret question answer
     public void resetPassword(String SQ_A, String newPassword){
         String sql = "UPDATE Employee SET Password = ? WHERE SQ_Answer = ?";
         try{
@@ -193,6 +194,21 @@ public class EmployeeDAO {
             e.printStackTrace();
         }
     }
+
+    public void setPreviousTableNumber(int PreviousTableNumber, int ID){
+        String sql = "UPDATE Employee SET PreviousTableNumber = ? WHERE id = ?";
+        try{
+            PreparedStatement pstmt = connect.prepareStatement(sql);{
+                pstmt.setInt(1, PreviousTableNumber);
+                pstmt.setInt(2, ID);
+                pstmt.executeUpdate();
+                updateEmployee();
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 
     // Below are administrator functions
     //delete an account using the account's id

@@ -37,9 +37,11 @@ public class UserHomeModel {
         return TDAO.getAdminMessage(-1);
     }
 
-    public void FinaliseCheckIn(){
+    public void FinaliseCheckIn(int TableNumber){
         BDAO.updateBookings();
+        EDAO.updateEmployee();
         BDAO.CheckIn(getCurrentBookingID());
+        EDAO.setPreviousTableNumber(TableNumber, LoginModel.getCurrentUserID());
     }
 
     public int getCurrentBookingID(){ // returns the user's booking ID

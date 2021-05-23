@@ -62,7 +62,7 @@ public class UserHomeController implements Initializable{
         System.err.println("If statement: " + Ifstatement);
 
         if(error1 && error2 && error3){
-            UHM.FinaliseCheckIn();
+            UHM.FinaliseCheckIn(BTM.getTableNumber());
             GeneralNotifications.setText("Successfully checked in");
         }else{
             CheckinError.setText("Failed to check in, please ensure your booking is\n" +
