@@ -17,9 +17,8 @@ Contains all the controllers used in the program
    details into the SQLite database. 
    
 4. ResetPasswordController: Matches a user's inputs against the database then updates their password if the provided 
-   inputs are correct. Then passes new password to ResetPasswordController2.
-
-5. ResetPasswordController2: Displays the new password to the user.
+   inputs are correct. It will then show the new password to the user. 
+   
 ## Controllers - Admin
 1. AdminHomeController: Not yet implemented
 
@@ -97,10 +96,8 @@ to new accounts. Also provides setters that admins use, they require current use
 
 3. Register.fxml: GUI for registering a new employee account
 
-4. ResetPassword.fxml: Provides GUI for resetting password. Can be used by both admins and employees.
-
-5. ResetPassword2.fxml: Shows the new password after a password reset. 
-
+4. ResetPassword.fxml: Provides GUI for resetting password. Can be used by both admins and employees. Also Shows the new 
+   password after a password reset.
 ## View - Admin
 1. Login.fxml: GUI for login
 

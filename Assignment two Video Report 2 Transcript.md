@@ -31,4 +31,6 @@ significantly more time to implement features compared to the last assignment.
 I also learnt that more forward planning is required, and I need to spend more time planning before jumping straight into
 coding the features. 
 
-I've noticed a bug in Reset Password feature, and I will fix it after this video report. 
+## Part 5 - Progress
+I believe I am behind schedule, since I have not yet implemented the GUI or program logic for the admin account. I am
+currently up to creating the GUI and implementing admin features. 
