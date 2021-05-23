@@ -63,7 +63,6 @@ public class BookTableModel { //todo: book tables on days, not to set table as u
         EDAO.updateEmployee();
         if(EDAO.getPreviousTableNumber(LoginModel.getCurrentUserID()) != TableNumber){
             NotSameTable = true;
-
         }else{
             label.setText("Please choose a different table as to where you sat last time");
         }
@@ -77,12 +76,22 @@ public class BookTableModel { //todo: book tables on days, not to set table as u
         TDAO.setTableStatus(0, TableNumber); // set booked table as unavailable for others
     }
 
-    public void CancelBooking(){ // sets booking as cancelled //todo implement cancel booking
+    public boolean CanCancelBooking(){
+        boolean CanCancel = true;
         BDAO.updateBookings();
-        TDAO.updateTables();
-        BDAO.cancelBooking(getCurrentBookingID());
+        LocalDate SittingDate = BDAO.getSittingDate(getCurrentBookingID()); // gets current reserved date
+        LocalDate CurrentDate = LocalDate.now(); // gets today's date
+        LocalDate CutoffDate = SittingDate.minusDays(2); // gets the date 2 days before the reserved date
+        if(SittingDate.isEqual(CurrentDate) || SittingDate.isBefore(CutoffDate)){
+            CanCancel = false;
+        }
+        return CanCancel;
     }
 
+    public void CancelBooking(){ // sets booking as cancelled //todo implement cancel booking
+        BDAO.updateBookings();
+        BDAO.cancelBooking(getCurrentBookingID());
+    }
 
     public String getBookingDate(){
         BDAO.updateBookings();

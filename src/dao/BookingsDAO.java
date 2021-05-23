@@ -44,7 +44,7 @@ public class BookingsDAO {
     public int getBookingID(int ID) {
         int bookingID = -1;
         for (BookingsModel Bkm : listOfBookings) {
-            if (Bkm.getID() == ID) {
+            if (Bkm.getID() == ID && Bkm.getBookingStatus().equals("pending") || Bkm.getBookingStatus().equals("approved")){
                 bookingID = Bkm.getBookingID();
             }
         }
@@ -105,8 +105,12 @@ public class BookingsDAO {
 
     public boolean getTableAvailability(int TableNumber, LocalDate SittingDate){ // only checks if a table is booked on a certain day, does not check for COVID
         boolean Available = true;
+        boolean condition1, condition2, condition3;
         for (BookingsModel Bkm : listOfBookings) {
-            if (Bkm.getTableNumber() == TableNumber && Bkm.getSittingDate().equals(SittingDate.toString())) {
+            condition1 = Bkm.getTableNumber() == TableNumber; // the selected table number matches one that is in database
+            condition2 = Bkm.getSittingDate().equals(SittingDate.toString()); // the date matches one in database
+            condition3 = Bkm.getBookingStatus().equals("pending") || Bkm.getBookingStatus().equals("approved"); // booking is not cancelled or denied
+            if (condition1 && condition2 && condition3) {
                 Available = false;
                 break;
             }

@@ -20,7 +20,7 @@ public class BookTableController implements Initializable {
     private LocalDate SelectedDate = LocalDate.now();
     private int TableChosen = 0;
     @FXML private Label DateError, TableError, TableError2, PickedTable, PickDate, ReserveTableError, CurrentBooking;
-    @FXML private Label CancelBooking, CurrentlyViewing;
+    @FXML private Label CancelBookingError, CurrentlyViewing;
     @FXML private Button B1, B2, B3, B4, B5, B6, B7, B8, B9, B10;
     @FXML private Rectangle R1, R2, R3, R4, R5, R6, R7, R8, R9, R10;
     ChangeSceneUtil CSU = new ChangeSceneUtil();
@@ -41,6 +41,7 @@ public class BookTableController implements Initializable {
         B9.setOnAction(e-> {TableChosen = 9; ShowTableChosen();});
         B10.setOnAction(e-> {TableChosen = 10; ShowTableChosen();});
         DisplayMessage();
+        CurrentlyViewing.setText("Currently viewing tables on : " + SelectedDate.toString());
     }
 
     public void UpdateTables(){
@@ -74,7 +75,7 @@ public class BookTableController implements Initializable {
     public void setDatePickerAction(){
         SelectedDate = Date.getValue();
         PickDate.setText("You selected date: " + SelectedDate.toString());
-        CurrentlyViewing.setText("Currently viewing tables on :" + SelectedDate.toString());
+        CurrentlyViewing.setText("Currently viewing tables on : " + SelectedDate.toString());
         UpdateTables();
     }
 
@@ -100,6 +101,24 @@ public class BookTableController implements Initializable {
         }
     }
 
+    @FXML
+    public void setCancelBookingButtonClick(){
+        boolean error1, error2;
+        error1 = BTM.HasBooking();
+        error2 = BTM.CanCancelBooking();
+
+        if(error1 && error2){
+            BTM.CancelBooking();
+            CancelBookingError.setText("Booking cancelled");
+            UpdateTables();
+            DisplayMessage();
+        }else{
+            CancelBookingError.setText("You have no active bookings to cancel");
+        }if(!error2){
+            CancelBookingError.setText("You cannot cancel a booking with less than 2 days till your reserved date");
+        }
+    }
+
     public void DisplayMessage(){
         if(BTM.HasBooking()){
             CurrentBooking.setText(
@@ -107,15 +126,8 @@ public class BookTableController implements Initializable {
                     "Your your Table is : " + BTM.getTableNumber() + "\n" +
                     "Your your Booking ID is : " + BTM.getCurrentBookingID() + "\n");
         }else{
-            CurrentBooking.setText("No reservations found, please select a date then a \n table that is coloured Green.");
+            CurrentBooking.setText("No reservations found, please select a date then a \ntable that is coloured Green.");
         }
     }
-
-    //todo Implement cancel booking
-    public void setCancelBookingButtonClick(){
-
-    }
-
-
 
 }
