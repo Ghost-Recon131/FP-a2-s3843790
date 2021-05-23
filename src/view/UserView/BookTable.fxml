@@ -92,7 +92,7 @@
          <Font size="14.0" />
       </font>
    </Label>
-   <Label fx:id="TableError2" layoutX="609.0" layoutY="328.0" prefHeight="25.0" prefWidth="386.0" text="     " textFill="RED">
+   <Label fx:id="TableError2" layoutX="609.0" layoutY="328.0" prefHeight="25.0" prefWidth="555.0" text="     " textFill="RED">
       <font>
          <Font size="16.0" />
       </font>
