@@ -50,4 +50,8 @@ public class UserHomeController implements Initializable{
         //todo
     }
 
+    public void CheckIn(){
+        //todo implement checkin
+    }
+
 }
