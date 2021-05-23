@@ -45,20 +45,14 @@ public class ResetPasswordModel {
     }
 
     public boolean ResetPassword(String SQ_A) {
-        NewPassword = RPU.getRandomPassword();
+        EDAO.updateEmployee();
         EDAO.resetPassword(SQ_A, NewPassword);
         return true;
     }
 
     public String getNewPassword() {
+        NewPassword = RPU.getRandomPassword();
         return NewPassword;
-    }
-
-    public boolean InactiveAccount(){
-        boolean inactiveAccount = true;
-        EDAO.updateEmployee();
-        inactiveAccount = !EDAO.getStatus(LoginModel.getCurrentUserID()).equals("active");
-        return inactiveAccount;
     }
 
 }

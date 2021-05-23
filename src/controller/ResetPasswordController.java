@@ -1,6 +1,4 @@
 package controller;
-
-import controller.utils.ChangeSceneUtil;
 import controller.utils.StringCheck;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -12,67 +10,55 @@ import model.ResetPasswordModel;
 import java.sql.SQLException;
 
 public class ResetPasswordController { //todo fix reset password controller
-    @FXML private TextField SQ;
-    @FXML private TextField SQ_A;
-
-    @FXML private Label SQError;
-    @FXML private Label SQAError;
-    @FXML private Label ErrorMessage;
-    private static String NewPassword; // allows it to be passed to next scene very easily
+    @FXML private TextField SQ, SQ_A, Password;
+    @FXML private Label SQError, SQAError, ErrorMessage, SuccessLabel, Success2;
 
     HomeScreenController HSC = new HomeScreenController();
     StringCheck StringCheck = new StringCheck();
     ResetPasswordModel ResetPasswordModel = new ResetPasswordModel();
-    ChangeSceneUtil CSU = new ChangeSceneUtil();
 
     @FXML
     private Button HomeButton;
-    public void setHomeButtonClick(ActionEvent event){
+    public void setHomeButtonClick(){
         HSC.HomeScene(HomeButton);
     }
 
-    // button activates the reset password process
     @FXML
-    public Button ResetPasswordButton;
+    public Button ResetPasswordButton; // button activates the reset password process
     public void setResetPasswordButtonClick(ActionEvent event) {
         try {
-            ResetPassword(event);
+            ResetPassword();
         } catch (SQLException e) {
             System.err.println("Exception occurred in password reset");
         }
     }
 
     // program logic for checking and resetting password
-    private void ResetPassword(Event event) throws SQLException {
-        boolean error1, error2, error3 = true, error4 = true;
-
+    private void ResetPassword() throws SQLException {
+        boolean error1, error2, error3 = true;
         // check that the entered information matches database
         if (!ResetPasswordModel.LocateUser(SQ.getText().toUpperCase(), SQ_A.getText())){
             SQError.setText("Secret question or answer is wrong");
             ErrorMessage.setText("Failed to reset password");
-        }else if(ResetPasswordModel.InactiveAccount()){
-            ErrorMessage.setText("Account is inactive, please contact admin!");
         }else{
             SQError.setText("");
             ErrorMessage.setText("");
             error3 = false;
-            error4 = false;
         }
 
         error1 = StringCheck.InputNotEmpty(SQ, SQError);
         error2 = StringCheck.InputNotEmpty(SQ_A, SQAError);
 
-        // proceed when there's no errors
-        if (!error1 && !error2 && !error3 && !error4){
+        if (!error1 && !error2 && !error3){ // proceed when there's no errors
+            String NewPassword = ResetPasswordModel.getNewPassword();
             ResetPasswordModel.ResetPassword(SQ_A.getText());
-            NewPassword = ResetPasswordModel.getNewPassword();
-            ResetPasswordController2 RPC = new ResetPasswordController2();
-            CSU.ChangeScene(event, "/view/ResetPassword2.fxml");
+            ResetPasswordButton.setVisible(false);
+            SuccessLabel.setVisible(true);
+            Success2.setVisible(true);
+            Password.setVisible(true);
+            Password.setText(NewPassword);
         }
     }
 
-    public String getNewPassword(){ // pass new password to next scene
-        return NewPassword;
-    }
 
 }
