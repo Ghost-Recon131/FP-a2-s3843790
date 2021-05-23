@@ -47,7 +47,6 @@ public class BookTableModel { //todo: book tables on days, not to set table as u
     }
 
     public boolean CorrectDate(LocalDate selectedDate, Label label) {
-        TDAO.updateTables();
         boolean Correct = false;
         if(!selectedDate.isEqual(LocalDate.now()) || !selectedDate.isBefore(LocalDate.now())){
             Correct = true;
@@ -71,9 +70,7 @@ public class BookTableModel { //todo: book tables on days, not to set table as u
 
     public void PlaceBooking(int TableNumber, LocalDate SittingDate){ //adds booking into database
         BDAO.updateBookings();
-        TDAO.updateTables();
         BDAO.addBooking(LoginModel.getCurrentUserID(), TableNumber, LocalDate.now(),SittingDate);
-        TDAO.setTableStatus(0, TableNumber); // set booked table as unavailable for others
     }
 
     public boolean CanCancelBooking(){
