@@ -51,9 +51,15 @@ public class UserHomeController implements Initializable{
     public void CheckInButtonClick(Event event){ // no new scene here, just marks a booking as complete
         //todo
         boolean error1, error2, error3;
-        error1 = UHM.HasBooking();
-        error2 = UHM.BookingIsApproved();
-        error3 = UHM.SittingDateIsNow();
+        error1 = BTM.HasBooking();
+        error2 = BTM.BookingIsApproved();
+        error3 = BTM.SittingDateIsNow();
+
+        boolean Ifstatement = error1 && error2 && error3;
+        System.err.println("Error 1: " + error1);
+        System.err.println("Error 2: " + error2);
+        System.err.println("Error 3: " + error3);
+        System.err.println("If statement: " + Ifstatement);
 
         if(error1 && error2 && error3){
             UHM.FinaliseCheckIn();

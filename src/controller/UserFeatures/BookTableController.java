@@ -21,7 +21,7 @@ public class BookTableController implements Initializable {
     private int TableChosen = 0;
     @FXML private Label DateError, TableError, TableError2, PickedTable, PickDate, ReserveTableError, CurrentBooking;
     @FXML private Label CancelBookingError, CurrentlyViewing;
-    @FXML private Button B1, B2, B3, B4, B5, B6, B7, B8, B9, B10;
+    @FXML private Button B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, CancelBookingButton;
     @FXML private Rectangle R1, R2, R3, R4, R5, R6, R7, R8, R9, R10;
     ChangeSceneUtil CSU = new ChangeSceneUtil();
     TableStatusUtil TSU = new TableStatusUtil();
@@ -110,6 +110,7 @@ public class BookTableController implements Initializable {
         if(error1 && error2){
             BTM.CancelBooking();
             CancelBookingError.setText("Booking cancelled");
+            CancelBookingButton.setVisible(true);
             UpdateTables();
             DisplayMessage();
         }else{
@@ -127,6 +128,7 @@ public class BookTableController implements Initializable {
                     "Your your Booking ID is : " + BTM.getCurrentBookingID() + "\n");
         }else{
             CurrentBooking.setText("No reservations found, please select a date then a \ntable that is coloured Green.");
+            CancelBookingButton.setVisible(false);
         }
     }
 

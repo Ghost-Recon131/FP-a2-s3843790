@@ -37,6 +37,7 @@ public class BookTableModel { //todo: book tables on days, not to set table as u
 
     public boolean TableAvailable(int TableNumber, LocalDate SelectedDate,Label label){  // checks that 1) The table is available, 2) Table is not under COVID lockdown
         BDAO.updateBookings();
+        TDAO.updateTables();
         boolean Available = false;
         if(BDAO.getTableAvailability(TableNumber, SelectedDate) && TDAO.getCOVID(TableNumber) == 0){
             Available = true;
@@ -98,6 +99,14 @@ public class BookTableModel { //todo: book tables on days, not to set table as u
     public int getTableNumber(){
         BDAO.updateBookings();
         return BDAO.getTableNumber(getCurrentBookingID());
+    }
+
+    public boolean BookingIsApproved(){
+        return BDAO.getBookingStatus(getCurrentBookingID()).equals("approved");
+    }
+
+    public boolean SittingDateIsNow(){
+        return BDAO.getSittingDate(getCurrentBookingID()).isEqual(LocalDate.now());
     }
 
 }

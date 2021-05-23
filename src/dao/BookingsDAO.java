@@ -109,7 +109,7 @@ public class BookingsDAO {
         for (BookingsModel Bkm : listOfBookings) {
             condition1 = Bkm.getTableNumber() == TableNumber; // the selected table number matches one that is in database
             condition2 = Bkm.getSittingDate().equals(SittingDate.toString()); // the date matches one in database
-            condition3 = Bkm.getBookingStatus().equals("pending") || Bkm.getBookingStatus().equals("approved"); // booking is not cancelled or denied
+            condition3 = Bkm.getBookingStatus().equals("pending") || Bkm.getBookingStatus().equals("approved");// booking is not cancelled or denied
             if (condition1 && condition2 && condition3) {
                 Available = false;
                 break;

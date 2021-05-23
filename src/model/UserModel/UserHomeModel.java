@@ -12,7 +12,6 @@ public class UserHomeModel {
     EmployeeDAO EDAO = new EmployeeDAO();
     TableDAO TDAO = new TableDAO();
     BookingsDAO BDAO = new BookingsDAO();
-    BookTableModel BTM = new BookTableModel();
 
     public String getEmployeeName(){
         EDAO.updateEmployee();
@@ -40,21 +39,12 @@ public class UserHomeModel {
 
     public void FinaliseCheckIn(){
         BDAO.updateBookings();
-        BDAO.CheckIn(BTM.getCurrentBookingID());
+        BDAO.CheckIn(getCurrentBookingID());
     }
 
-    public boolean HasBooking(){
-        return BTM.HasBooking();
+    public int getCurrentBookingID(){ // returns the user's booking ID
+        BDAO.updateBookings();
+        return BDAO.getBookingID(LoginModel.getCurrentUserID());
     }
-
-    public boolean BookingIsApproved(){
-        return BDAO.getBookingStatus(BTM.getCurrentBookingID()).equals("approved");
-    }
-
-    public boolean SittingDateIsNow(){
-        return BDAO.getSittingDate(BTM.getCurrentBookingID()).isEqual(LocalDate.now());
-    }
-
-
 
 }
