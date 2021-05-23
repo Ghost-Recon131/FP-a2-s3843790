@@ -49,9 +49,8 @@ public class BookTableModel { //todo: book tables on days, not to set table as u
 
     public boolean CorrectDate(LocalDate selectedDate, Label label) {
         boolean Correct = false;
-        if(!selectedDate.isEqual(LocalDate.now()) || !selectedDate.isBefore(LocalDate.now())){
+        if(selectedDate.isAfter(LocalDate.now())){
             Correct = true;
-
         }else{
             label.setText("The selected date is not available");
         }
