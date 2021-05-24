@@ -24,21 +24,21 @@
       </font>
    </Text>
    <TextField editable="false" layoutX="608.0" layoutY="203.0" prefHeight="375.0" prefWidth="569.0" />
-   <TextField alignment="TOP_LEFT" editable="false" layoutX="89.0" layoutY="203.0" prefHeight="79.0" prefWidth="318.0" />
+   <TextField alignment="TOP_LEFT" editable="false" layoutX="89.0" layoutY="203.0" prefHeight="193.0" prefWidth="318.0" />
    <Text layoutX="89.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current COVID Restrictions" wrappingWidth="335.13671875">
       <font>
          <Font name="System Bold" size="24.0" />
       </font>
    </Text>
-   <Button layoutX="121.0" layoutY="293.0" mnemonicParsing="false" onAction="#BookUpdateTableButtonClick" prefHeight="47.0" prefWidth="187.0" text="Book or update table">
+   <Button layoutX="121.0" layoutY="404.0" mnemonicParsing="false" onAction="#BookUpdateTableButtonClick" prefHeight="47.0" prefWidth="187.0" text="Book or update table">
       <font>
          <Font size="17.0" />
       </font></Button>
-   <Button layoutX="121.0" layoutY="354.0" mnemonicParsing="false" onAction="#ChangePasswordButtonClick" prefHeight="47.0" prefWidth="187.0" text="Change Password">
+   <Button layoutX="121.0" layoutY="465.0" mnemonicParsing="false" onAction="#ChangePasswordButtonClick" prefHeight="47.0" prefWidth="187.0" text="Change Password">
       <font>
          <Font size="17.0" />
       </font></Button>
-   <Button fx:id="CheckInButton" layoutX="121.0" layoutY="420.0" mnemonicParsing="false" onAction="#CheckInButtonClick" prefHeight="47.0" prefWidth="187.0" text="Check In">
+   <Button fx:id="CheckInButton" layoutX="121.0" layoutY="531.0" mnemonicParsing="false" onAction="#CheckInButtonClick" prefHeight="47.0" prefWidth="187.0" text="Check In">
       <font>
          <Font size="17.0" />
       </font></Button>
@@ -52,7 +52,7 @@
          <Font name="System Bold" size="32.0" />
       </font>
    </Label>
-   <Label fx:id="COVIDNotifications" alignment="TOP_LEFT" layoutX="98.0" layoutY="208.0" prefHeight="69.0" prefWidth="300.0" text="     ">
+   <Label fx:id="COVIDNotifications" alignment="TOP_LEFT" layoutX="98.0" layoutY="208.0" prefHeight="182.0" prefWidth="300.0" text="     ">
       <font>
          <Font size="14.0" />
       </font>
