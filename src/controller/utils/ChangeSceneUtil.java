@@ -20,8 +20,7 @@ public class ChangeSceneUtil {
             primaryStage.show();
             ((Node) event.getSource()).getScene().getWindow().hide();
         }catch (IOException e) {
-            System.err.println(e);
-            System.err.println("Failed to change scenes");
+            System.err.println("Failed to change scenes using ChangeSceneUtil");
         }
     }
 

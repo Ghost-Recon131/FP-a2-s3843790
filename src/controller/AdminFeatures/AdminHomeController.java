@@ -1,7 +1,6 @@
 package controller.AdminFeatures;
 
 import controller.HomeScreenController;
-import controller.UserFeatures.UserHomeController;
 import controller.utils.ChangeSceneUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -10,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import model.AdminModel.AdminHomeModel;
 import model.UserModel.UserHomeModel;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
