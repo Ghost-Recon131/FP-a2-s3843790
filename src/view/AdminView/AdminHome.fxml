@@ -51,32 +51,32 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Button layoutX="156.0" layoutY="193.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="259.0" text="COVID Restrictions">
+      <Button layoutX="156.0" layoutY="193.0" mnemonicParsing="false" onAction="#ManageCOVIDRestrictions" prefHeight="47.0" prefWidth="259.0" text="COVID Restrictions">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="156.0" layoutY="254.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="259.0" text="Manage booking requests">
+      <Button layoutX="156.0" layoutY="254.0" mnemonicParsing="false" onAction="#ManageBookingRequests" prefHeight="47.0" prefWidth="259.0" text="Manage booking requests">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="156.0" layoutY="319.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="259.0" text="Manage employee accounts">
+      <Button layoutX="156.0" layoutY="319.0" mnemonicParsing="false" onAction="#ManageEmployeeAccounts" prefHeight="47.0" prefWidth="259.0" text="Manage employee accounts">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="156.0" layoutY="376.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="259.0" text="Manage admin accounts">
+      <Button layoutX="156.0" layoutY="376.0" mnemonicParsing="false" onAction="#ManageAdminAccounts" prefHeight="47.0" prefWidth="259.0" text="Manage admin accounts">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="156.0" layoutY="435.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="259.0" text="Generate CSV Report">
+      <Button layoutX="156.0" layoutY="435.0" mnemonicParsing="false" onAction="#GenerateCSVReport" prefHeight="47.0" prefWidth="259.0" text="Generate CSV Report">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="156.0" layoutY="497.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="259.0" text="View Bookings">
+      <Button layoutX="156.0" layoutY="497.0" mnemonicParsing="false" onAction="#ViewBookings" prefHeight="47.0" prefWidth="259.0" text="View Bookings">
          <font>
             <Font size="18.0" />
          </font>

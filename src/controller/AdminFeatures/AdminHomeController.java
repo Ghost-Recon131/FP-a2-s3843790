@@ -2,6 +2,8 @@ package controller.AdminFeatures;
 
 import controller.HomeScreenController;
 import controller.UserFeatures.UserHomeController;
+import controller.utils.ChangeSceneUtil;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,6 +19,7 @@ public class AdminHomeController implements Initializable {
 
     AdminHomeModel AHM = new AdminHomeModel();
     UserHomeModel UHM = new UserHomeModel();
+    ChangeSceneUtil CSU = new ChangeSceneUtil();
 
     @Override // loads in some values as soon as user gets to home page
     public void initialize(URL url, ResourceBundle rb) {
@@ -29,6 +32,36 @@ public class AdminHomeController implements Initializable {
     public void LogoutButtonClick(){
         HomeScreenController HSC = new HomeScreenController();
         HSC.HomeScene(LogoutButton);
+    }
+
+    @FXML
+    private void ManageCOVIDRestrictions(Event event){
+        CSU.ChangeScene(event, "/view/AdminView/COVIDRestrictions.fxml");
+    }
+
+    @FXML
+    private void ManageBookingRequests(Event event){
+        CSU.ChangeScene(event, "/view/AdminView/ManageBookingRequests.fxml");
+    }
+
+    @FXML
+    private void ManageEmployeeAccounts(Event event){
+        CSU.ChangeScene(event, "/view/AdminView/ManageEmployeeAccounts.fxml");
+    }
+
+    @FXML
+    private void ManageAdminAccounts(Event event){
+        CSU.ChangeScene(event, "/view/AdminView/ManageAdminAccounts.fxml");
+    }
+
+    @FXML
+    private void GenerateCSVReport(Event event){
+        CSU.ChangeScene(event, "/view/AdminView/GenerateCSVReport.fxml");
+    }
+
+    @FXML
+    private void ViewBookings(Event event){
+        CSU.ChangeScene(event, "/view/AdminView/ViewBookings.fxml");
     }
 
 }
