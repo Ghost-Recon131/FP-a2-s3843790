@@ -36,7 +36,7 @@ These are supporting classes which provides methods that may be used by controll
 
 2. DateFormatConversionUtil: Handles converting Strings into LocalDate as well as handling exceptions. 
 
-3. IntegerCheck: Checks the provided integer & handles exceptions if the value provided is not an integer
+3. IntegerCheckUtil: Checks the provided integer & handles exceptions if the value provided is not an integer
 
 4. RandPasswordUtil: Generates a new password when a user or admin uses the "Forgot Password" feature
 
@@ -82,6 +82,8 @@ to new accounts. Also provides setters that admins use, they require current use
 ## Model - AdminModel
 1. AdminHomeModel: Provides supporting methods for AdminHomeController
 
+2. COVIDRestrictionsModel: Provides supporting methods for COVIDRestrictionsController
+
 ## Model - UserModel
 1. BookTableModel: Provides supporting methods for BookTableController
    
@@ -100,6 +102,18 @@ to new accounts. Also provides setters that admins use, they require current use
    password after a password reset.
 ## View - Admin
 1. Login.fxml: GUI for login
+
+2. COVIDRestrictions.fxml: GUI for managing COVID restrictions
+
+3. GenerateCSVReport.fxml: GUI for exporting CSV file
+
+4. ManageAdminAccounts.fxml: GUI for adding / deleting or changing admin accounts
+
+5. ManageBookingRequests.fxml: GUI for accepting or denying booking requests
+
+6. ManageEmployeeAccounts.fxml: GUI for adding / deleting or changing admin accounts
+
+7. ViewBookings.fxmlL GUI for admin to see bookings on a particular date + who reserved the table and their booking ID
 
 ## View - User
 1. BookTable.fxml: GUI for employees to reserve a table
