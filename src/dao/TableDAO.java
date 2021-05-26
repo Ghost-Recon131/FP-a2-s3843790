@@ -70,13 +70,12 @@ public class TableDAO {
     // helper method to lockdown tables
     private void Lockdown(int TableNumber, int LockDownLevel){
         if(LoginModel.getCurrentUserRole().equals("admin")){
-            String sql = "UPDATE Tables SET TableStatus = ? , COVID = ? WHERE TableNumber = ?";
+            String sql = "UPDATE Tables SET COVID = ? WHERE TableNumber = ?";
             try {
                 PreparedStatement pstmt = connect.prepareStatement(sql);
                 {
-                    pstmt.setInt(1, 0);
-                    pstmt.setInt(2, LockDownLevel);
-                    pstmt.setInt(3, TableNumber);
+                    pstmt.setInt(1, LockDownLevel);
+                    pstmt.setInt(2, TableNumber);
                     pstmt.executeUpdate();
                     updateTables();
                 }
@@ -89,13 +88,12 @@ public class TableDAO {
     // helper method to release tables from lockdown
     private void Release(int TableNumber){
         if(LoginModel.getCurrentUserRole().equals("admin")){
-            String sql = "UPDATE Tables SET TableStatus = ? , COVID = ? WHERE TableNumber = ?";
+            String sql = "UPDATE Tables SET COVID = ? WHERE TableNumber = ?";
             try {
                 PreparedStatement pstmt = connect.prepareStatement(sql);
                 {
-                    pstmt.setInt(1, 1);
-                    pstmt.setInt(2, 0);
-                    pstmt.setInt(3, TableNumber);
+                    pstmt.setInt(1, 0);
+                    pstmt.setInt(2, TableNumber);
                     pstmt.executeUpdate();
                     updateTables();
                 }
