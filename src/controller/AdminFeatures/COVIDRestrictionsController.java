@@ -1,24 +1,28 @@
 package controller.AdminFeatures;
 
 import controller.utils.ChangeSceneUtil;
+import controller.utils.StringCheck;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.AdminModel.COVIDRestrictionsModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class COVIDRestrictionsController implements Initializable {
-    @FXML private Label CustomMessageError;
-    @FXML private TextField COVIDStatus;
+    @FXML private Label CustomMessageError, COVIDStatus, LockDownStatus1, LockDownStatus2, LockDownStatus3;
+    @FXML private TextField COVIDNotifications;
 
     ChangeSceneUtil CSU = new ChangeSceneUtil();
+    COVIDRestrictionsModel CRM = new COVIDRestrictionsModel();
+    StringCheck stringCheck = new StringCheck();
 
     @Override // loads in some values as soon as user gets to home page
     public void initialize(URL url, ResourceBundle rb) {
-        //todo get the current covid restriction status and display it
+        CRM.getCovidStatus(COVIDStatus);
     }
 
     @FXML
@@ -31,20 +35,32 @@ public class COVIDRestrictionsController implements Initializable {
         CSU.ChangeScene(event,"/view/HomeScreen.fxml");
     }
 
-    @FXML
-    public void setNoRestriction(Event event){ // goes back to Home Screen
-        //todo
+    @FXML // removes COVID restriction on all tables
+    public void setNoRestriction(){
+        CRM.RemoveLockdown();
+        LockDownStatus1.setText("successfully set to no restrictions!");
+    }
+
+    @FXML // sets tables 2, 4, 6, 8 and 10 to COVID lockdown
+    public void setHalfCapacity(){ // active bookings on these tables will also be cancelled
+        CRM.PartialLockdown();
+        LockDownStatus2.setText("successfully set to 50% capacity");
+    }
+
+    @FXML // set all table to lockdown mode and no bookings allowed.
+    public void setTotalLockdown(){ // all active bookings are cancelled
+        CRM.TotalLockdown();
+        LockDownStatus3.setText("successfully set to total lockdown");
     }
 
     @FXML
-    public void setHalfCapacity(Event event){ // goes back to Home Screen
-        //todo
+    public void setCustomMessage(){
+        boolean Empty = stringCheck.InputNotEmpty(COVIDNotifications, CustomMessageError);
+        if(!Empty){
+            CRM.SetCustomMessage(COVIDNotifications.getText());
+            CustomMessageError.setText("New message set");
+        }
     }
 
-    @FXML
-    public void setTotalLockdown(Event event){ // goes back to Home Screen
-        //todo
-    }
 
-    //todo implement enacting COVID restrictions
 }

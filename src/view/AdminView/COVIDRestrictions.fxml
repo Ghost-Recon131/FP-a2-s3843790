@@ -33,40 +33,55 @@
          <Font name="System Bold" size="32.0" />
       </font>
    </Label>
-   <Text layoutX="281.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Lockdown">
+   <Text layoutX="178.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Lockdown">
       <font>
          <Font name="System Bold" size="26.0" />
       </font>
    </Text>
-   <Button layoutX="281.0" layoutY="239.0" mnemonicParsing="false" onAction="#setNoRestriction" prefHeight="55.0" prefWidth="231.0" text="No Restriction">
+   <Button layoutX="178.0" layoutY="241.0" mnemonicParsing="false" onAction="#setNoRestriction" prefHeight="55.0" prefWidth="231.0" text="No Restriction">
       <font>
          <Font size="22.0" />
       </font>
    </Button>
-   <Button layoutX="281.0" layoutY="305.0" mnemonicParsing="false" onAction="#setHalfCapacity" prefHeight="55.0" prefWidth="231.0" text="50% Capacity">
+   <Button layoutX="178.0" layoutY="307.0" mnemonicParsing="false" onAction="#setHalfCapacity" prefHeight="55.0" prefWidth="231.0" text="50% Capacity">
       <font>
          <Font size="22.0" />
       </font>
    </Button>
-   <Button layoutX="281.0" layoutY="371.0" mnemonicParsing="false" onAction="#setTotalLockdown" prefHeight="55.0" prefWidth="231.0" text="Total Lockdown">
+   <Button layoutX="178.0" layoutY="373.0" mnemonicParsing="false" onAction="#setTotalLockdown" prefHeight="55.0" prefWidth="231.0" text="Total Lockdown">
       <font>
          <Font size="22.0" />
       </font>
    </Button>
-   <Text layoutX="663.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set custom message">
+   <Text layoutX="663.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set custom message">
       <font>
          <Font name="System Bold" size="20.0" />
       </font>
    </Text>
-   <TextField fx:id="COVIDNotifications" alignment="TOP_LEFT" editable="false" layoutX="663.0" layoutY="233.0" prefHeight="193.0" prefWidth="318.0" />
-   <Button layoutX="987.0" layoutY="387.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" text="Set message">
+   <TextField fx:id="COVIDNotifications" alignment="TOP_LEFT" layoutX="663.0" layoutY="238.0" prefHeight="193.0" prefWidth="318.0" />
+   <Button layoutX="987.0" layoutY="387.0" mnemonicParsing="false" onAction="#setCustomMessage" prefHeight="35.0" prefWidth="124.0" text="Set message">
       <font>
          <Font size="18.0" />
       </font>
    </Button>
-   <Label fx:id="CustomMessageError" layoutX="1114.0" layoutY="397.0" prefHeight="20.0" prefWidth="124.0" text="   " textFill="RED">
+   <Label fx:id="CustomMessageError" layoutX="987.0" layoutY="431.0" prefHeight="20.0" prefWidth="277.0" text="   " textFill="RED">
       <font>
          <Font size="14.0" />
+      </font>
+   </Label>
+   <Label fx:id="LockDownStatus1" layoutX="415.0" layoutY="251.0" prefHeight="35.0" prefWidth="239.0" text=" " textFill="#48ff00">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="LockDownStatus2" layoutX="412.0" layoutY="317.0" prefHeight="35.0" prefWidth="231.0" text=" " textFill="#ffc300">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label fx:id="LockDownStatus3" layoutX="412.0" layoutY="383.0" prefHeight="35.0" prefWidth="245.0" text=" " textFill="RED">
+      <font>
+         <Font size="16.0" />
       </font>
    </Label>
 </AnchorPane>
