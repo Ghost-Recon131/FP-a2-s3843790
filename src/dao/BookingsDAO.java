@@ -30,10 +30,10 @@ public class BookingsDAO {
     }
 
     //get the ID of an account via the booking ID
-    public int getAccountID(int getBookingID) {
+    public int getAccountID(int BookingID) {
         int ID = -1;
         for (BookingsModel Bkm : listOfBookings) {
-            if (Bkm.getBookingID() == getBookingID) {
+            if (Bkm.getBookingID() == BookingID) {
                 ID = Bkm.getID();
             }
         }
@@ -71,6 +71,17 @@ public class BookingsDAO {
             }
         }
         return TableNumber;
+    }
+
+    //get Table Number via BookingID
+    public int getBookingIDUsingTableNumber(int TableNumber) {
+        int BookingID = -1;
+        for (BookingsModel Bkm : listOfBookings) {
+            if (Bkm.getTableNumber() == TableNumber && Bkm.getBookingStatus().equals("pending") || Bkm.getBookingStatus().equals("approved")) {
+                BookingID = Bkm.getBookingID();
+            }
+        }
+        return BookingID;
     }
 
     //get Booking date via BookingID
@@ -139,7 +150,7 @@ public class BookingsDAO {
         }
     }
 
-    public void cancelBooking(int BookingID) {
+    public void cancelBooking(int BookingID) { // cancel a booking using the booking ID
         String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
         try {
             PreparedStatement pstmt = connect.prepareStatement(sql);
