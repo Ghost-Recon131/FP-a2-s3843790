@@ -1,6 +1,6 @@
 package controller.utils;
 
-public class IntegerCheck {
+public class IntegerCheckUtil {
     private int newInteger;
 
     private boolean checkInteger(String value) throws NumberFormatException{
