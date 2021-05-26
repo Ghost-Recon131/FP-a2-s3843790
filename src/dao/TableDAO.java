@@ -11,6 +11,7 @@ public class TableDAO {
 
     private Connection connect = SQLConnection.connect();
     private List<TableModel> listOfTables = new ArrayList<>();
+    BookingsDAO BDAO = new BookingsDAO();
 
     //refresh the database
     public void updateTables() {
@@ -46,6 +47,14 @@ public class TableDAO {
             }
         }
         return message;
+    }
+
+    public void CancelAffectedTables(int TableNumber){
+        BDAO.updateBookings();
+        int BookingID = BDAO.getBookingIDUsingTableNumber(TableNumber);
+        if(BookingID != -1){ // check that a booking ID for that table actually exists
+            BDAO.cancelBooking(BookingID);
+        }
     }
 
     // allows for setting custom messages
@@ -97,11 +106,6 @@ public class TableDAO {
                     pstmt.executeUpdate();
                     updateTables();
                 }
-                for(TableModel Tbm : listOfTables){
-                    if (Tbm.getCOVID() == 0){
-                        UpdateAdminMessage(-1, "No lockdowns");
-                    }
-                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -113,6 +117,7 @@ public class TableDAO {
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             for(int i = 2; i <= NumberOfTables; i += 2){ //change tables 2, 4, 6, 8, 10 by for loop
                 Lockdown(i, 1);
+                CancelAffectedTables(i);
             } // DHHS is the Victorian department of health services
             Lockdown(-1, 1);
             UpdateAdminMessage(-1, "DHHS is currently mandating a maximum of 50% office capacity");
@@ -124,6 +129,7 @@ public class TableDAO {
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             for(int i = 1; i <= NumberOfTables; i ++){ //change tables 2, 4, 6, 8, 10 by for loop
                 Lockdown(i, 2);
+                CancelAffectedTables(i);
             }
             Lockdown(-1, 2);
             UpdateAdminMessage(-1, "DHHS is currently mandating a total lockdown");
@@ -136,6 +142,7 @@ public class TableDAO {
             for(int i = 1; i <= NumberOfTables; i ++){ //change tables 2, 4, 6, 8, 10 by for loop
                 Release(i);
             }
+            Release(-1);
             UpdateAdminMessage(-1, "COVID restrictions lifted");
         }
     }
@@ -144,7 +151,7 @@ public class TableDAO {
     public void lockdownSpecificTable(int TableNumber){
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             Lockdown(TableNumber, 1);
-            UpdateAdminMessage(TableNumber, "Table is under COVID lockdown");
+            CancelAffectedTables(TableNumber);
         }
         Lockdown(-1, 1);
     }
