@@ -84,4 +84,34 @@
          <Font size="16.0" />
       </font>
    </Label>
+   <Text layoutX="178.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Specific Table" wrappingWidth="245.0">
+      <font>
+         <Font name="System Bold" size="20.0" />
+      </font>
+   </Text>
+   <TextField fx:id="TableNumber" alignment="TOP_LEFT" layoutX="178.0" layoutY="526.0" prefHeight="43.0" prefWidth="108.0">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </TextField>
+   <Text layoutX="178.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Table Number: " wrappingWidth="245.0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Button layoutX="293.0" layoutY="526.0" mnemonicParsing="false" onAction="#LockDownSpecificTable" prefHeight="43.0" prefWidth="97.0" text="LockDown">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Button>
+   <Button layoutX="397.0" layoutY="527.0" mnemonicParsing="false" onAction="#ReleaseSpecificTable" prefHeight="43.0" prefWidth="88.0" text="Release">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Button>
+   <Label fx:id="Table" layoutX="178.0" layoutY="578.0" prefHeight="37.0" prefWidth="371.0" text=" " textFill="RED">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
 </AnchorPane>
