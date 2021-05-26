@@ -42,8 +42,6 @@ public class COVIDRestrictionsModel {
         }else{
             label.setText("Please enter a valid table number between 1-10");
         }
-        System.err.println(tmp);
-        System.err.println(check);
         return check; //-1 is the default error return, so if it is not -1 and between 1-10 it will return true
     }
 
