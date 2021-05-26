@@ -44,7 +44,7 @@ These are supporting classes which provides methods that may be used by controll
 
 6. SHAHashUtil: Provides hashing method and returns hash in the form of a string
 
-7. StringCheck: Provides 2 methods. VerifyString will return false if a string is empty and true if it is not. The other
+7. StringCheckUtil: Provides 2 methods. VerifyString will return false if a string is empty and true if it is not. The other
 method; InputNotEmpty checks for GUI text fields and ensures the user has entered something. It will return true if
    nothing is entered, as well as setting a warning message. 
    

@@ -1,6 +1,6 @@
 package controller;
 
-import controller.utils.StringCheck;
+import controller.utils.StringCheckUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,7 +30,7 @@ public class RegisterController {
     LoginController LC = new LoginController();
     HomeScreenController HSC = new HomeScreenController();
     RegisterModel registerModel = new RegisterModel();
-    StringCheck StringCheck = new StringCheck();
+    StringCheckUtil SCU = new StringCheckUtil();
 
     // go to Login scene
     @FXML
@@ -80,14 +80,14 @@ public class RegisterController {
             error9 = false;
         }
 
-        error1 = StringCheck.InputNotEmpty(Firstname, FirstnameError);
-        error2 = StringCheck.InputNotEmpty(Lastname, LastnameError);
-        error3 = StringCheck.InputNotEmpty(Username, UsernameError);
-        error4 = StringCheck.InputNotEmpty(Password, PasswordError);
-        error5 = StringCheck.InputNotEmpty(SQ, SQError);
-        error6 = StringCheck.InputNotEmpty(SQ_A, SQ_AError);
+        error1 = SCU.InputNotEmpty(Firstname, FirstnameError);
+        error2 = SCU.InputNotEmpty(Lastname, LastnameError);
+        error3 = SCU.InputNotEmpty(Username, UsernameError);
+        error4 = SCU.InputNotEmpty(Password, PasswordError);
+        error5 = SCU.InputNotEmpty(SQ, SQError);
+        error6 = SCU.InputNotEmpty(SQ_A, SQ_AError);
         try { // checks that passwords match
-            if (!Password.getText().equals(ConfirmPassword.getText())|| !StringCheck.VerifyString(ConfirmPassword.getText())) {
+            if (!Password.getText().equals(ConfirmPassword.getText())|| !SCU.VerifyString(ConfirmPassword.getText())) {
                 ConfirmPasswordError.setText("Password does not match!");
                 error7 = true;
             } else {

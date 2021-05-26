@@ -1,7 +1,7 @@
 package controller.UserFeatures;
 
 import controller.utils.ChangeSceneUtil;
-import controller.utils.StringCheck;
+import controller.utils.StringCheckUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -21,7 +21,7 @@ public class ChangePasswordController {
 
     ChangeSceneUtil CSU = new ChangeSceneUtil();
     ChangePasswordModel CPM = new ChangePasswordModel();
-    StringCheck StringCheck = new StringCheck();
+    StringCheckUtil SCU = new StringCheckUtil();
 
     @FXML
     public void setBackButtonClick(Event event){ // goes back to employee menu
@@ -36,13 +36,13 @@ public class ChangePasswordController {
     @FXML
     public void setUpdatePasswordButtonClick(Event event){
         boolean error1, error2, error3, error4;
-        error1 = StringCheck.InputNotEmpty(Password, PasswordError);
-        error2 = StringCheck.InputNotEmpty(NewPassword, NewPasswordError);
-        error3 = StringCheck.InputNotEmpty(ConfirmPassword, ConfirmPasswordError);
+        error1 = SCU.InputNotEmpty(Password, PasswordError);
+        error2 = SCU.InputNotEmpty(NewPassword, NewPasswordError);
+        error3 = SCU.InputNotEmpty(ConfirmPassword, ConfirmPasswordError);
 
         try{
             // check that the new password and confirm password is equal
-            if (!NewPassword.getText().equals(ConfirmPassword.getText()) || !StringCheck.VerifyString(ConfirmPassword.getText())) {
+            if (!NewPassword.getText().equals(ConfirmPassword.getText()) || !SCU.VerifyString(ConfirmPassword.getText())) {
                 ConfirmPasswordError.setText("Password does not match!");
                 error4 = true;
             } else {

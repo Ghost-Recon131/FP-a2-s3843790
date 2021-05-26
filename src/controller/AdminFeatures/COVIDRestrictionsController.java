@@ -1,7 +1,7 @@
 package controller.AdminFeatures;
 
 import controller.utils.ChangeSceneUtil;
-import controller.utils.StringCheck;
+import controller.utils.StringCheckUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +18,7 @@ public class COVIDRestrictionsController implements Initializable {
 
     ChangeSceneUtil CSU = new ChangeSceneUtil();
     COVIDRestrictionsModel CRM = new COVIDRestrictionsModel();
-    StringCheck stringCheck = new StringCheck();
+    StringCheckUtil SCU = new StringCheckUtil();
 
     @Override // loads in some values as soon as user gets to home page
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,7 +61,7 @@ public class COVIDRestrictionsController implements Initializable {
 
     @FXML
     public void setCustomMessage(){
-        boolean Empty = stringCheck.InputNotEmpty(COVIDNotifications, CustomMessageError);
+        boolean Empty = SCU.InputNotEmpty(COVIDNotifications, CustomMessageError);
         if(!Empty){
             CRM.SetCustomMessage(COVIDNotifications.getText());
             CustomMessageError.setText("New message set");

@@ -3,7 +3,7 @@ package controller.utils;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class StringCheck {
+public class StringCheckUtil {
 
     public boolean VerifyString(String value){
         return value != null && value.length() > 0;

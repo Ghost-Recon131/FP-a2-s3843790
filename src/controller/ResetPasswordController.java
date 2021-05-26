@@ -1,7 +1,6 @@
 package controller;
-import controller.utils.StringCheck;
+import controller.utils.StringCheckUtil;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,7 +13,7 @@ public class ResetPasswordController { //todo fix reset password controller
     @FXML private Label SQError, SQAError, ErrorMessage, SuccessLabel, Success2;
 
     HomeScreenController HSC = new HomeScreenController();
-    StringCheck StringCheck = new StringCheck();
+    StringCheckUtil SCU = new StringCheckUtil();
     ResetPasswordModel ResetPasswordModel = new ResetPasswordModel();
 
     @FXML
@@ -46,8 +45,8 @@ public class ResetPasswordController { //todo fix reset password controller
             error3 = false;
         }
 
-        error1 = StringCheck.InputNotEmpty(SQ, SQError);
-        error2 = StringCheck.InputNotEmpty(SQ_A, SQAError);
+        error1 = SCU.InputNotEmpty(SQ, SQError);
+        error2 = SCU.InputNotEmpty(SQ_A, SQAError);
 
         if (!error1 && !error2 && !error3){ // proceed when there's no errors
             String NewPassword = ResetPasswordModel.getNewPassword();
