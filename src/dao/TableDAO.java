@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TableDAO {
+    private int NumberOfTables = 10; // prevents hard coding values in loops
+
     private Connection connect = SQLConnection.connect();
     private List<TableModel> listOfTables = new ArrayList<>();
 
@@ -16,25 +18,12 @@ public class TableDAO {
             Statement myStmt = connect.createStatement();
             ResultSet RS = myStmt.executeQuery("select * from Tables");
             while (RS.next()) {
-                listOfTables.add(new TableModel(RS.getInt("TableNumber"), RS.getInt("TableStatus"),
-                        RS.getInt("COVID"), RS.getString("AdminMessage")));
+                listOfTables.add(new TableModel(RS.getInt("TableNumber"), RS.getInt("COVID"),
+                        RS.getString("AdminMessage")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    //get the status of a table via table number and returns boolean value
-    public boolean getTableStatus(int TableNumber) {
-        boolean TableStatus = false;
-        for (TableModel Tbm : listOfTables) {
-            if (Tbm.getTableNumber() == TableNumber) {
-                if(Tbm.getTableStatus() == 1){
-                    TableStatus = true;
-                }
-            }
-        }
-        return TableStatus;
     }
 
     // returns an int for COVID lockdown, 0 = no lockdown, 1 = partial lockdown and 2 = total lockdown
@@ -59,24 +48,6 @@ public class TableDAO {
         return message;
     }
 
-    public boolean setTableStatus(int TableStatus, int TableNumber){
-        boolean changed = false;
-        String sql = "UPDATE Tables SET TableStatus = ? WHERE TableNumber = ?";
-        try {
-            PreparedStatement pstmt = connect.prepareStatement(sql);
-            {
-                pstmt.setInt(1, TableStatus);
-                pstmt.setInt(2, TableNumber);
-                pstmt.executeUpdate();
-                updateTables();
-            }
-            changed = true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return changed;
-    }
-
     // allows for setting custom messages
     // table -1 is reserved for an announcement that applies to all users & is not able to be reserved for seating
     public void UpdateAdminMessage(int TableNumber, String newMessage) {
@@ -97,14 +68,14 @@ public class TableDAO {
     }
 
     // helper method to lockdown tables
-    private void Lockdown(int TableNumber){
+    private void Lockdown(int TableNumber, int LockDownLevel){
         if(LoginModel.getCurrentUserRole().equals("admin")){
             String sql = "UPDATE Tables SET TableStatus = ? , COVID = ? WHERE TableNumber = ?";
             try {
                 PreparedStatement pstmt = connect.prepareStatement(sql);
                 {
                     pstmt.setInt(1, 0);
-                    pstmt.setInt(2, 1);
+                    pstmt.setInt(2, LockDownLevel);
                     pstmt.setInt(3, TableNumber);
                     pstmt.executeUpdate();
                     updateTables();
@@ -128,6 +99,11 @@ public class TableDAO {
                     pstmt.executeUpdate();
                     updateTables();
                 }
+                for(TableModel Tbm : listOfTables){
+                    if (Tbm.getCOVID() == 0){
+                        UpdateAdminMessage(-1, "No lockdowns");
+                    }
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -137,9 +113,10 @@ public class TableDAO {
     // quickly locks down tables to avoid situation edge situation mentioned in README.md
     public void PartialLockdown(){
         if(LoginModel.getCurrentUserRole().equals("admin")) {
-            for(int i = 2; i <= 10; i += 2){ //change tables 2, 4, 6, 8, 10 by for loop
-                Lockdown(i);
+            for(int i = 2; i <= NumberOfTables; i += 2){ //change tables 2, 4, 6, 8, 10 by for loop
+                Lockdown(i, 1);
             } // DHHS is the Victorian department of health services
+            Lockdown(-1, 1);
             UpdateAdminMessage(-1, "DHHS is currently mandating a maximum of 50% office capacity");
         }
     }
@@ -147,9 +124,10 @@ public class TableDAO {
     // lockdown all tables
     public void LockdownAllTables(){
         if(LoginModel.getCurrentUserRole().equals("admin")) {
-            for(int i = 1; i <= 10; i ++){ //change tables 2, 4, 6, 8, 10 by for loop
-                Lockdown(i);
+            for(int i = 1; i <= NumberOfTables; i ++){ //change tables 2, 4, 6, 8, 10 by for loop
+                Lockdown(i, 2);
             }
+            Lockdown(-1, 2);
             UpdateAdminMessage(-1, "DHHS is currently mandating a total lockdown");
         }
     }
@@ -157,7 +135,7 @@ public class TableDAO {
     // remove all COVID lockdown
     public void removeLockdown(){
         if(LoginModel.getCurrentUserRole().equals("admin")) {
-            for(int i = 1; i <= 10; i ++){ //change tables 2, 4, 6, 8, 10 by for loop
+            for(int i = 1; i <= NumberOfTables; i ++){ //change tables 2, 4, 6, 8, 10 by for loop
                 Release(i);
             }
             UpdateAdminMessage(-1, "COVID restrictions lifted");
@@ -167,9 +145,10 @@ public class TableDAO {
     // lockdown specific table
     public void lockdownSpecificTable(int TableNumber){
         if(LoginModel.getCurrentUserRole().equals("admin")) {
-            Lockdown(TableNumber);
+            Lockdown(TableNumber, 1);
             UpdateAdminMessage(TableNumber, "Table is under COVID lockdown");
         }
+        Lockdown(-1, 1);
     }
 
     // release specific table
