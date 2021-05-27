@@ -20,7 +20,7 @@
          <Font size="16.0" />
       </font>
    </Button>
-   <Text layoutX="536.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Bookings">
+   <Text layoutX="435.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View and Manage Bookings">
       <font>
          <Font name="System Bold" size="36.0" />
       </font>
@@ -43,19 +43,49 @@
    <Rectangle fx:id="R8" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="749.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
    <Rectangle fx:id="R7" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="582.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
    <Rectangle fx:id="R6" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="419.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
-   <TextArea fx:id="Info1" layoutX="389.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea fx:id="Info2" layoutX="552.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea fx:id="Info3" layoutX="718.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea fx:id="Info4" layoutX="889.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea fx:id="Info5" layoutX="1055.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea fx:id="Info6" layoutX="389.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea fx:id="Info7" layoutX="552.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea fx:id="Info8" layoutX="718.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea fx:id="Info9" layoutX="882.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea fx:id="Info10" layoutX="1055.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info1" editable="false" layoutX="389.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info2" editable="false" layoutX="552.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info3" editable="false" layoutX="718.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info4" editable="false" layoutX="889.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info5" editable="false" layoutX="1055.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info6" editable="false" layoutX="389.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info7" editable="false" layoutX="552.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info8" editable="false" layoutX="718.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info9" editable="false" layoutX="882.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info10" editable="false" layoutX="1055.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
    <Label fx:id="PickDate" layoutX="397.0" layoutY="174.0" prefHeight="35.0" prefWidth="765.0">
       <font>
          <Font size="20.0" />
+      </font>
+   </Label>
+   <Text layoutX="80.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Bookings">
+      <font>
+         <Font name="System Bold" size="20.0" />
+      </font>
+   </Text>
+   <Button layoutX="80.0" layoutY="500.0" mnemonicParsing="false" onAction="#ApproveBooking" prefHeight="27.0" prefWidth="94.0" text="Approve">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Button>
+   <Button layoutX="178.0" layoutY="500.0" mnemonicParsing="false" onAction="#DenyBooking" prefHeight="27.0" prefWidth="94.0" text="Deny">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Button>
+   <TextArea fx:id="BookingID" layoutX="80.0" layoutY="453.0" prefHeight="27.0" prefWidth="195.0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </TextArea>
+   <Text layoutX="80.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Booking ID: " wrappingWidth="245.0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Text>
+   <Label fx:id="ManageError" layoutX="77.0" layoutY="548.0" prefHeight="27.0" prefWidth="263.0" text=" " textFill="RED">
+      <font>
+         <Font size="14.0" />
       </font>
    </Label>
 </AnchorPane>

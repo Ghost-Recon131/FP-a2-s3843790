@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.shape.Rectangle;
 import model.AdminModel.ManageViewBookingsModel;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -18,12 +17,12 @@ import java.util.ResourceBundle;
 public class ManageViewBookingsController implements Initializable {
     private LocalDate SelectedDate = LocalDate.now();
     @FXML private Rectangle R1, R2, R3, R4, R5, R6, R7, R8, R9, R10;
-    @FXML private Label PickDate;
-    @FXML private TextArea Info1, Info2, Info3, Info4, Info5, Info6, Info7, Info8, Info9, Info10;
+    @FXML private Label PickDate, ManageError;
+    @FXML private TextArea Info1, Info2, Info3, Info4, Info5, Info6, Info7, Info8, Info9, Info10, BookingID;
 
     ChangeSceneUtil CSU = new ChangeSceneUtil();
     TableStatusUtil TSU = new TableStatusUtil();
-    ManageViewBookingsModel VBM = new ManageViewBookingsModel();
+    ManageViewBookingsModel MBM = new ManageViewBookingsModel();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -58,6 +57,18 @@ public class ManageViewBookingsController implements Initializable {
     public void setDatePickerAction(){
         SelectedDate = Date.getValue();
         PickDate.setText("Currently viewing bookings on : " + SelectedDate.toString());
+        UpdateTables();
+    }
+
+    @FXML
+    public void ApproveBooking(){
+        MBM.ApproveBooking(BookingID.getText(), ManageError);
+        UpdateTables();
+    }
+
+    @FXML
+    public void DenyBooking(){
+        MBM.DenyBooking(BookingID.getText(), ManageError);
         UpdateTables();
     }
 
