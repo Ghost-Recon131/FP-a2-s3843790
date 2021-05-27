@@ -68,7 +68,7 @@
          <Font size="18.0" />
       </font>
    </Button>
-   <Button layoutX="178.0" layoutY="500.0" mnemonicParsing="false" onAction="#DenyBooking" prefHeight="27.0" prefWidth="94.0" text="Deny">
+   <Button layoutX="178.0" layoutY="500.0" mnemonicParsing="false" onAction="#RejectBooking" prefHeight="27.0" prefWidth="94.0" text="Reject">
       <font>
          <Font size="18.0" />
       </font>

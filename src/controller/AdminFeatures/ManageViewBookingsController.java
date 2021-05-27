@@ -67,8 +67,8 @@ public class ManageViewBookingsController implements Initializable {
     }
 
     @FXML
-    public void DenyBooking(){
-        MBM.DenyBooking(BookingID.getText(), ManageError);
+    public void RejectBooking(){
+        MBM.RejectBooking(BookingID.getText(), ManageError);
         UpdateTables();
     }
 
