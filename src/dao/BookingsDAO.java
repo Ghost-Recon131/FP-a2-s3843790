@@ -51,6 +51,17 @@ public class BookingsDAO {
         return bookingID;
     }
 
+    public boolean VerifyBookingID(int BID){
+        boolean Valid = false;
+        for (BookingsModel Bkm : listOfBookings) {
+            String Status = Bkm.getBookingStatus();
+            if (Bkm.getBookingID() == BID && Status.equals("pending") || Status.equals("approved") || Status.equals("rejected")){
+                Valid = true;
+            }
+        }
+        return Valid;
+    }
+
     //get booking status via BookingID
     public String getBookingStatus(int BID) {
         String BookingStatus = null;
@@ -181,13 +192,13 @@ public class BookingsDAO {
     }
 
     public void approveBooking(int BookingID) {
-        boolean approve = false;
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
             try {
                 PreparedStatement pstmt = connect.prepareStatement(sql);
                 {
                     pstmt.setString(1, "approved");
+                    pstmt.setInt(2, BookingID);
                     pstmt.executeUpdate();
                     updateBookings();
                 }
@@ -204,6 +215,7 @@ public class BookingsDAO {
                 PreparedStatement pstmt = connect.prepareStatement(sql);
                 {
                     pstmt.setString(1, "rejected");
+                    pstmt.setInt(2, BookingID);
                     pstmt.executeUpdate();
                     updateBookings();
                 }
