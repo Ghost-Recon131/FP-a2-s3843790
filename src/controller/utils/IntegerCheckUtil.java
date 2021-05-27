@@ -7,17 +7,21 @@ public class IntegerCheckUtil {
         try {
             Integer.parseInt(value);
             return true;
-        } catch (NumberFormatException nfe) {
+        }catch (NumberFormatException nfe) {
             return false;
         }
     }
 
     public int verifyInteger(String value){
-        if (checkInteger(value)){
-            newInteger = Integer.parseInt(value);
-        }
-        else {
-            newInteger = -1;
+        try{
+            if (checkInteger(value)){
+                newInteger = Integer.parseInt(value);
+            }
+            else {
+                newInteger = -1;
+            }
+        }catch (Exception e){
+            return newInteger;
         }
         return newInteger;
     }
