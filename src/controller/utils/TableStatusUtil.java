@@ -2,7 +2,6 @@ package controller.utils;
 
 import dao.BookingsDAO;
 import dao.TableDAO;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.time.LocalDate;
@@ -38,7 +37,6 @@ public class TableStatusUtil {
         if(COVIDLockDown(TableNumber)) {
             rectangle.setFill(javafx.scene.paint.Color.ORANGE);
         }
-
     }
 
 }
