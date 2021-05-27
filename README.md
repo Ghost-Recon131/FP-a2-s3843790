@@ -109,11 +109,10 @@ to new accounts. Also provides setters that admins use, they require current use
 
 4. ManageAdminAccounts.fxml: GUI for adding / deleting or changing admin accounts
 
-5. ManageBookingRequests.fxml: GUI for accepting or denying booking requests
+5. ManageEmployeeAccounts.fxml: GUI for adding / deleting or changing admin accounts
 
-6. ManageEmployeeAccounts.fxml: GUI for adding / deleting or changing admin accounts
-
-7. ViewBookings.fxmlL GUI for admin to see bookings on a particular date + who reserved the table and their booking ID
+6. ViewBookings.fxmlL GUI for admin to see bookings on a particular date + who reserved the table, and their booking ID
+Also allows for managing bookings here
 
 ## View - User
 1. BookTable.fxml: GUI for employees to reserve a table
