@@ -6,7 +6,7 @@ import dao.EmployeeDAO;
 import javafx.scene.control.TextArea;
 import java.time.LocalDate;
 
-public class ViewBookingsModel {
+public class ManageViewBookingsModel {
     BookingsDAO BDAO = new BookingsDAO();
     EmployeeDAO EDAO = new EmployeeDAO();
 

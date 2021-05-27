@@ -9,13 +9,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.shape.Rectangle;
-import model.AdminModel.ViewBookingsModel;
+import model.AdminModel.ManageViewBookingsModel;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class ViewBookingsController implements Initializable {
+public class ManageViewBookingsController implements Initializable {
     private LocalDate SelectedDate = LocalDate.now();
     @FXML private Rectangle R1, R2, R3, R4, R5, R6, R7, R8, R9, R10;
     @FXML private Label PickDate;
@@ -23,13 +23,12 @@ public class ViewBookingsController implements Initializable {
 
     ChangeSceneUtil CSU = new ChangeSceneUtil();
     TableStatusUtil TSU = new TableStatusUtil();
-    ViewBookingsModel VBM = new ViewBookingsModel();
+    ManageViewBookingsModel VBM = new ManageViewBookingsModel();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         UpdateTables();
         PickDate.setText("Currently viewing bookings on : " + SelectedDate.toString());
-
     }
 
     @FXML
@@ -60,7 +59,6 @@ public class ViewBookingsController implements Initializable {
         SelectedDate = Date.getValue();
         PickDate.setText("Currently viewing bookings on : " + SelectedDate.toString());
         UpdateTables();
-
     }
 
 }

@@ -38,11 +38,6 @@ public class AdminHomeController implements Initializable {
     }
 
     @FXML
-    private void ManageBookingRequests(Event event){
-        CSU.ChangeScene(event, "/view/AdminView/ManageBookingRequests.fxml");
-    }
-
-    @FXML
     private void ManageEmployeeAccounts(Event event){
         CSU.ChangeScene(event, "/view/AdminView/ManageEmployeeAccounts.fxml");
     }
@@ -59,7 +54,7 @@ public class AdminHomeController implements Initializable {
 
     @FXML
     private void ViewBookings(Event event){
-        CSU.ChangeScene(event, "/view/AdminView/ViewBookings.fxml");
+        CSU.ChangeScene(event, "/view/AdminView/ManageViewBookings.fxml");
     }
 
 }

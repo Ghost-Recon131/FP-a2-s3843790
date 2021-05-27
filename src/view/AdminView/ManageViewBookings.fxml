@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminFeatures.ManageViewBookingsController">
+   <Button layoutX="1132.0" layoutY="37.0" mnemonicParsing="false" onAction="#setLogoutButtonClick" prefHeight="33.0" prefWidth="88.0" text="Log Out">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Button>
+   <Button layoutX="1030.0" layoutY="37.0" mnemonicParsing="false" onAction="#setBackButtonClick" prefHeight="33.0" prefWidth="88.0" text="Back">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Button>
+   <Text layoutX="536.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Bookings">
+      <font>
+         <Font name="System Bold" size="36.0" />
+      </font>
+   </Text>
+   <Text layoutX="80.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a date to view">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Text>
+   <DatePicker fx:id="Date" layoutX="80.0" layoutY="151.0" onAction="#setDatePickerAction" prefHeight="33.0" prefWidth="195.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="501.0" layoutX="357.0" layoutY="148.0" stroke="BLACK" strokeType="INSIDE" width="878.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="467.0" layoutX="372.0" layoutY="167.0" stroke="BLACK" strokeType="INSIDE" width="843.0" />
+   <Rectangle fx:id="R5" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="1085.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R4" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="919.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R3" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="751.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="582.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="419.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R10" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="1085.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R9" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="919.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R8" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="749.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R7" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="582.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <Rectangle fx:id="R6" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="419.0" layoutY="453.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+   <TextArea fx:id="Info1" layoutX="389.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info2" layoutX="552.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info3" layoutX="718.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info4" layoutX="889.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info5" layoutX="1055.0" layoutY="288.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info6" layoutX="389.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info7" layoutX="552.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info8" layoutX="718.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info9" layoutX="882.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info10" layoutX="1055.0" layoutY="519.0" prefHeight="97.0" prefWidth="149.0" />
+   <Label fx:id="PickDate" layoutX="397.0" layoutY="174.0" prefHeight="35.0" prefWidth="765.0">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Label>
+</AnchorPane>
