@@ -53,7 +53,7 @@ public class TableStatusUtil {
             int AccountID = BDAO.getAccountID(BookingID);
             String EmployeeName = EDAO.getEmployee(AccountID);
             String BookingStatus = BDAO.getBookingStatus(BookingID);
-            textArea.setText("Table " + TableNumber + "\n" + EmployeeName + "\n" + "Booking Status: " + BookingStatus +
+            textArea.setText("Table " + TableNumber + "\n" + EmployeeName + "\n" + "Status: " + BookingStatus +
                     "\n" + "Booking ID: " + BookingID + "\n" + "AccountID: " + AccountID);
         }else{
             textArea.setText("Table " + TableNumber);
