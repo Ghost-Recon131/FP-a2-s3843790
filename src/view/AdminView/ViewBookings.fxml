@@ -43,19 +43,19 @@
    <Rectangle fx:id="R8" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="719.0" layoutY="422.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
    <Rectangle fx:id="R7" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="552.0" layoutY="422.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
    <Rectangle fx:id="R6" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="48.0" layoutX="389.0" layoutY="422.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
-   <Label fx:id="PickDate" layoutX="37.0" layoutY="237.0" prefHeight="20.0" prefWidth="262.0" text=" ">
+   <Label fx:id="PickDate" layoutX="22.0" layoutY="237.0" prefHeight="20.0" prefWidth="283.0" text=" ">
       <font>
          <Font size="14.0" />
       </font>
    </Label>
-   <TextArea layoutX="359.0" layoutY="257.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea layoutX="522.0" layoutY="257.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea layoutX="688.0" layoutY="257.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea layoutX="859.0" layoutY="257.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea layoutX="1025.0" layoutY="257.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea layoutX="359.0" layoutY="488.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea layoutX="522.0" layoutY="488.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea layoutX="688.0" layoutY="488.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea layoutX="852.0" layoutY="488.0" prefHeight="97.0" prefWidth="149.0" />
-   <TextArea layoutX="1025.0" layoutY="488.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info1" layoutX="359.0" layoutY="257.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info2" layoutX="522.0" layoutY="257.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info3" layoutX="688.0" layoutY="257.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info4" layoutX="859.0" layoutY="257.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info5" layoutX="1025.0" layoutY="257.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info6" layoutX="359.0" layoutY="488.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info7" layoutX="522.0" layoutY="488.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info8" layoutX="688.0" layoutY="488.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info9" layoutX="852.0" layoutY="488.0" prefHeight="97.0" prefWidth="149.0" />
+   <TextArea fx:id="Info10" layoutX="1025.0" layoutY="488.0" prefHeight="97.0" prefWidth="149.0" />
 </AnchorPane>
