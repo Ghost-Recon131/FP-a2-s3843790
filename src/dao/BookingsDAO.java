@@ -1,4 +1,5 @@
 package dao;
+import controller.utils.DateFormatConversionUtil;
 import controller.utils.RandValueUtil;
 import model.BookingsModel;
 import model.LoginModel;
@@ -13,6 +14,7 @@ public class BookingsDAO {
     private Connection connect = SQLConnection.connect();
     private List<BookingsModel> listOfBookings = new ArrayList<>();
     RandValueUtil RV = new RandValueUtil();
+    DateFormatConversionUtil DFC = new DateFormatConversionUtil();
 
     //refresh the database
     public void updateBookings() {
@@ -209,18 +211,31 @@ public class BookingsDAO {
     }
 
     public void rejectBooking(int BookingID) {
-        if(LoginModel.getCurrentUserRole().equals("admin")) {
-            String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
-            try {
-                PreparedStatement pstmt = connect.prepareStatement(sql);
-                {
-                    pstmt.setString(1, "rejected");
-                    pstmt.setInt(2, BookingID);
-                    pstmt.executeUpdate();
-                    updateBookings();
+        String sql = "UPDATE Bookings SET BookingStatus = ? WHERE BookingID = ?";
+        try {
+            PreparedStatement pstmt = connect.prepareStatement(sql);
+            {
+                pstmt.setString(1, "rejected");
+                pstmt.setInt(2, BookingID);
+                pstmt.executeUpdate();
+                updateBookings();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //automatically cancels bookings that reached the reserved data but still not approved
+    public void AutoCancelBookings() {
+        for (BookingsModel Bkm : listOfBookings) {
+            if (Bkm.getBookingStatus().equals("pending")) {
+                int BookingID = Bkm.getBookingID();
+                LocalDate CurrentDate = LocalDate.now();
+                LocalDate FormattedSittingDate = DFC.FormatToLocalDate(Bkm.getSittingDate());
+                LocalDate ApproveByDate = FormattedSittingDate.minusDays(1);
+                if(ApproveByDate.isEqual(CurrentDate)){
+                    rejectBooking(BookingID);
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
     }
