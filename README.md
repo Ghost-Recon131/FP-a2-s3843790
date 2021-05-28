@@ -27,7 +27,7 @@ It is located under src/main/Main.java
    | :--------------------: | :-------: | :-------------------: |:---------: |:---------------------:|
    | Locked due to spacing  | Reserved  | Locked due to spacing | Reserved   | Locked due to spacing |
 
-   This will result in lost capacity for the company. Hence the current implementation is more likely to be chosen by a 
+   This will result in lost capacity for the company. Hence, the current implementation is more likely to be chosen by a 
    company.
    
 
@@ -50,7 +50,19 @@ Contains all the controllers used in the program
    inputs are correct. It will then show the new password to the user. 
    
 ## Controllers - Admin
-1. AdminHomeController: Not yet implemented
+1. AdminHomeController: Displays the home menu for an admin user. Also provides a link to all other admin functionalities.
+
+2. COVIDRestrictionsController: Allows admins to set restriction levels at a company-wide or per table level. 
+
+3. GenerateCSVReportController: Admin can output the contents of the SQL database into a CSV file.
+
+4. ManageAdminAccountsController: Allows admins to change information on an Admin account, add, delete or set an
+   account as inactive.
+
+5. ManageEmployeeAccountsController: Allows admins to change information on an Employee account, add, delete or set an
+   account as inactive. 
+
+6. ManageViewBookingsController: Admins can view bookings on a particular date and manage pending / approved bookings. 
 
 ## Controllers - User
 1. BookTableController: Allows users to select a date and table to reserve. Cancelling bookings is also done here.
@@ -110,9 +122,13 @@ to new accounts. Also provides setters that admins use, they require current use
 6. TableModel: Provides constructor & getters used by TableDAO
 
 ## Model - AdminModel
-1. AdminHomeModel: Provides supporting methods for AdminHomeController
+1. AdminHomeModel: Provides supporting methods for AdminHomeController.
 
-2. COVIDRestrictionsModel: Provides supporting methods for COVIDRestrictionsController
+2. COVIDRestrictionsModel: Provides supporting methods for COVIDRestrictionsController.
+
+3. GenerateCSVReportModel: Provides supporting methods for GenerateCSVReportController.
+
+4. ManageViewBookingsModel: Provides supporting methods for ManageViewBookingsController.
 
 ## Model - UserModel
 1. BookTableModel: Provides supporting methods for BookTableController
