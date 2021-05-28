@@ -5,6 +5,36 @@ Student number: s3843790
 ### Main Class
 It is located under src/main/Main.java
 
+## Assumptions Made for the assignment
+1. Number of tables: Currently the number of tables is fixed and there is no way to add more tables without manual rework
+   of the .fxml files, SQL database, DAO's as well as the corresponding controllers and models. 
+
+
+2. Number of employees: Currently there is no limit on the number of employee accounts that can be created active in the
+   system. However, there are checks in place to prevent the same person from creating multiple accounts if they use the
+   same details and not lie about their name. Since it is a company program, it should not be hosted publicly online, so
+   the risk of having trolls attack the system is minimised and limiting accounts seem unnecessary. Currently, it will
+   be the admins' responsibility to manage employee accounts. 
+   
+
+3. Automatic partial lockdown: It is assumed that in the event of 50% capacity requirement from the government, the 
+   company will want to maximise the number of Employees that can sit at the office. Given this case, either every odd
+   or even table will be locked down automatically to preserve the maximum of 5 tables available. 
+   
+   If we allowed employees to pick amongst themselves, it could result in the following: 
+
+   | Table 1                | Table 2   | Table 3               | Table 4    | Table 5               |
+   | :--------------------: | :-------: | :-------------------: |:---------: |:---------------------:|
+   | Locked due to spacing  | Reserved  | Locked due to spacing | Reserved   | Locked due to spacing |
+
+   This will result in lost capacity for the company. Hence the current implementation is more likely to be chosen by a 
+   company.
+   
+
+4. Operating System: This program has been written in a Windows 10 environment and has not been validated to work for any
+   other operating systems. As a result, running this program in another OS may result in features not working due to
+   difference in folder structure or format. It is assumed that the user of this program will also be running Windows. 
+   
 ## Controllers - Shared
 Contains all the controllers used in the program
 
