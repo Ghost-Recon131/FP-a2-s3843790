@@ -5,6 +5,9 @@ import controller.utils.RandValueUtil;
 import controller.utils.SHAHashUtil;
 import model.LoginModel;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -323,6 +326,46 @@ public class EmployeeDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void ExportEmployeesTable(String FilePath) {
+        try {
+            if (LoginModel.getCurrentUserRole().equals("admin")) {
+                File file = new File(FilePath + "/Employees.csv");
+                FileWriter fileWriter = new FileWriter(file);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                Statement myStmt = connect.createStatement();
+                ResultSet RS = myStmt.executeQuery("select * from Employee");
+                while (RS.next()) {
+                    bufferedWriter.append(RS.getString(1));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(2));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(3));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(4));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(5));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(6));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(7));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(8));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(9));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(10));
+                    bufferedWriter.append('\n');
+                }
+                bufferedWriter.flush();
+                fileWriter.flush();
+                bufferedWriter.close();
+                fileWriter.close();
+            }
+        }catch (Exception e) {
+            System.err.println("Failed to export Employees table");
         }
     }
 

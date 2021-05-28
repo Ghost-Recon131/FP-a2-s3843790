@@ -4,6 +4,9 @@ import controller.utils.RandValueUtil;
 import model.BookingsModel;
 import model.LoginModel;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -237,6 +240,38 @@ public class BookingsDAO {
                     rejectBooking(BookingID);
                 }
             }
+        }
+    }
+
+    public void ExportBookingsTable(String FilePath){
+        try {
+            if (LoginModel.getCurrentUserRole().equals("admin")) {
+                File file = new File(FilePath + "/Bookings.csv");
+                FileWriter fileWriter = new FileWriter(file);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                Statement myStmt = connect.createStatement();
+                ResultSet RS = myStmt.executeQuery("select * from Bookings");
+                while (RS.next()) {
+                    bufferedWriter.append(RS.getString(1));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(2));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(3));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(4));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(5));
+                    bufferedWriter.append(',');
+                    bufferedWriter.append(RS.getString(6));
+                    bufferedWriter.append('\n');
+                }
+                bufferedWriter.flush();
+                fileWriter.flush();
+                bufferedWriter.close();
+                fileWriter.close();
+            }
+        }catch (Exception e) {
+            System.err.println("Failed to export Employees table");
         }
     }
 
