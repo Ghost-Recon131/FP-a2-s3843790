@@ -8,8 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.UserModel.ChangePasswordModel;
 
-import java.util.concurrent.TimeUnit;
-
 public class ChangePasswordController {
     @FXML private TextField Password;
     @FXML private TextField NewPassword;
@@ -40,25 +38,21 @@ public class ChangePasswordController {
         error2 = SCU.InputNotEmpty(NewPassword, NewPasswordError);
         error3 = SCU.InputNotEmpty(ConfirmPassword, ConfirmPasswordError);
 
-        try{
             // check that the new password and confirm password is equal
-            if (!NewPassword.getText().equals(ConfirmPassword.getText()) || !SCU.VerifyString(ConfirmPassword.getText())) {
-                ConfirmPasswordError.setText("Password does not match!");
-                error4 = true;
-            } else {
-                error4 = false;
-            }
-
-            if(!error1 && !error2 && !error3 && !error4){
-                CPM.ChangePassword(ConfirmPassword.getText());
-                TimeUnit.SECONDS.sleep(1);
-                CSU.ChangeScene(event,"/view/UserView/userHome.fxml");
-            }else{
-                ChangePasswordError.setText("Failed to register");
-            }
-        }catch(InterruptedException e){
-            System.err.println("Something went wrong in program hold");
+        if (!NewPassword.getText().equals(ConfirmPassword.getText()) || !SCU.VerifyString(ConfirmPassword.getText())) {
+            ConfirmPasswordError.setText("Password does not match!");
+            error4 = true;
+        } else {
+            error4 = false;
         }
+
+        if(!error1 && !error2 && !error3 && !error4){
+            CPM.ChangePassword(ConfirmPassword.getText());
+            CSU.ChangeScene(event,"/view/UserView/userHome.fxml");
+        }else{
+            ChangePasswordError.setText("Failed to register");
+        }
+
     }
 
 
