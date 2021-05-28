@@ -3,7 +3,6 @@ package model.AdminModel;
 import controller.utils.StringCheckUtil;
 import dao.BookingsDAO;
 import dao.EmployeeDAO;
-import dao.TableDAO;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import java.io.File;
@@ -12,7 +11,6 @@ public class GenerateCSVReportModel {
     BookingsDAO BDAO = new BookingsDAO();
     EmployeeDAO EDAO = new EmployeeDAO();
     StringCheckUtil SCU = new StringCheckUtil();
-
 
     public void GenerateEmployeeCSV(TextArea Filepath, Label label){
         EDAO.updateEmployee();
@@ -39,11 +37,10 @@ public class GenerateCSVReportModel {
                 label.setText("This cannot be empty!");
             }
 
-            if(new File(Filepath.getText() + Type).exists()){
+            if(new File(Filepath.getText() + Type).exists()){ // checks that there is no other previously generated reports
                 ValidInput = false;
                 label.setText("The CSV report already exists, please move the current file");
             }
-
         }catch(Exception e){
             return false;
         }
