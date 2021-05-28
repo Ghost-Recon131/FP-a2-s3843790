@@ -131,6 +131,21 @@ Also allows for managing bookings here
 
 4. Tables SQlite Table: Stores status of Tables such as whether it is available or under lockdown.
 
+## Registered Testing accounts
+There are a number of accounts already registered in the system used for testing purposes. All employee accounts can be
+deleted but make sure the corresponding entries in Bookings table are also deleted. All admin accounts can also be deleted, 
+but I highly suggest that 1 admin account is saved, otherwise there will be no way to add admin accounts back in the program
+without using an admin account. The only way to recover admin functionality is to manually add an admin account in the 
+Employee SQL table. If you would like to use the already existing accounts, here are the credentials: 
+
+### Admin Accounts
+1. Username: admin Password: admin
+
+### User Accounts
+1. Username: Tom1 Password: Tom1
+2. Username: Test1 Password: Test1
+3. Username: Test2 Password: Test2
+
 # References
 1. [1]S. Akshif, "VoxelPixel/HashingAlgorithmsInJava", GitHub, 2021. [Online]. Available: 
    https://github.com/VoxelPixel/HashingAlgorithmsInJava/blob/master/SHA256.java. [Accessed: 25- Apr- 2021].
