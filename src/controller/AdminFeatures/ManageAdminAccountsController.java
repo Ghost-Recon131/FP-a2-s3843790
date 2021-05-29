@@ -43,12 +43,12 @@ public class ManageAdminAccountsController implements Initializable {
 
     @FXML
     public void setActivateAccountClick(){
-
+        MAM.ActivateAccount(GetAccountID.getText(), Error);
     }
 
     @FXML
     public void setSuspendAccountClick(){
-
+        MAM.SuspendAccount(GetAccountID.getText(), Error);
     }
 
     @FXML

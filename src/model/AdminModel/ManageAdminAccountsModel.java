@@ -16,9 +16,9 @@ public class ManageAdminAccountsModel {
             textArea.setText("No Admin accounts found");
         }else{
             for(int i = 0; i < EDAO.getListOfAdmins().size(); i++){
-                String tmp = "Name: " + EDAO.getListOfAdmins().get(i).getFullName() + "\n" +
+                String tmp = "\n" + "Name: " + EDAO.getListOfAdmins().get(i).getFullName() + "\n" +
                         "Status: " + EDAO.getListOfAdmins().get(i).getStatus() + "\n" +
-                        "Account ID: " + EDAO.getListOfAdmins().get(i).getID() + "\n";
+                        "Account ID: " + EDAO.getListOfAdmins().get(i).getID();
                 textArea.appendText(tmp);
             }
         }
@@ -33,16 +33,37 @@ public class ManageAdminAccountsModel {
         EDAO.updateEmployee();
         if(ToInt(AccountID) == -1){
             label.setText("Please enter numbers only!");
-        }else{
-            ValidInput = true;
+            return false;
         }
 
         //prevent any possible errors from an admin deleting their own account
         if(!EDAO.VerifyAccountID(ToInt(AccountID)) && ToInt(AccountID) != LoginModel.getCurrentUserID()){
             label.setText("Please check the entered AccountID");
-            ValidInput = false;
+            return false;
+        }
+
+        if(EDAO.getRole(ToInt(AccountID)).equals("admin")){ // checks account is an admin account
+            ValidInput = true;
+        }else{
+            label.setText("Please select an admin account");
         }
         return ValidInput;
+    }
+
+    public void ActivateAccount(String AccountID, Label label){ // set account status as active
+        EDAO.updateEmployee();
+        if(CheckInvalidInput(AccountID, label)){
+            EDAO.ChangeAccountStatus(ToInt(AccountID), "active");
+            label.setText("Account has been activated");
+        }
+    }
+
+    public void SuspendAccount(String AccountID, Label label){ // set account status as suspended
+        EDAO.updateEmployee();
+        if(CheckInvalidInput(AccountID, label)){
+            EDAO.ChangeAccountStatus(ToInt(AccountID), "suspended");
+            label.setText("Account has been suspended");
+        }
     }
 
     public void DeleteAdminAccount(String AccountID, Label label){ // finalises the deletion
