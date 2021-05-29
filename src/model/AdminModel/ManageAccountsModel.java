@@ -6,20 +6,27 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import model.LoginModel;
 
-public class ManageAdminAccountsModel {
+public class ManageAccountsModel {
     EmployeeDAO EDAO = new EmployeeDAO();
     IntegerCheckUtil ICU = new IntegerCheckUtil();
 
-    public void GetAllAdminAccount(TextArea textArea){ // displays a list of admin accounts
+    public void GetAllAccounts(TextArea textArea, TextArea textArea2){ // displays a list of admin accounts
         EDAO.updateEmployee();
         if(EDAO.getListOfAdmins().size() == 0){
             textArea.setText("No Admin accounts found");
         }else{
             for(int i = 0; i < EDAO.getListOfAdmins().size(); i++){
-                String tmp = "\n" + "Name: " + EDAO.getListOfAdmins().get(i).getFullName() + "\n" +
+                String tmp = "Name: " + EDAO.getListOfAdmins().get(i).getFullName() + "\n" +
                         "Status: " + EDAO.getListOfAdmins().get(i).getStatus() + "\n" +
-                        "Account ID: " + EDAO.getListOfAdmins().get(i).getID();
+                        "Account ID: " + EDAO.getListOfAdmins().get(i).getID() + "\n" + "" + "\n";
                 textArea.appendText(tmp);
+            }
+
+            for(int i = 0; i < EDAO.getListOfEmployees().size(); i++){
+                String tmp2 = "Name: " + EDAO.getListOfEmployees().get(i).getFullName() + "\n" +
+                        "Status: " + EDAO.getListOfEmployees().get(i).getStatus() + "\n" +
+                        "Account ID: " + EDAO.getListOfEmployees().get(i).getID() + "\n" + "" + "\n";
+                textArea2.appendText(tmp2);
             }
         }
     }
@@ -28,7 +35,7 @@ public class ManageAdminAccountsModel {
         return ICU.verifyInteger(AccountID);
     }
 
-    private boolean CheckInvalidInput(String AccountID, Label label){ //check the input is valid & account ID exists
+    public boolean CheckInvalidInput(String AccountID, Label label){ //check the input is valid & account ID exists
         boolean ValidInput = false;
         EDAO.updateEmployee();
         if(ToInt(AccountID) == -1){
@@ -40,12 +47,8 @@ public class ManageAdminAccountsModel {
         if(!EDAO.VerifyAccountID(ToInt(AccountID)) && ToInt(AccountID) != LoginModel.getCurrentUserID()){
             label.setText("Please check the entered AccountID");
             return false;
-        }
-
-        if(EDAO.getRole(ToInt(AccountID)).equals("admin")){ // checks account is an admin account
-            ValidInput = true;
         }else{
-            label.setText("Please select an admin account");
+            ValidInput = true;
         }
         return ValidInput;
     }

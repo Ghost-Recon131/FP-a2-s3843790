@@ -4,12 +4,12 @@ import controller.utils.ChangeSceneUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 
-public class AddUpdateAdminAccount {
+public class AddUpdateAccountsController {
     ChangeSceneUtil CSU = new ChangeSceneUtil();
 
     @FXML
     public void setBackButtonClick(Event event){ // goes back to employee menu
-        CSU.ChangeScene(event,"/view/AdminView/ManageAdminAccounts.fxml");
+        CSU.ChangeScene(event, "/view/AdminView/ManageAccounts.fxml");
     }
 
     @FXML

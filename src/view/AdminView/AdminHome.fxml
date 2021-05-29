@@ -56,17 +56,12 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="156.0" layoutY="304.0" mnemonicParsing="false" onAction="#ManageEmployeeAccounts" prefHeight="47.0" prefWidth="259.0" text="Manage employee accounts">
+      <Button layoutX="156.0" layoutY="302.0" mnemonicParsing="false" onAction="#ManageAccounts" prefHeight="47.0" prefWidth="259.0" text="Manage accounts">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="156.0" layoutY="361.0" mnemonicParsing="false" onAction="#ManageAdminAccounts" prefHeight="47.0" prefWidth="259.0" text="Manage admin accounts">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="156.0" layoutY="420.0" mnemonicParsing="false" onAction="#GenerateCSVReport" prefHeight="47.0" prefWidth="259.0" text="Generate CSV Report">
+      <Button layoutX="156.0" layoutY="362.0" mnemonicParsing="false" onAction="#GenerateCSVReport" prefHeight="47.0" prefWidth="259.0" text="Generate CSV Report">
          <font>
             <Font size="18.0" />
          </font>

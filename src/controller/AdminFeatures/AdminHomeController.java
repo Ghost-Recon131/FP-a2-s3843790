@@ -38,13 +38,8 @@ public class AdminHomeController implements Initializable {
     }
 
     @FXML
-    private void ManageEmployeeAccounts(Event event){
-        CSU.ChangeScene(event, "/view/AdminView/ManageEmployeeAccounts.fxml");
-    }
-
-    @FXML
-    private void ManageAdminAccounts(Event event){
-        CSU.ChangeScene(event, "/view/AdminView/ManageAdminAccounts.fxml");
+    private void ManageAccounts(Event event){
+        CSU.ChangeScene(event, "/view/AdminView/ManageAccounts.fxml");
     }
 
     @FXML
