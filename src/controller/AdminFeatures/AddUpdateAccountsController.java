@@ -3,8 +3,14 @@ package controller.AdminFeatures;
 import controller.utils.ChangeSceneUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 public class AddUpdateAccountsController {
+    @FXML private Label FirstnameError, LastnameError, UsernameError, PasswordError, ConfirmPasswordError, SQError;
+    @FXML private Label SQAError, AccountIDError, ActionError;
+    @FXML private TextArea AccountID, Firstname, Lastname, Username, Password, ConfirmPassword, SQ, SQA;
+
     ChangeSceneUtil CSU = new ChangeSceneUtil();
 
     @FXML
