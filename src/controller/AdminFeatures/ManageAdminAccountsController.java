@@ -44,11 +44,13 @@ public class ManageAdminAccountsController implements Initializable {
     @FXML
     public void setActivateAccountClick(){
         MAM.ActivateAccount(GetAccountID.getText(), Error);
+        GetAllAdminAccount();
     }
 
     @FXML
     public void setSuspendAccountClick(){
         MAM.SuspendAccount(GetAccountID.getText(), Error);
+        GetAllAdminAccount();
     }
 
     @FXML
@@ -61,17 +63,13 @@ public class ManageAdminAccountsController implements Initializable {
     public void setConfirmDeleteAccountClick(){
         if(Confirm){
             MAM.DeleteAdminAccount(GetAccountID.getText(), DeleteAccountError);
+            GetAllAdminAccount();
         }
     }
 
     @FXML
-    public void setAddAdminAccountClick(){
-        //todo
-    }
-
-    @FXML
-    public void setUpdateAdminAccountClick(){
-        //todo
+    public void setUpdateAdminAccountClick(Event event){
+        CSU.ChangeScene(event,"/view/AdminView/AddUpdateAdminAccount.fxml");
     }
 
 }
