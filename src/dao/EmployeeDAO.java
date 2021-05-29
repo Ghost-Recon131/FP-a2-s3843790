@@ -145,6 +145,17 @@ public class EmployeeDAO {
         return PreviousTableNumber;
     }
 
+    //check that an account ID is valid
+    public boolean VerifyAccountID(int AccountID){
+        boolean Valid = false;
+        for (EmployeeModel Emp : listOfEmployees) {
+            if (Emp.getID() == AccountID) {
+                Valid = true;
+            }
+        }
+        return Valid;
+    }
+
     //Adding an account / Register
     public void addAccount(String Firstname, String Lastname, String Username, String Password,
                            String Secret_Question, String SQ_Answer){

@@ -1,5 +1,6 @@
 package main;
 import dao.BookingsDAO;
+import dao.EmployeeDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,10 +29,17 @@ public class Main extends Application {
             launch(args);
         }catch (Exception e){
             System.err.println("Error in GUI");
-            System.err.println(e);
         }
 
         //temporary code for testing
+//        EmployeeDAO EDAO = new EmployeeDAO();
+//        for(int i = 0; i < EDAO.getListOfEmployees().size(); i++){ // gets list of employee accounts
+//            String tmp = "Name: " + EDAO.getListOfEmployees().get(i).getFullName() + "\n" +
+//                    "Status" + EDAO.getListOfEmployees().get(i).getStatus() + "\n" +
+//                    "Account ID" + EDAO.getListOfEmployees().get(i).getID() + "\n";
+//            System.out.println(tmp);
+//        }
+
     }
 
 
