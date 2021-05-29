@@ -323,7 +323,7 @@ public class EmployeeDAO {
     }
 
     //allows admin to activate or deactivate an account, controller will set the status = active or deactivated
-    public void activateAccount(int id, String newStatus){
+    public void ChangeAccountStatus(int id, String newStatus){
         if(LoginModel.getCurrentUserRole().equals("admin")) {
             String sql = "UPDATE Employee SET Status = ? WHERE id = ?";
             try {
