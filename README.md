@@ -50,17 +50,16 @@ Contains all the controllers used in the program
    inputs are correct. It will then show the new password to the user. 
    
 ## Controllers - Admin
-1. AdminHomeController: Displays the home menu for an admin user. Also provides a link to all other admin functionalities.
+1. AddUpdateAccountsController: Handles updating or creating new accounts
 
-2. COVIDRestrictionsController: Allows admins to set restriction levels at a company-wide or per table level. 
+2. AdminHomeController: Displays the home menu for an admin user. Also provides a link to all other admin functionalities.
 
-3. GenerateCSVReportController: Admin can output the contents of the SQL database into a CSV file.
+3. COVIDRestrictionsController: Allows admins to set restriction levels at a company-wide or per table level. 
 
-4. ManageAdminAccountsController: Allows admins to change information on an Admin account, add, delete or set an
+4. GenerateCSVReportController: Admin can output the contents of the SQL database into a CSV file.
+
+5. ManageAccountsController: Allows admins to change information on an Admin account, add, delete or set an
    account as inactive.
-
-5. ManageEmployeeAccountsController: Allows admins to change information on an Employee account, add, delete or set an
-   account as inactive. 
 
 6. ManageViewBookingsController: Admins can view bookings on a particular date and manage pending / approved bookings. 
 
@@ -122,13 +121,17 @@ to new accounts. Also provides setters that admins use, they require current use
 6. TableModel: Provides constructor & getters used by TableDAO
 
 ## Model - AdminModel
-1. AdminHomeModel: Provides supporting methods for AdminHomeController.
+1. AddUpdateAccountsModel: Provides supporting methods for AddUpdateAccountsController.
 
-2. COVIDRestrictionsModel: Provides supporting methods for COVIDRestrictionsController.
+2. AdminHomeModel: Provides supporting methods for AdminHomeController.
 
-3. GenerateCSVReportModel: Provides supporting methods for GenerateCSVReportController.
+3. COVIDRestrictionsModel: Provides supporting methods for COVIDRestrictionsController.
 
-4. ManageViewBookingsModel: Provides supporting methods for ManageViewBookingsController.
+4. GenerateCSVReportModel: Provides supporting methods for GenerateCSVReportController.
+
+5. ManageAccountsModel: Provides supporting methods for ManageAccountsController
+
+6. ManageViewBookingsModel: Provides supporting methods for ManageViewBookingsController.
 
 ## Model - UserModel
 1. BookTableModel: Provides supporting methods for BookTableController
@@ -147,15 +150,15 @@ to new accounts. Also provides setters that admins use, they require current use
 4. ResetPassword.fxml: Provides GUI for resetting password. Can be used by both admins and employees. Also Shows the new 
    password after a password reset.
 ## View - Admin
-1. Login.fxml: GUI for login
+1. AddUpdateAccounts.fxml: GUI for adding or updating employee and admin accounts
 
-2. COVIDRestrictions.fxml: GUI for managing COVID restrictions
+2. AdminHome.fxml: Homepage for admin accounts & provides connection to other features
 
-3. GenerateCSVReport.fxml: GUI for exporting CSV file
+3. COVIDRestrictions.fxml: GUI for managing COVID restrictions
 
-4. ManageAdminAccounts.fxml: GUI for adding / deleting or changing admin accounts
+4. GenerateCSVReport.fxml: GUI for exporting CSV file
 
-5. ManageEmployeeAccounts.fxml: GUI for adding / deleting or changing admin accounts
+5. ManageAccounts.fxml: GUI for adding / deleting accounts. Provides connection to AddUpdateAccounts.fxml
 
 6. ViewBookings.fxmlL GUI for admin to see bookings on a particular date + who reserved the table, and their booking ID
 Also allows for managing bookings here
