@@ -14,6 +14,7 @@ public class ManageAccountsModel {
         EDAO.updateEmployee();
         if(EDAO.getListOfAdmins().size() == 0){
             textArea.setText("No Admin accounts found");
+            textArea2.setText("No employee accounts found");
         }else{
             for(int i = 0; i < EDAO.getListOfAdmins().size(); i++){
                 String tmp = "Name: " + EDAO.getListOfAdmins().get(i).getFullName() + "\n" +
