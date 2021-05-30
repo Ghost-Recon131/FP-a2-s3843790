@@ -2,10 +2,10 @@
 Name: Jingxuan Feng
 
 Student number: s3843790
-### Main Class
+# Main Class
 It is located under src/main/Main.java
 
-## Assumptions Made for the assignment
+# Assumptions Made for the assignment
 1. Number of tables: Currently the number of tables is fixed and there is no way to add more tables without manual rework
    of the .fxml files, SQL database, DAO's as well as the corresponding controllers and models. 
 
@@ -36,7 +36,7 @@ It is located under src/main/Main.java
    other operating systems. As a result, running this program in another OS may result in features not working due to
    difference in folder structure or format. It is assumed that the user of this program will also be running Windows. 
    
-## Controllers - Shared
+# Controllers - Shared
 Contains all the controllers used in the program
 
 1. HomeScreenController: Responsible for switching to different scenes ie login, register ect. 
@@ -72,7 +72,7 @@ Contains all the controllers used in the program
 3. UserHomeController: Responsible for switching to different scenes and showing the employee any updates on COVID
    lockdown, or their reservation request.
 
-## Utils
+# Utils
 These are supporting classes which provides methods that may be used by controllers or DAOs'
 1. ChangeSceneUtil: Allows for changing scenes, used by controllers inside AdminFeatures and UserFeatures. 
 
@@ -94,7 +94,8 @@ method; InputNotEmpty checks for GUI text fields and ensures the user has entere
    now combined into a single scene. 
    
    This still provides useful features such as setting the colour of the tables based on their status. 
-## DAO
+
+# DAO
 These are Data access objects that perform retrieving, adding, updating or removing data from the database.
 
 1. BookingsDAO: Getters and setters which will be used to access Bookings SQL table. Also provides setters that admins 
@@ -108,7 +109,7 @@ to new accounts. Also provides setters that admins use, they require current use
 4. TableDAO: Getters and setters which will be used to access Tables SQL table. Also provides setters that admins use, 
    they require current user to be an admin.
 
-## Model - Overall
+# Model - Overall
 1. BookingsModel: Provides constructor & getters used by BookingsDAO
 
 2. EmployeeModel: Provides constructor & getters used by EmployeeDAO 
@@ -141,7 +142,7 @@ to new accounts. Also provides setters that admins use, they require current use
 
 3. UserHomeModel: Provides supporting methods for UserHomeController
 
-## View - Shared
+# View - Shared
 1. HomeScreen.fxml: Default home page when starting the program
 
 2. Login.fxml: GUI for login
@@ -150,6 +151,7 @@ to new accounts. Also provides setters that admins use, they require current use
 
 4. ResetPassword.fxml: Provides GUI for resetting password. Can be used by both admins and employees. Also Shows the new 
    password after a password reset.
+
 ## View - Admin
 1. AddUpdateAccounts.fxml: GUI for adding or updating employee and admin accounts
 
@@ -171,7 +173,7 @@ Also allows for managing bookings here
 
 3. UserHome.fxml: The default home page for employee accounts once they have logged in
 
-## SQlite table structure
+# SQlite table structure
 1. Bookings SQlite Table: Stores information about Bookings made by employee or admin
 
 2. Employee SQlite Table: Stores information about an employee
@@ -181,28 +183,48 @@ Also allows for managing bookings here
 
 4. Tables SQlite Table: Stores status of Tables such as whether it is available or under lockdown.
 
-## Registered Testing accounts
+# Registered Testing accounts
 There are a number of accounts already registered in the system used for testing purposes. All employee accounts can be
 deleted but make sure the corresponding entries in Bookings table are also deleted. All admin accounts can also be deleted, 
 but I highly suggest that 1 admin account is saved, otherwise there will be no way to add admin accounts back in the program
 without using an admin account. The only way to recover admin functionality is to manually add an admin account in the 
 Employee SQL table. If you would like to use the already existing accounts, here are the credentials: 
 
-### Admin Accounts
+## Admin Accounts
    | Username      | Password              |
    | :-----------: | :-------------------: |
    | admin         | admin                 |
    | admin2        | admin2                |
 
-### User Accounts
+## User Accounts
    | Username      | Password              |
    | :-----------: | :-------------------: |
    | Tom1          | Tom1                  |
    | Test1         | Test1                 |
    | Test2         | Test2                 |
    | DickSmith     | DickSmith             |
+
+# Known Bugs
+- After taking some form of action on the GUI, the details shown will not update until you refresh that GUI screen ie
+   go to the menu screen of admin or employee then back into the screen you were on
+  
+- Some error text will not clear when the entered details are wrong on the first time. This is fine as it as visual only
+   and if the details are correct, the program will still function as normal. 
+
+
 # References
 1. [1]S. Akshif, "VoxelPixel/HashingAlgorithmsInJava", GitHub, 2021. [Online]. Available: 
    https://github.com/VoxelPixel/HashingAlgorithmsInJava/blob/master/SHA256.java. [Accessed: 25- Apr- 2021].
+   
+2. [2]‘Export Database table to CSV File’. https://www.roseindia.net/tutorial/java/core/databaseToCSV.html 
+   (accessed May 30, 2021).
+3. [3]‘How to subtract X day from a Date object in Java?’, Stack Overflow. 
+   https://stackoverflow.com/questions/11882926/how-to-subtract-x-day-from-a-date-object-in-java (accessed May 30, 2021).
+   
+4. [4]‘Java - Add days to Date’, beginnersbook.com, Oct. 18, 2017. 
+   https://beginnersbook.com/2017/10/java-add-days-to-date/ (accessed May 30, 2021).
+   
+5. [5]‘Java Date Picker | How to Create Date Picker in Java?’, EDUCBA, Feb. 20, 2021. 
+   https://www.educba.com/java-date-picker/ (accessed May 30, 2021).
 
    
