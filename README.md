@@ -23,6 +23,7 @@ It is located under src/main/Main.java
    
    If we allowed employees to pick amongst themselves, it could result in the following: 
 
+
    | Table 1                | Table 2   | Table 3               | Table 4    | Table 5               |
    | :--------------------: | :-------: | :-------------------: |:---------: |:---------------------:|
    | Locked due to spacing  | Reserved  | Locked due to spacing | Reserved   | Locked due to spacing |
