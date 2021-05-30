@@ -36,6 +36,11 @@ It is located under src/main/Main.java
    other operating systems. As a result, running this program in another OS may result in features not working due to
    difference in folder structure or format. It is assumed that the user of this program will also be running Windows. 
    
+
+5. No need to account for corrupt or manually changed database: This program will likely not function properly if problematic 
+   data is directly added via modifying the database with another program. The program also assumes the database is not
+   corrupted. If it is, it will require user intervention to replace the corrupted database. 
+   
 # Controllers - Shared
 Contains all the controllers used in the program
 
