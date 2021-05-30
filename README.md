@@ -188,13 +188,18 @@ without using an admin account. The only way to recover admin functionality is t
 Employee SQL table. If you would like to use the already existing accounts, here are the credentials: 
 
 ### Admin Accounts
-1. Username: admin Password: admin
+   | Username      | Password              |
+   | :-----------: | :-------------------: |
+   | admin         | admin                 |
+   | admin2        | admin2                |
 
 ### User Accounts
-1. Username: Tom1 Password: Tom1
-2. Username: Test1 Password: Test1
-3. Username: Test2 Password: Test2
-
+   | Username      | Password              |
+   | :-----------: | :-------------------: |
+   | Tom1          | Tom1                  |
+   | Test1         | Test1                 |
+   | Test2         | Test2                 |
+   | DickSmith     | DickSmith             |
 # References
 1. [1]S. Akshif, "VoxelPixel/HashingAlgorithmsInJava", GitHub, 2021. [Online]. Available: 
    https://github.com/VoxelPixel/HashingAlgorithmsInJava/blob/master/SHA256.java. [Accessed: 25- Apr- 2021].
