@@ -244,22 +244,21 @@ public class EmployeeDAO {
     }
 
     //allows admin to update an account
-    public void updateAccount (int CurrentID, int id, String Firstname, String Lastname, String Username, String Password,
+    public void updateAccount (int CurrentID, String Firstname, String Lastname, String Username, String Password,
                                   String Secret_Question, String SQ_Answer){
         if(LoginModel.getCurrentUserRole().equals("admin")) {
-            String sql = "UPDATE Employee SET id = ?, Firstname = ?, Lastname = ?, Username = ?, Password = ?, " +
+            String sql = "UPDATE Employee SET Firstname = ?, Lastname = ?, Username = ?, Password = ?, " +
                     "Secret_Question = ?, SQ_Answer = ? WHERE id = ?";
             try {
                 PreparedStatement pstmt = connect.prepareStatement(sql);
                 {
-                    pstmt.setInt(1, id);
-                    pstmt.setString(2, Firstname);
-                    pstmt.setString(3, Lastname);
-                    pstmt.setString(4, Username);
-                    pstmt.setString(5, HASH.getHash(Password));
-                    pstmt.setString(6, Secret_Question);
-                    pstmt.setString(7, HASH.getHash(SQ_Answer));
-                    pstmt.setInt(8, CurrentID);
+                    pstmt.setString(1, Firstname);
+                    pstmt.setString(2, Lastname);
+                    pstmt.setString(3, Username);
+                    pstmt.setString(4, HASH.getHash(Password));
+                    pstmt.setString(5, Secret_Question);
+                    pstmt.setString(6, HASH.getHash(SQ_Answer));
+                    pstmt.setInt(7, CurrentID);
                     pstmt.executeUpdate();
                 }
             } catch (Exception e) {
@@ -272,7 +271,7 @@ public class EmployeeDAO {
     public void addAdmin(String Firstname, String Lastname, String Username, String Password,
                             String Secret_Question, String SQ_Answer){
         if(LoginModel.getCurrentUserRole().equals("admin")) {
-            String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Employee VALUES (?,?,?,?,?,?,?,?,?,?)";
             int id = RV.randomID(); //generates random ID to avoid accidentally assigning an ID that is already in use
 
             try {
@@ -287,6 +286,7 @@ public class EmployeeDAO {
                     pstmt.setString(7, Secret_Question);
                     pstmt.setString(8, HASH.getHash(SQ_Answer));
                     pstmt.setString(9, "active");
+                    pstmt.setInt(10, -1);
                     pstmt.executeUpdate();
                     updateEmployee();
                 }
