@@ -32,7 +32,7 @@ public class ManageAccountsModel {
         }
     }
 
-    private int ToInt(String AccountID){ //convert TextArea input into integer
+    public int ToInt(String AccountID){ //convert TextArea input into integer
         return ICU.verifyInteger(AccountID);
     }
 

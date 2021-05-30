@@ -21,4 +21,15 @@ public class StringCheckUtil {
         return Error;
     }
 
+    public boolean StringInputNotEmpty(String Variable, Label ErrorVariable){
+        boolean Error = true;
+        if(!VerifyString(Variable)){
+            ErrorVariable.setText("This cannot be empty");
+        }
+        else{
+            Error = false;
+        }
+        return Error;
+    }
+
 }
