@@ -59,8 +59,7 @@ public class BookingsDAO {
     public boolean VerifyBookingID(int BID){
         boolean Valid = false;
         for (BookingsModel Bkm : listOfBookings) {
-            String Status = Bkm.getBookingStatus();
-            if (Bkm.getBookingID() == BID && Status.equals("pending") || Status.equals("approved") || Status.equals("rejected")){
+            if (Bkm.getBookingID() == BID){
                 Valid = true;
             }
         }
