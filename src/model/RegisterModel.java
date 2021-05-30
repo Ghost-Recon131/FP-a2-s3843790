@@ -68,7 +68,7 @@ public class RegisterModel {
     }
 
     // helper method to check for lastname
-    private boolean UniqueLName(String Lastname) throws SQLException{
+    private boolean UniqueLName(String Lastname) {
         String query = "select * from employee where Lastname = ?";
         try {
             pstmt = connect.prepareStatement(query);
@@ -86,12 +86,16 @@ public class RegisterModel {
         }
     }
 
-    public boolean UniqueName(String Firstname, String Lastname) throws SQLException {
+    public boolean UniqueName(String Firstname, String Lastname) {
         boolean isunique = false;
-        if(UniqueFName(Firstname) || UniqueLName(Lastname)){
-            isunique = true;
+        try{
+            if(UniqueFName(Firstname) || UniqueLName(Lastname)){
+                isunique = true;
+            }
+            return isunique;
+        }catch (SQLException e){
+            return false;
         }
-        return isunique;
     }
 
 }

@@ -10,22 +10,9 @@ import model.RegisterModel;
 import java.sql.SQLException;
 
 public class RegisterController {
-    @FXML private TextField Firstname;
-    @FXML private TextField Lastname;
-    @FXML private TextField Username;
-    @FXML private TextField Password;
-    @FXML private TextField ConfirmPassword;
-    @FXML private TextField SQ;
-    @FXML private TextField SQ_A;
-
-    @FXML private Label FirstnameError;
-    @FXML private Label LastnameError;
-    @FXML private Label UsernameError;
-    @FXML private Label PasswordError;
-    @FXML private Label ConfirmPasswordError;
-    @FXML private Label SQError;
-    @FXML private Label SQ_AError;
-    @FXML private Label RegisterError;
+    @FXML private TextField Firstname, Lastname, Username, Password, ConfirmPassword, SQ, SQ_A;
+    @FXML private Label FirstnameError, LastnameError, UsernameError, PasswordError, ConfirmPasswordError;
+    @FXML private Label SQError, SQ_AError, RegisterError;
 
     LoginController LC = new LoginController();
     HomeScreenController HSC = new HomeScreenController();
@@ -35,21 +22,21 @@ public class RegisterController {
     // go to Login scene
     @FXML
     private Button LoginButton;
-    public void setLoginButtonClick(ActionEvent event){
+    public void setLoginButtonClick(){
         LC.LoginScene(LoginButton);
     }
 
     // go to Home scene
     @FXML
     private Button HomeButton;
-    public void setHomeButtonClick(ActionEvent event){
+    public void setHomeButtonClick(){
         HSC.HomeScene(HomeButton);
     }
 
     // button for creating new account
     @FXML
     private Button RegisterAccountButton;
-    public void setRegisterAccountButton(ActionEvent event) {
+    public void setRegisterAccountButton() {
         try {
             RegisterNewAccount();
         } catch (SQLException e) {
