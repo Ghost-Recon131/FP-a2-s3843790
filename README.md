@@ -24,9 +24,13 @@ It is located under src/main/Main.java
    If we allowed employees to pick amongst themselves, it could result in the following: 
 
 
-   | Table 1                | Table 2   | Table 3               | Table 4    | Table 5               |
-   | :--------------------: | :-------: | :-------------------: |:---------: |:---------------------:|
-   | Locked due to spacing  | Reserved  | Locked due to spacing | Reserved   | Locked due to spacing |
+   | Table 1                 | Table 2    | Table 3                | Table 4     | Table 5                |
+   | :---------------------: | :--------: | :--------------------: |:----------: |:----------------------:|
+   | Locked due to spacing   | Reserved   | Locked due to spacing  | Reserved    | Locked due to spacing  |
+   
+   |Table 6                  | Table 7    | Table 8                | Table 9     | Table 10               |
+   | :---------------------: | :--------: | :--------------------: |:----------: |:----------------------:|
+   | Locked due to spacing   | Reserved   | Locked due to spacing  | Reserved    | Locked due to spacing  |
 
    This will result in lost capacity for the company. Hence, the current implementation is more likely to be chosen by a 
    company.
@@ -40,6 +44,12 @@ It is located under src/main/Main.java
 5. No need to account for corrupt or manually changed database: This program will likely not function properly if problematic 
    data is directly added via modifying the database with another program. The program also assumes the database is not
    corrupted. If it is, it will require user intervention to replace the corrupted database. 
+   
+
+6. There it is not possible to set a timeframe for lockdown. Due to the dynamic nature of COVID lockdowns and how the 
+   Victorian government tends to change lockdown lengths; this program does not offer the admin a way to set a certain
+   timespan for a lockdown to last. It will require the admin to manually cancel a lockdown once it has been lifted by
+   the government. 
    
 # Controllers - Shared
 Contains all the controllers used in the program
@@ -216,7 +226,9 @@ Employee SQL table. If you would like to use the already existing accounts, here
 - Some error text will not clear when the entered details are wrong on the first time. This is fine as it as visual only
    and if the details are correct, the program will still function as normal. 
 
-
+- There is no resizing support. The specs did not state the program needs to resize and this has not been implemented. In
+  if you resize the program window to be larger than 1280x720, it will not scale and if you resize it to be smaller, you
+  will lose GUI elements.
 # References
 1. [1]S. Akshif, "VoxelPixel/HashingAlgorithmsInJava", GitHub, 2021. [Online]. Available: 
    https://github.com/VoxelPixel/HashingAlgorithmsInJava/blob/master/SHA256.java. [Accessed: 25- Apr- 2021].
@@ -231,5 +243,3 @@ Employee SQL table. If you would like to use the already existing accounts, here
    
 5. [5]‘Java Date Picker | How to Create Date Picker in Java?’, EDUCBA, Feb. 20, 2021. 
    https://www.educba.com/java-date-picker/ (accessed May 30, 2021).
-
-   
