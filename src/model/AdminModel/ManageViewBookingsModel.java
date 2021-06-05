@@ -26,7 +26,12 @@ public class ManageViewBookingsModel {
             return;
         }
 
-        if(BDAO.VerifyBookingID(BookingID) && Status.equals("pending") || Status.equals("rejected")){
+        if(BDAO.VerifyBookingID(BookingID) && Status.equals("rejected")){
+            label.setText("Cannot approve a rejected booking");
+            return;
+        }
+
+        if(BDAO.VerifyBookingID(BookingID) && Status.equals("pending")){
             BDAO.approveBooking(BookingID);
             label.setText("Booking approved");
         }else if(Status.equals("approved")) {
