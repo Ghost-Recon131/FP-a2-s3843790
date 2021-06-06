@@ -5,6 +5,15 @@ Student number: s3843790
 # Main Class
 It is located under src/main/Main.java
 
+## How to run the code
+1. Download source code from Github / clone using command line
+2. Open folder containing the code in IntelliJ
+3. Add the included sqlite-jdbc driver under library folder under project library. If this step is not taken, the code
+   will not function at all.
+4. Navigate to src/main/Main and run the driver code located there
+5. There is an included video on how to set up and run this code. 
+
+
 # Assumptions Made for the assignment
 1. Number of tables: Currently the number of tables is fixed and there is no way to add more tables without manual rework
    of the .fxml files, SQL database, DAO's as well as the corresponding controllers and models. 
