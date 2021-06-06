@@ -11,7 +11,7 @@ It is located under src/main/Main.java
 3. Add the included sqlite-jdbc driver under library folder under project library. If this step is not taken, the code
    will not function at all.
 4. Navigate to src/main/Main and run the driver code located there
-5. There is an included video on how to set up and run this code. 
+5. There is also a video on how to set up this code submitted as a comment for assignment 2 submission on Canvas
 
 
 # Assumptions Made for the assignment
