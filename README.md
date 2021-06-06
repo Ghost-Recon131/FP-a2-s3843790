@@ -229,6 +229,82 @@ Employee SQL table. If you would like to use the already existing accounts, here
 - There is no resizing support. The specs did not state the program needs to resize and this has not been implemented. In
   if you resize the program window to be larger than 1280x720, it will not scale and if you resize it to be smaller, you
   will lose GUI elements.
+  
+# Video Report 1 Transcript
+
+##Part 1 - Introduction
+My name is Jingxuan Feng, and my student number is s3843790. This is my Assignment Two Video Report 1.
+
+## Part 2 - Admin UI Wireframes
+I have created wireframes for all functional requirements for an admin user. Most wireframes begin with the admin already 
+signed in and at their menu screen:
+- A settings page for the admin to change COVID-19 restriction levels
+- Option for managing user bookings
+- A series of pages and options for managing employee accounts
+- Very similar options for managing admin accounts
+- Option for admin to generate CSV reports
+- Finally, a way for admins to check bookings on a specific date
+
+## Part 3 - Employee UI Wireframes
+I've also implemented all features for the employee accounts. The wireframes I created will demonstrate:
+- An employee logging in or registering for an account
+- An employee who needs to reset a forgotten password
+- Options for employee to book a table, update their reservation, change their account password, remove their reservation
+  and check in to their table on the day.
+  
+## Part 4 - SQLite Tables created
+I have created 3 SQL tables for storing data for the program to use.
+1. Bookings SQL Table: Stores information about Bookings made by employee or admin
+2. Employee SQL Table: Stores information about employee and admin accounts. Password and answer to secret question
+   is hashed using SHA-256 before being stored into the database.
+3. sqlite_master SQL Table: Was part of the starter code and will not allow me to delete it
+4. Tables SQL Table: Stores status of Tables such as whether it is available or under lockdown.
+
+## Part 5 - Code status
+I have made a start on the project's backend code such as DAO's and models for each of the tables, reorganised the starter
+code structure. I also added two supporting classes under the package 'utils' as they provide supporting methods for other
+classes such as generating random numbers, and the hashed result of an input.
+
+
+# Video Report 2 Transcript
+
+##Part 1 - Introduction
+My name is Jingxuan Feng, and my student number is s3843790. This is my Assignment Two Video Report 1.
+
+### Overview
+I have fully implemented the home page, registration process, updated the login page, forget password feature and all
+features required for an Employee account.
+
+## Part 2 - Updated Design and Database
+The app has mostly followed the wireframe design. However, some changes were made, the 'Notifications area' has been kept but
+not as much as shown in the wireframes. This is to save time and implement features that are actually required by the
+assignment specs. If I have extra time, then I will go back and implement this side feature. The calendar date selection
+for choosing a booking date is also slightly different JavaFX not having the same calendar view as the wireframe design.
+
+The database has also been updated. I moved Previous Table from Bookings table into Employees table, allowing getting this
+value using the employee's ID rather than locating their previous booking ID then locating their previous table.
+
+TableStatus column in the Tables table is also depreciated and will be removed sometime in the future.
+
+## Part 3 - Features Implemented through the code
+In addition to what I have previously mentioned, I have implemented error checking into every feature that requires user
+input. Such as checking all inputs are filled, passwords match ect. The booking feature also includes checking that a user
+does not have more than 1 booking, the user books a table in the future, the user cannot cancel a non-existent booking or
+cancel with less than 2 days till the reserved date, the user cannot book an already reserved table or table under COVID-19
+lockdown and finally, the user cannot sit at the same table they sat at last time.
+
+## Part 4 - Demo and Lessons Learnt
+I learnt that coding with a GUI requires a lot more patients and testing than a command line app. I have had to use
+significantly more time to implement features compared to the last assignment.
+
+I also learnt that more forward planning is required, and I need to spend more time planning before jumping straight into
+coding the features.
+
+## Part 5 - Progress
+I believe I am behind schedule, since I have not yet implemented the GUI or program logic for the admin account. I am
+currently up to creating the GUI and implementing admin features.
+
+
 # References
 1. [1]S. Akshif, "VoxelPixel/HashingAlgorithmsInJava", GitHub, 2021. [Online]. Available: 
    https://github.com/VoxelPixel/HashingAlgorithmsInJava/blob/master/SHA256.java. [Accessed: 25- Apr- 2021].
